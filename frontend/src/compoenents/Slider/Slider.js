@@ -1,9 +1,11 @@
 import React from 'react';
-import { SliderInnerCard, ShopTwoItems,  ExploreShopBtn } from './SliderStyle';
+import { StyledLink } from '../../GlobalStyle';
+import { SliderInnerCard, ShopTwoItems, ShopDetailsBtn } from './SliderStyle';
 
 const Slider = ({ id, shopName, shopAddress, category,   url ,rating}) => {
   return (
-    <SliderInnerCard>
+    <StyledLink to={`/shop/${id}`}>
+      <SliderInnerCard>
       <img src={url} alt="shop-Images" />
       <h5>{shopName}</h5>
       <ShopTwoItems>
@@ -11,8 +13,9 @@ const Slider = ({ id, shopName, shopAddress, category,   url ,rating}) => {
             <h6>{rating}</h6>
         </ShopTwoItems>
       <p>{shopAddress}</p>
-      <ExploreShopBtn>Shop Details</ExploreShopBtn>
+      <ShopDetailsBtn>Shop Details</ShopDetailsBtn>
     </SliderInnerCard>
+    </StyledLink>
   )
 }
 

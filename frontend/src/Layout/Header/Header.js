@@ -1,5 +1,6 @@
 import React, { useState }  from 'react';
-import { NavbarContainer, StyledLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, FilterBar, FilterLink, PopUpLogin } from './HeaderStyle';
+import { StyledLink } from '../../GlobalStyle';
+import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, FilterBar, FilterLink, PopUpLogin } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 
 const Header = () => {
@@ -21,7 +22,7 @@ const Header = () => {
        {/* Div for Custom Styling of search bar */}
         <SearchContainer>
            {/* Input for Search */}
-            <SearchBar />
+            <SearchBar placeholder='Search Product'/>
             {/* Search Icon */}
             <Search />
         </SearchContainer>

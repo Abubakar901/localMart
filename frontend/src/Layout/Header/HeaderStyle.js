@@ -1,11 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import { CommonBtn } from '../../GlobalStyle';
 import SearchIcon from '@mui/icons-material/Search';
 
-export const StyledLink = styled(Link)`
-    text-decoration: none;
-`;
 
 export const NavbarContainer = styled.nav`
     background-color: #5b5f97;
@@ -63,6 +59,7 @@ export const SearchBar = styled.input`
     font-size: 19px;
     padding-top:5px;
     padding-bottom:5px;
+
 `;
 
 export const Search = styled(SearchIcon)`
@@ -119,7 +116,7 @@ export const FilterLink = styled.div`
     }
 `;
 
-export const PopUpLogin = styled(Button)`
+export const PopUpLogin = styled(CommonBtn)`
     && {
     color: white;
     background-color: #ffd966;

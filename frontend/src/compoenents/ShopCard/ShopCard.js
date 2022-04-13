@@ -1,10 +1,11 @@
 import React from 'react';
-import { ExploreShopBtn, ShoppingCard, ShopTwoItems, StyledLink  } from './ShopCardStyle';
+import { StyledLink } from '../../GlobalStyle';
+import { ExploreShopBtn, ShoppingCard, ShopTwoItems } from './ShopCardStyle';
 
 const ShopCard = ({ id, shopName, shopAddress, url, category, rating}) => {
   return (
-    <StyledLink to="/shopDetails">
-      <ShoppingCard>  
+      <StyledLink to={id}>
+        <ShoppingCard>  
         <img src={url} alt='shop-name'/>
         <h4>{shopName}</h4>
         <ShopTwoItems>
@@ -14,7 +15,7 @@ const ShopCard = ({ id, shopName, shopAddress, url, category, rating}) => {
         <p>{shopAddress}</p>
         <ExploreShopBtn>Shop Details</ExploreShopBtn>
     </ShoppingCard>
-    </StyledLink>
+      </StyledLink>
   )
 }
 

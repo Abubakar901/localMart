@@ -1,8 +1,10 @@
 import React from 'react';
-import { HomeContainer, ShopCardContainer, ShopCardHeader, ExploreShopBtn, ShopCarousel, StyledLink } from './HomeStyle';
+import { FormContainer, CommonBtn, TopContainer } from '../../GlobalStyle';
+import { HomeContainer, ShopCardContainer, ShopCarousel, StyledLink } from './HomeStyle';
 import Banner from '../../compoenents/Banner/Banner';
 import { shops } from '../../constant/data';
 import Slider from '../../compoenents/Slider/Slider';
+import Medadata from '../../Layout/Medadata';
  
 const Home = () => {
 const responsive = {
@@ -22,16 +24,22 @@ const responsive = {
 
   return (
     <HomeContainer>
+
+    <Medadata title='localMart - Home' />
       <Banner />
 
       <ShopCardContainer>
-        <ShopCardHeader>
+        <TopContainer>
           <h4>Shops</h4>
+          <FormContainer>
+            <input type='text' placeholder='Search City' />
+            <CommonBtn>Search</CommonBtn>
+          </FormContainer>
           <StyledLink to='/shop'>
-            <ExploreShopBtn>Explore Shops</ExploreShopBtn>
+            <CommonBtn>Explore Shops</CommonBtn>
           </StyledLink>
+        </TopContainer>
 
-        </ShopCardHeader>
         <ShopCarousel responsive={responsive} infinite={true} autoPlay draggable={false} swipeable={false} centerMode={true} removeArrowOnDeviceType={["tablet", "mobile"]}
           temClass="carousel-item-padding-40-px"  containerClass="carousel-container">
             {

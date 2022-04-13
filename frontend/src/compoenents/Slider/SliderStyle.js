@@ -66,7 +66,7 @@ export const ShopTwoItems = styled.div`
     }
 `;
 
-export const ExploreShopBtn = styled(Button)`
+export const ShopDetailsBtn = styled(Button)`
     && {
     color: white;
     margin-top: 10px;

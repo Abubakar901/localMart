@@ -1,8 +1,11 @@
 import React from 'react'
+import { MainContainer } from '../../GlobalStyle'
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <MainContainer>
+      
+    </MainContainer>
   )
 }
 

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 
-export const ShoppingCard = styled.div`
-    background-color: #fff;
+export const ProductCard = styled.div`
+    background-color: #d9ead3;
     margin-top: 20px;
-    height: 420px;
+    height: 410px;
     width:300px ;
     text-align: center;
     padding:5px;
@@ -21,25 +21,25 @@ export const ShoppingCard = styled.div`
 
     > img {
         border-radius: 10px;
-        height: 150px;
+        height:200px;
         width: 250px;
         margin:10px;
+        padding:15px;
+        background-color: #fff;
     }
 
     > h4 {
         font-size: 27px;
-        margin: 2px 3px;
+        margin: 3px 3px;
         color: #5b5f97;
     }
 
-    > p {
-        text-align: center;
-        font-size: 17px;
-        width: 250px;
-        height: 110px;
-        margin: 5px auto;
-        color: #000;
+    > h5 {
+        font-size: 27px;
+        margin: 5px 3px 0;
+        color: #3d85c6;
     }
+
 `;
 
 export const ShopTwoItems = styled.div`
@@ -47,19 +47,9 @@ export const ShopTwoItems = styled.div`
     align-items: center;
     justify-content: space-around;
     
-    > h5{ 
-        font-size: 18px;
-        margin:0px;
-        margin-right:10px;
-        font-weight: 500;
-        color: #8fce00;
-    }
-    > h6 {
+    > span {
         font-size: 15px;
-        margin:3px;
-        display: flex;
-        justify-content: center;
-        color: #f00;
+        color: #ff0000;
     }
 `;
 
@@ -67,12 +57,12 @@ export const ExploreShopBtn = styled(Button)`
     && {
         margin-top:5px;    
         color: white;
-        background-color: #ff6cbc;
+        background-color: #2986cc;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &&:hover {
-        background-color: #ff6cbc;
+        background-color: #2986cc;
     }
 `;
 

@@ -1,22 +1,32 @@
-import { Button } from '@mui/material';
 import React from 'react';
+import { Title, InputBox, LabelBox, Line, LoginContainer, LoginForm, ForgotPassLink, Button, Logo } from './LoginStyle';
+import Medadata from '../../Layout/Medadata';
+import { StyledLink } from '../../GlobalStyle';
 
 const Login = () => {
   return (
-    <div>
-        <h4>localMart</h4>
+    <LoginContainer>
+      <Medadata title='localMart - Login' />
+      <Logo>localMart</Logo>
+      <LoginForm>
+        <Title>Login</Title>
 
-        <form>
-            <h6>Login</h6>
-            <label>Email:</label>
-            <input />
+        <LabelBox>Email:</LabelBox>
+        <InputBox />
 
-            <lable>Password:</lable>
-            <input />
+        <LabelBox>Password:</LabelBox>
+        <InputBox />
+        
+        <StyledLink to="/forgotpassword">
+          <ForgotPassLink>Forgot Password?</ForgotPassLink>
+        </StyledLink>
 
-            <Button>Login</Button>
-        </form>
-    </div>
+        <Button>Login</Button>
+      </LoginForm>
+      <Line />
+      <p>New Here?</p>
+      <Button>Sign Up</Button>
+    </LoginContainer>
   )
 }
 

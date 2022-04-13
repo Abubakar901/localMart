@@ -14,7 +14,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 350,
-  height:700,
+  height:609,
   bgcolor: 'background.paper',
   border: '2px solid #fff',
   boxShadow: 24,
@@ -92,6 +92,7 @@ const PopupLogin = ({ open, setOpen }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        
         <Box sx={style}>
         <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
