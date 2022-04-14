@@ -28,12 +28,6 @@ export const ProductCard = styled.div`
         background-color: #fff;
     }
 
-    > h4 {
-        font-size: 27px;
-        margin: 3px 3px;
-        color: #5b5f97;
-    }
-
     > h5 {
         font-size: 27px;
         margin: 5px 3px 0;

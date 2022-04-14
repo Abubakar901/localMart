@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 export const StyledLink = styled(Link)`
     text-decoration: none;
+    
+    > h4 {
+        color:#5b5f97;
+    }
 `;
 
 export const MainContainer = styled.div`
