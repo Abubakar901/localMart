@@ -22,7 +22,7 @@ const Header = () => {
        {/* Div for Custom Styling of search bar */}
         <SearchContainer>
            {/* Input for Search */}
-            <SearchBar placeholder='Search Product'/>
+            <SearchBar placeholder='Search City, Shop or Products'/>
             {/* Search Icon */}
             <Search />
         </SearchContainer>
@@ -91,6 +91,8 @@ const Header = () => {
         </StyledLink>
       </FilterBar>
     </>
+
+    
   )
 }
 

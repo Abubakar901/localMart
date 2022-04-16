@@ -12,7 +12,8 @@ export const StyledLink = styled(Link)`
 
 export const MainContainer = styled.div`
     width:90%;
-    background-color: #cfe2f3;
+    border:2px solid #5b5f97;
+    background-color: ${props => props.bg || '#cfe2f3'};
     margin: 40px auto;
     justify-content: center;
     align-items: center;

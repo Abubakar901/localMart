@@ -3,7 +3,7 @@ import { Title, InputBox, LabelBox, Line, LoginContainer, LoginForm, ForgotPassL
 import Medadata from '../../Layout/Medadata';
 import { StyledLink } from '../../GlobalStyle';
 
-const Login = () => {
+const Login = ({ handleChange }) => {
   return (
     <LoginContainer>
       <Medadata title='localMart - Login' />
@@ -29,7 +29,7 @@ const Login = () => {
       </LoginForm>
       <Line />
       <p>New Here?</p>
-      <Button>Sign Up</Button>
+      <Button onClick={() => handleChange('event',1) } >Sign Up</Button>
     </LoginContainer>
   )
 }

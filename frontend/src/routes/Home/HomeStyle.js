@@ -18,8 +18,10 @@ export const ShopCardContainer = styled.div`
     padding: 10px 0 20px;
     margin-top: 40px;
     background-color: #D1d5fa;
-    height: 490px;
-    padding-bottom: 20px;
+    height: auto;
+    border-radius: 15px;
+    border:1px solid #5b5f97;
+    padding-bottom: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     > Link {
@@ -47,6 +49,6 @@ export const ExploreShopBtn = styled(Button)`
 
 
 export const ShopCarousel = styled(Carousel)`
-    width: 97%;
+    width: 95%;
     margin:10px auto;
 `;

@@ -13,7 +13,9 @@ const Slider = ({ id, shopName, shopAddress, category,   url ,rating}) => {
             <h6>{rating}</h6>
         </ShopTwoItems>
       <p>{shopAddress}</p>
+      
       <ShopDetailsBtn>Shop Details</ShopDetailsBtn>
+      <ShopDetailsBtn>Explore Products</ShopDetailsBtn>
     </SliderInnerCard>
     </StyledLink>
   )

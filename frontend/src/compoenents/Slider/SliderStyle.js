@@ -3,10 +3,10 @@ import Button from '@mui/material/Button';
 
 export const SliderInnerCard = styled.div`
     background-color: #fff;
-    height: 370px;
+    height: auto;
     width:220px ;
     text-align: center;
-    padding:5px;
+    padding:15px;
     margin-left: 30px;
     margin-right: 20px;
     margin-bottom: 15px;

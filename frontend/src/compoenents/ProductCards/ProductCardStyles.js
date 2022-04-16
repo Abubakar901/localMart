@@ -2,12 +2,16 @@ import styled from "styled-components";
 import Button from '@mui/material/Button';
 
 export const ProductCard = styled.div`
-    background-color: #d9ead3;
+    background-color: #fff;
     margin-top: 20px;
     height: 410px;
     width:300px ;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding:5px;
+    align-items: center;
     margin-left: 30px;
     margin-right: 20px;
     margin-bottom: 15px;
@@ -20,11 +24,11 @@ export const ProductCard = styled.div`
     }
 
     > img {
+        text-align: center;
         border-radius: 10px;
         height:200px;
-        width: 250px;
+        width: 200px;
         margin:10px;
-        padding:15px;
         background-color: #fff;
     }
 
@@ -49,8 +53,8 @@ export const ShopTwoItems = styled.div`
 
 export const ExploreShopBtn = styled(Button)`
     && {
-        margin-top:5px;    
         color: white;
+        margin:14px;
         background-color: #2986cc;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
