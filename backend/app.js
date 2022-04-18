@@ -1,14 +1,16 @@
 const express = require('express');
 const app = express();
-
 const errormiddleware = require('./middleware/error');
+const cookieParser = require("cookie-parser");
 
 app.use(express.json());
+app.use(cookieParser());
 
+const productRoute = require('./routes/ProductRoute');
+const userRoute = require('./routes/userRoute');
 
-const product = require('./routes/ProductRoute');
-
-app.use('/api/v1',product)
+app.use('/api/v1', productRoute);
+app.use('/api/v1', userRoute)
 
 // middle ware for error
 app.use(errormiddleware);
