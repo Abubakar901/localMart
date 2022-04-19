@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MainContainer, TopContainer, CommonBtn, CardsContainer, FormContainer } from '../../GlobalStyle';
 import ProductCards from '../../compoenents/ProductCards/ProductCards';
 import { products } from '../../constant/data';
 import Medadata from '../../Layout/Medadata';
 
+
 const Product = () => {
+  
   return (
     <MainContainer bg='#d9ead3'>
     

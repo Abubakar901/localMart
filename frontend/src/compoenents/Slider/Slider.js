@@ -4,20 +4,20 @@ import { SliderInnerCard, ShopTwoItems, ShopDetailsBtn } from './SliderStyle';
 
 const Slider = ({ id, shopName, shopAddress, category,   url ,rating}) => {
   return (
-    <StyledLink to={`/shop/${id}`}>
-      <SliderInnerCard>
-      <img src={url} alt="shop-Images" />
-      <h5>{shopName}</h5>
+    <SliderInnerCard>
+        <img src={url} alt="shop-Images" />
+      <StyledLink to={`/shop/${id}`}>
+        <h5>{shopName}</h5>
       <ShopTwoItems>
             <h5>{category}</h5>
             <h6>{rating}</h6>
         </ShopTwoItems>
       <p>{shopAddress}</p>
+    </StyledLink>
       
       <ShopDetailsBtn>Shop Details</ShopDetailsBtn>
       <ShopDetailsBtn>Explore Products</ShopDetailsBtn>
     </SliderInnerCard>
-    </StyledLink>
   )
 }
 

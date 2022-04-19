@@ -8,6 +8,7 @@ export const StyledLink = styled(Link)`
     > h4 {
         color:#5b5f97;
     }
+    
 `;
 
 export const MainContainer = styled.div`

@@ -18,8 +18,8 @@ router.route("/unique/products/:id")
 // get products details
 router.route("/products/:id").get(getProductDetails);
 
-router.route("/review").put(isAuthenticatedUser, createProductReview);
+router.route("/product/review").put(isAuthenticatedUser, createProductReview);
 
-router.route("/reviews").get(getProductReviews).delete(isAuthenticatedUser, deleteReview);
+router.route("/product/reviews").get(getProductReviews).delete(isAuthenticatedUser, deleteReview);
     
 module.exports = router;

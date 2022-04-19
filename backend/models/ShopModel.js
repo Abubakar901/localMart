@@ -1,28 +1,39 @@
-const mongoose = require ("mongoose");
+const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:[true, "Please enter product name"],
-        trim:true
+const shopSchema = new mongoose.Schema({
+    name: {
+        type : String,
+        required:[true, "Please enter Shop name"]
     },
-
-   description: {
-        type:String,
-        required:[true, "Please enter product description"]
+    contact:{
+        type : Number,
+        required:[true, "Please Enter Shop Contact Number"],
     },
-
-    price:{
-        type:Number,
-        required:[true,"Please enter the price"],
-        maxLength:[8, "Price cannot exceed 8 character"]
+    city : {
+        type: String,
+        required:[true, "Please Enter Shop City"],
     },
-
+    state: {
+        type: String,
+        required:[true, "Please Enter Shop State"]
+    },
+    country: {
+        type: String,
+        required:[true, "Please enter Shop Country"],
+    },
+    category: {
+        type: String,
+        required:[true, "Please enter Shop Category"],
+    },
+    pinCode : {
+        type: String,
+        required:[true, "Please enter Shop Pincode"],
+    },
+    
     ratings:{
         type:Number,
         default:0
     },
-
     images:[
         {
             public_id:{
@@ -35,24 +46,10 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-
-    category:{
-        type:String,
-        required:[true,"please enter product category"],
-
-    },
-
-    Stock:{
-        type:Number,
-        required:[true,"Please enter product stock"],
-        default:1
-    },
-
     numOfReviews:{
         type:Number,
         default:0
     },
-
     reviews:[
         {
             user:{
@@ -74,23 +71,15 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-
     user:{
         type:mongoose.Schema.ObjectId,
         ref: "User",
         required: true,
     },
-    shopName:{
-        type:String,
-        required: [true,"Please enter Shop Name"]
-    },
-
     createdAt:{
         type:Date,
         default:Date.now
     }
+});
 
-
-})
-
-module.exports = mongoose.model("Product",productSchema)
+module.exports = mongoose.model("Shop", shopSchema);

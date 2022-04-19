@@ -31,7 +31,8 @@ exports.getAllProducts = catchAsyncErros(async(req, res) => {
 
     res.status(200).json({
         success: true,
-        products
+        products,
+        productCount
     })
 });
 
@@ -125,9 +126,9 @@ exports.createProductReview = catchAsyncErros( async( req, res, next ) => {
 
 // get all reviews - admin/seller/customer
 exports.getProductReviews = catchAsyncErros( async( req, res, next) => {
-    const productReview = await Product.findById(req.query.id);
+    const product = await Product.findById(req.query.id);
 
-    if(!productReview) {
+    if(!product) {
         return next(new ErrorHandler("Product Not Found", 404));
     }
 
@@ -157,12 +158,14 @@ exports.deleteReview = catchAsyncErros( async( req, res, next) => {
 
     const numOfReviews = reviews.length;
 
-    await product.findByIdAndUpdate(req.query.productId, {
+    await Product.findByIdAndUpdate(req.query.productId, {
         reviews,
         ratings,
         numOfReviews
     }, {
-        new: true
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
     })
 
     res.status(200).json({

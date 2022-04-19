@@ -21,10 +21,6 @@ const Login = ({ handleChange }) => {
         </StyledLink>
 
         <Button>Login</Button>
-        
-        <Button bg='#6aa84f' transform='capitalize'>Login using Google</Button>
-
-        <Button bg='#2986cc' transform='capitalize'>Login using Facebook</Button>
 
       </LoginForm>
       <Line />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CommonBtn, TopContainer } from '../../GlobalStyle';
 import { HomeContainer, ShopCardContainer, ShopCarousel, StyledLink } from './HomeStyle';
 import Banner from '../../compoenents/Banner/Banner';
@@ -7,6 +7,7 @@ import Slider from '../../compoenents/Slider/Slider';
 import Medadata from '../../Layout/Medadata';
  
 const Home = () => {
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -21,7 +22,6 @@ const responsive = {
     items: 1
   }
 };
-
   return (
     <HomeContainer>
 

@@ -4,10 +4,11 @@ import { CommonBtn } from "../../GlobalStyle";
 export const RegisterContainer = styled.div`
     background-color: #5b5f97;
     padding:14px;
+    height: 563px;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding-bottom: 30px;
 
     > p {
@@ -25,10 +26,11 @@ export const RegistrationForm = styled.form`
 `;
 
 export const Title = styled.h6`
-    font-size: 30px;
+    font-size: 40px;
     color: #b8b8d1;
-    margin-bottom:15px;
+    margin-top:10px;
     font-weight: bold;
+    margin-bottom: 20px;
 `;
 
 export const LabelBox = styled.label`
@@ -41,7 +43,7 @@ export const InputBox = styled.input`
     outline: none;
     border:none;
     width:250px;
-    margin-bottom: 13px;
+    margin-bottom: 21px;
     padding:3px 20px;
 `;
 

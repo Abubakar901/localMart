@@ -17,19 +17,14 @@ const Register = () => {
         <InputBox placeholder='Enter Email'/>
 
       
-        <LabelBox>Phone Number:</LabelBox>
+        <LabelBox>Password:</LabelBox>
         <InputBox placeholder='Enter Phone Number'/>
         
         
-        <LabelBox>  City, State, Country:</LabelBox>
+        <LabelBox> Confirm:</LabelBox>
         <InputBox placeholder='Enter City' />
-        
-        <LabelBox>Username:</LabelBox>
-        <InputBox placeholder='Enter Password'/>
-
-        
-        <LabelBox>Username:</LabelBox>
-        <InputBox placeholder='Re-Enter Password'/>
+    
+      
 
         <Button>Sign Up</Button>
       </RegistrationForm>
