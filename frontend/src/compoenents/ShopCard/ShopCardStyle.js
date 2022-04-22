@@ -1,10 +1,55 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import { StyledLink } from "../../GlobalStyle";
+
+export const ShopLink = styled(StyledLink)`
+    > img {
+        border-radius: 10px;
+        height: 150px;
+        width: 250px;
+        margin:10px;    
+        border:1px solid #000; 
+    }
+
+    > h4 {
+        font-size: 30px;
+        margin: 2px 3px;
+        color: #5b5f97;
+    }
+    
+    > h5 {
+        margin-top:10px;
+        font-size: 20px;
+        color: #000;
+
+        >span {
+            color : green;
+        }
+    }
+
+    > p {  
+        color: #000;
+    }
+`;
+
+export const ShopTwoItems = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    > p {
+        text-align: center;
+        font-size: 17px;
+        padding: 0 10px;
+        margin: 5px auto;
+        color: #000;
+    }
+`;
 
 export const ShoppingCard = styled.div`
     background-color: #fff;
     margin-top: 20px;
-    height: 420px;
+    min-height: 466px;
     width:300px ;
     text-align: center;
     padding:5px;
@@ -15,64 +60,22 @@ export const ShoppingCard = styled.div`
     padding-top:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    :hover{ 
-        cursor: pointer;
-    }
 
-    > img {
-        border-radius: 10px;
-        height: 150px;
-        width: 250px;
-        margin:10px;
-    }
-
-    > h4 {
-        font-size: 27px;
-        margin: 2px 3px;
-        color: #5b5f97;
-    }
-
-    > p {
-        text-align: center;
-        font-size: 17px;
-        width: 250px;
-        height: 110px;
-        margin: 5px auto;
-        color: #000;
-    }
-`;
-
-export const ShopTwoItems = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    
-    > h5{ 
-        font-size: 18px;
-        margin:0px;
-        margin-right:10px;
-        font-weight: 500;
-        color: #8fce00;
-    }
-    > h6 {
-        font-size: 15px;
-        margin:3px;
-        display: flex;
-        justify-content: center;
-        color: #f00;
-    }
 `;
 
 export const ExploreShopBtn = styled(Button)`
     && {
         margin-top:5px;    
-        color: white;
-        background-color: #ff6cbc;
+        color: #fff;
+        width:200px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        background-color: ${props => props.bgColor || '#bd2377'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &&:hover {
-        background-color: #ff6cbc;
+        background-color: ${props => props.bgColor  || '#c74981'};
     }
 `;
 

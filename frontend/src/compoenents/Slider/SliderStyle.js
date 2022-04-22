@@ -3,7 +3,10 @@ import Button from '@mui/material/Button';
 
 export const SliderInnerCard = styled.div`
     background-color: #fff;
-    max-height: auto;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width:220px ;
     text-align: center;
     padding:15px;
@@ -23,24 +26,6 @@ export const SliderInnerCard = styled.div`
         width: 170px;
         margin:10px 10px;
         border-radius: 8px;
-    }
-
-    > h5{ 
-        font-size: 18px;
-        margin:3px;
-        color: #5b5f97;
-        font-weight: 500;
-    }
-
-    > p {
-        font-size: 15px ;
-        text-align: center;
-        width:200px;
-        height: 110px;
-        margin-left: auto;
-        margin-right: auto;
-        padding:10px;
-        color: #000;
     }
 
 `;

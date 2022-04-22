@@ -16,7 +16,6 @@ const Register = () => {
           <LabelBox>Email:</LabelBox>
         <InputBox placeholder='Enter Email'/>
 
-      
         <LabelBox>Password:</LabelBox>
         <InputBox placeholder='Enter Phone Number'/>
         

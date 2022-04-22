@@ -18,6 +18,7 @@ exports.createShops = catchAsyncError( async( req, res, next) => {
 
 // get all shops --- admin/seller/customer
 exports.getAllShops = catchAsyncError( async(req, res, next) =>{
+
     const resultPerPage = 8;
     const shopCount = await Shop.countDocuments();
 
@@ -30,7 +31,8 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
 
     res.status(200).json({
         success: true,
-        shops
+        shops,
+        shopCount
     })
 });
 

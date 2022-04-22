@@ -4,9 +4,9 @@ const errormiddleware = require('./middleware/error');
 const cookieParser = require("cookie-parser");
 const cors = require("cors")
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 
 const productRoute = require('./routes/ProductRoute');
 const userRoute = require('./routes/userRoute');

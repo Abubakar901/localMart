@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MainContainer, TopContainer, CommonBtn, CardsContainer, FormContainer } from '../../GlobalStyle';
 import ProductCards from '../../compoenents/ProductCards/ProductCards';
-import { products } from '../../constant/data';
 import Medadata from '../../Layout/Medadata';
-
+import { products } from '../../constant/data'
 
 const Product = () => {
   
@@ -20,13 +19,15 @@ const Product = () => {
       </TopContainer>
       <CardsContainer>
       {
-        products.map(product => (
+        products && products.map(product => (
           <ProductCards
+          //  product={product}
+            key={product.id}
             id={product.id}
             title={product.title}
-            url={product.url}
+           url={product.url}
             price={product.price}
-          />
+          /> 
         ))   
       }
       </CardsContainer>

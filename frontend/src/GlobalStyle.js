@@ -9,6 +9,7 @@ export const StyledLink = styled(Link)`
         color:#5b5f97;
     }
     
+    
 `;
 
 export const MainContainer = styled.div`
@@ -16,12 +17,12 @@ export const MainContainer = styled.div`
     border:2px solid #5b5f97;
     background-color: ${props => props.bg || '#cfe2f3'};
     margin: 40px auto;
-    justify-content: center;
+    justify-content: ${props => props.equally || 'center'};
     align-items: center;
     border-radius: 20px;
     display: flex;
-    flex-direction: column; 
-    padding: 20px 10px;
+    flex-direction:  ${props => props.vertical || 'column'};
+    padding: 0px 0px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 `;
