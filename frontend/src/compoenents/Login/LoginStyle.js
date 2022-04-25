@@ -10,12 +10,12 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     padding-bottom: 30px;
+`;
 
-    > p {
-        font-size: 18px;
-        color:#e1dede;
-        margin-bottom: 10px;
-    }
+export const DullText = styled.p`
+    font-size: 18px;
+    color:#e1dede;
+     margin-bottom: 10px;
 `;
 
 export const LoginForm = styled.form`

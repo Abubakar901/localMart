@@ -1,14 +1,17 @@
 import React, { useState }  from 'react';
 import { StyledLink } from '../../GlobalStyle';
-import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, FilterBar, FilterLink, PopUpLogin } from './HeaderStyle';
+import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, FilterBar, FilterLink, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 
 const Header = () => {
   
-  
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  let localUser = localStorage.getItem("user")
+
+  const userData = JSON.parse(localUser)
+  
+  const handleOpen = () => setOpen(true)
   
   return (
     <>
@@ -38,13 +41,13 @@ const Header = () => {
           {/* Link from React Router Dom */}
           <StyledLink to="/shop">
             {/* Div for Custom styling of Routus */}
-            <Navtags>Shop</Navtags>
+            <Navtags>Shops</Navtags>
           </StyledLink>
           
           {/* Link from React Router Dom */}
           <StyledLink to="/product">
             {/* Div for Custom styling of Routus */}
-            <Navtags>Product</Navtags>  
+            <Navtags>Products</Navtags>  
           </StyledLink>
         
           
@@ -54,13 +57,31 @@ const Header = () => {
             <Navtags>Cart</Navtags>
           </StyledLink>
         
-          
-          {/* Link from React Router Dom */}
-          <PopUpLogin onClick={handleOpen}>
-            Login
-          </PopUpLogin>
-          <Login open={open} setOpen={setOpen} />
-
+          {
+            localUser ? (
+              <>
+              <DropdownMenu class="dropdown">
+                <btn class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  {userData.name}
+                </btn>
+                <ul class="dropdown-menu"  style={{paddingBottom:0, borderRadius:12, textAlign: 'center'}} aria-labelledby="dropdownMenuButton1">
+                  <li style={{ fontSize: 18, borderBottom: '1px solid black', paddingBottom: 5}}><DropdownLink class='dropdown-item' to='/profile'>Profile</DropdownLink></li>
+                  <li style={{ fontSize: 18, borderBottom: '1px solid black', paddingBottom: 5}}><DropdownLink class='dropdown-item' to='/orders'>Orders</DropdownLink></li>
+                  <li><LogoutBtn>Logout</LogoutBtn></li>
+               </ul>
+              </DropdownMenu>
+              </>
+            ) : (
+              <>
+                {/* Link from React Router Dom */}
+                <PopUpLogin onClick={handleOpen}>
+                  Login
+                </PopUpLogin>
+                <Login open={open} setOpen={setOpen} />
+              </>
+            )
+          }
+            
         </NavLinks>
       </NavbarContainer>
 

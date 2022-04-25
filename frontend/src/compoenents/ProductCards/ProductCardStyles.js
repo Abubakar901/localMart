@@ -1,5 +1,37 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import { StyledLink } from "../../GlobalStyle";
+
+export const ProductLink = styled(StyledLink)`
+    > img {
+        border-radius: 10px;
+        height: 150px;
+        width: 250px;
+        margin:10px;    
+        border:1px solid #000; 
+    }
+
+    > h4 {
+        font-size: 30px;
+        margin: 2px 3px;
+        color: #5b5f97;
+    }
+    
+    > h5 {
+        margin-top:10px;
+        font-size: 20px;
+        color: #000;
+
+        >span {
+            color : green;
+        }
+    }
+
+    > p {  
+        color: #000;
+    }
+`;
+
 
 export const ProductCard = styled.div`
     background-color: #fff;
@@ -53,17 +85,19 @@ export const ShopTwoItems = styled.div`
 
 export const ExploreShopBtn = styled(Button)`
     && {
-        color: white;
-        margin:14px;
-        background-color: #2986cc;
+        margin-top:5px;    
+        color: #fff;
+        width:200px;
+        margin-bottom: 10px;
+        font-size: 15px;
+        background-color: ${props => props.bgColor || '#bd2377'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &&:hover {
-        background-color: #2986cc;
+        background-color: ${props => props.bgColor  || '#c74981'};
     }
 `;
-
 
 
 

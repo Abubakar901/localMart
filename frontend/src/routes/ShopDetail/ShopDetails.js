@@ -20,7 +20,7 @@ const ShopDetails = () => {
   
   console.log(params)
   return (
-    <MainContainer vertical='row' equally='space-around'>
+    <MainContainer horizontal='row' equally='space-around'>
         <LeftContainer>
            <Carousel> 
             { /*}

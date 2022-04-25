@@ -9,13 +9,15 @@ import {
     SHOP_DETAILS_FAIL,
     CLEAR_ERRORS } from '../constant/keys';
 
-export const getShop = () => async (dispatch) => {
+export const getShop = (pageNumber) => async (dispatch) => {
     try {
         dispatch({
              type :ALL_SHOP_REQUEST
         });
 
-        const { data } = await axios.get("/api/v1/shops");
+        let link = `/api/v1/shops?page=${pageNumber}`;
+
+        const { data } = await axios.get(link);
 
         dispatch({
             type: ALL_SHOP_SUCCESS,

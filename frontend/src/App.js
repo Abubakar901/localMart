@@ -13,8 +13,6 @@ import Cart from './routes/Cart/Cart';
 import ErrorPage from './routes/ErrorPage/ErrorPage';
 import ShopDetails from './routes/ShopDetail/ShopDetails';
 
-
-
 function App() {
   return (
     <div className="App">

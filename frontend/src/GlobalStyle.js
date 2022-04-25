@@ -21,7 +21,7 @@ export const MainContainer = styled.div`
     align-items: center;
     border-radius: 20px;
     display: flex;
-    flex-direction:  ${props => props.vertical || 'column'};
+    flex-direction:  ${props => props.horizontal || 'column'};
     padding: 0px 0px 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -43,6 +43,19 @@ export const TopContainer = styled.div`
         color: #5b5f97;
     }
 `;
+export const BottomContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    h4 {
+        font-size: 40px;
+        color: #5b5f97;
+    }
+`;
 
 export const  FormContainer = styled.form`
     display: flex;
@@ -50,7 +63,7 @@ export const  FormContainer = styled.form`
     padding: 10px;
     
     > input {
-         width:200px;
+         width:350px;
         outline: none;
         border: 2px solid #5b5f97;
         border-radius: 10px;

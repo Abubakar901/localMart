@@ -22,6 +22,15 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
     const resultPerPage = 8;
     const shopCount = await Shop.countDocuments();
 
+    const countingShops = await Shop.find();
+
+    let total = 0;
+    let totalShops = 0;
+    for(let i=1; i<=countingShops.length; i++) {
+        total += 1;
+    }
+    totalShops = total / 8 ;
+
     const apifeature = new Apifeatures(Shop.find(),req.query)
     .search()
     .filter()
@@ -32,7 +41,9 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
     res.status(200).json({
         success: true,
         shops,
-        shopCount
+        shopCount,
+        resultPerPage,
+        totalShops
     })
 });
 

@@ -43,8 +43,28 @@ export const InputBox = styled.input`
     outline: none;
     border:none;
     width:250px;
-    margin-bottom: 21px;
+    margin-bottom: 19px;
     padding:3px 20px;
+`;
+
+export const SidebySide = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    >img {
+        height: 50px;
+        border-radius: 50%;
+        margin-right:10px;
+        width: 50px;
+    }
+
+    > input {
+        width: 100px;
+        outline: none;
+        border-radius: 30px;
+    }
 `;
 
 export const Button = styled(CommonBtn)`
