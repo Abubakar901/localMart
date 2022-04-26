@@ -22,7 +22,7 @@ const Shop = () => {
 
   const alert = useAlert();
 
-  const { loading, error, shops, shopsCount, resultPerPage } = useSelector(state => state.shops)
+  const { loading, error, shops  } = useSelector(state => state.shops)
   
   useEffect(() => {
     if(error) {

@@ -19,7 +19,7 @@ const Banner = () => {
     <ImageCarousel {...settings}>
             {
               bannerData.map((item, index) => (
-                <ImageSliderContainer>
+                <ImageSliderContainer key={index}>
                   <ImageSlider src={item} key={index} />
                 </ImageSliderContainer>
               ))

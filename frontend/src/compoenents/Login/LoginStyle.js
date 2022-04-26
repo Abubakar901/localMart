@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CommonBtn } from '../../GlobalStyle';
+import { StyledLink } from '../../GlobalStyle';
 
 export const LoginContainer = styled.div`
     background-color: #5b5f97;
@@ -12,7 +13,7 @@ export const LoginContainer = styled.div`
     padding-bottom: 30px;
 `;
 
-export const DullText = styled.p`
+export const DullText = styled.div`
     font-size: 18px;
     color:#e1dede;
      margin-bottom: 10px;
@@ -47,7 +48,7 @@ export const InputBox = styled.input`
     padding:3px 20px;
 `;
 
-export const ForgotPassLink = styled.p`
+export const ForgotPassLink = styled(StyledLink)`
     color:#e1dede;
     margin-top: 5px;
     margin-bottom:25px;

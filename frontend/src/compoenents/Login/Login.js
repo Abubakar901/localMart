@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Title, InputBox, LabelBox, Line, LoginContainer, DullText, LoginForm, ForgotPassLink, Button } from './LoginStyle';
 import Medadata from '../../Layout/Medadata';
-import { StyledLink } from '../../GlobalStyle';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, postLogin } from '../../actions/userAction';
+import { useDispatch } from 'react-redux';
+import { postLogin } from '../../actions/userAction';
 
-const Login = ({ handleChange,  handleClose }) => {
+const Login = ({ handleChange }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, isAuthenticated, user } = useSelector(state => state.user)
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -21,12 +17,6 @@ const Login = ({ handleChange,  handleClose }) => {
   }
 
   
-  useEffect(() => {
-    if(isAuthenticated) {
-      localStorage.setItem('user', JSON.stringify(user))
-      handleClose();
-    }
-  }, [isAuthenticated, handleClose, user ])
   return (
     <LoginContainer>
       <Medadata title='localMart - Login' />
@@ -39,9 +29,7 @@ const Login = ({ handleChange,  handleClose }) => {
         <LabelBox>Password:</LabelBox>
         <InputBox placeholder='Enter Password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
         
-        <StyledLink to="/forgotpassword">
-          <ForgotPassLink>Forgot Password?</ForgotPassLink>
-        </StyledLink>
+          <ForgotPassLink to='forgotPassword'>Forgot Password?</ForgotPassLink>
 
         <Button type="submit" value="Login" >Login</Button>
 

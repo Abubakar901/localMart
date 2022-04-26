@@ -11,6 +11,7 @@ export const ImageCarousel = styled(Slider)`
 
 export const ImageSliderContainer = styled.div`
     height: 300px;
+    width:100%;
 `;
 
 export const ImageSlider = styled.img`

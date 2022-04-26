@@ -12,8 +12,18 @@ import Product from './routes/Product/Product';
 import Cart from './routes/Cart/Cart';
 import ErrorPage from './routes/ErrorPage/ErrorPage';
 import ShopDetails from './routes/ShopDetail/ShopDetails';
+import store from './redux/store';
+import { useEffect } from 'react';
+import { loadUser } from './actions/userAction';
+import Sellerboard from './seller/SellerBoard/Sellerboard';
+import Adminboard from './admin/AdminBoard/Adminboard';
 
 function App() {
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, [])
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -22,15 +32,21 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             
-            <Route path="/shop" element={<Shop /> }/>
+            <Route path="/shops" element={<Shop /> }/>
 
-            <Route path="/shop/:id" element={<ShopDetails /> }/>
+            <Route path="/shops/:id" element={<ShopDetails /> }/>
 
-            <Route path="/product" element={<Product /> }/>
+            <Route path="/products" element={<Product /> }/>
             
             <Route path="/cart" element={<Cart /> }/>
 
             <Route path="*" element={<ErrorPage /> }/>
+
+            
+            <Route path="/seller/dashboard" element={<Sellerboard /> }/>
+
+            
+            <Route path="/admin/dashboard" element={<Adminboard /> }/>
           
           </Routes>
           <Footer />

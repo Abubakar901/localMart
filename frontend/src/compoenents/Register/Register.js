@@ -1,18 +1,18 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import {  RegisterContainer, RegistrationForm,  Title,  InputBox, Button, LabelBox, SidebySide } from './RegisterStyle';
 import Medadata from '../../Layout/Medadata';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, postRegister } from '../../actions/userAction';
+import {  postRegister } from '../../actions/userAction';
 
-const Register = () => {
+const Register = ({ handleClose }) => {
 
   const dispatch = useDispatch();
   
-  const { error, loading, isAuthenticated } = useSelector(
+  const { isAuthenticated, user } = useSelector(
     (state) => state.user
   );
 
-  const [user, setUser] = useState({
+  const [userdetails, setUserDetails] = useState({
     username: "",
     email: "",
     password: "",
@@ -22,7 +22,7 @@ const Register = () => {
   const [avatarPreview, setAvatarPreview] = useState("./assests/Profile.png")
 
 
-  const { username, email, password, confirmPassword } = user;
+  const { username, email, password, confirmPassword } = userdetails;
 
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
@@ -37,7 +37,7 @@ const Register = () => {
 
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setUserDetails({ ...userdetails, [e.target.name]: e.target.value });
     }
   };
 
@@ -52,11 +52,23 @@ const Register = () => {
       myForm.set("password", password);
       myForm.set("avatar", avatar);
       dispatch(postRegister(myForm));
+      console.log('Registered')
 
     } else {
       alert("Password and Confirm Password Does not Match")
     }
   };
+
+  
+  
+  useEffect(() => {
+
+    if(isAuthenticated) {
+      localStorage.setItem('user', JSON.stringify(user))
+      handleClose(); 
+      console.log('User Authenticated')
+    }
+  }, [isAuthenticated, handleClose, user ])
 
   return (
       <RegisterContainer>
@@ -75,7 +87,7 @@ const Register = () => {
           <LabelBox>Avatar:</LabelBox>
           
           <SidebySide>
-            <img src={avatarPreview} />
+            <img src={avatarPreview} alt='user-avatar' />
             <input type='file' name='avatar' accept="image/*"  onChange={registerDataChange} />
           </SidebySide>
 
