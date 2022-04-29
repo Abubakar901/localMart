@@ -1,5 +1,5 @@
 const express = require("express");
-const { createShops , getAllShops, getShopDetails, updateShop, deleteShop, createShopReview, deleteShopReview, getShopReviews, getAdminShops} = require('../controller/ShopController');
+const { createShops , getAllShops, getShopDetails, updateShop, deleteShop, createShopReview, deleteShopReview, getShopReviews, getAdminShops, getShopSeller} = require('../controller/ShopController');
 const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
@@ -13,9 +13,11 @@ router.route("/shop/:id").get(getShopDetails);
 
 
 router
-  .route("/unique/shops")
-  .get(isAuthenticatedUser, authorizeRoles("admin", "seller"), getAdminShops);
+  .route("/admin/shops")
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminShops);
 
+// get seller shop 
+router.route("/seller/shops").get(isAuthenticatedUser, authorizeRoles("seller"), getShopSeller);
 
 // updating and delete shop route
 router.route("/unique/shop/:id")

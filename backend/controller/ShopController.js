@@ -58,7 +58,20 @@ exports.getAdminShops = catchAsyncError (async (req, res, next) => {
   });
 
 
-// get Single Shop --- admin/seller/customer
+// get shop details seller --- seller
+exports.getShopSeller = catchAsyncError(async (req, res, next) => {
+
+    const user = req.user.id
+    
+    const shops = await Shop.find({ user })
+
+    res.status(200).json({
+        success: true,
+        shops
+    })
+});
+
+// get Single Shop --- customer
 exports.getShopDetails = catchAsyncError( async( req, res, next) => {
     let shop = await Shop.findById(req.params.id);
 
@@ -72,6 +85,7 @@ exports.getShopDetails = catchAsyncError( async( req, res, next) => {
 
     })
 });
+
 
 // update Shop --- seller/admin 
 exports.updateShop = catchAsyncError( async( req, res, next )=> {
