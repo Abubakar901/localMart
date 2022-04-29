@@ -5,7 +5,7 @@ import { StyledLink } from '../../GlobalStyle';
 export const LoginContainer = styled.div`
     background-color: #5b5f97;
     padding:14px;
-    height: 563px;
+    height: 605px;
     display: flex;
     align-items: center;
     flex-direction: column;

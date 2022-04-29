@@ -4,7 +4,7 @@ import { CommonBtn } from "../../GlobalStyle";
 export const RegisterContainer = styled.div`
     background-color: #5b5f97;
     padding:14px;
-    height: 563px;
+    height:605px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,7 +30,7 @@ export const Title = styled.h6`
     color: #b8b8d1;
     margin-top:10px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 `;
 
 export const LabelBox = styled.label`
@@ -43,7 +43,7 @@ export const InputBox = styled.input`
     outline: none;
     border:none;
     width:250px;
-    margin-bottom: 19px;
+    margin-bottom: 13px;
     padding:3px 20px;
 `;
 
@@ -57,6 +57,7 @@ export const SidebySide = styled.div`
         height: 50px;
         border-radius: 50%;
         margin-right:10px;
+        margin-left: 10px;
         width: 50px;
     }
 

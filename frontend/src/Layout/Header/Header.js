@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import { StyledLink } from '../../GlobalStyle';
-import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, FilterBar, FilterLink, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu } from './HeaderStyle';
+import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
@@ -114,7 +114,7 @@ const Roles = () => {
               <>
               <DropdownMenu className="dropdown">
                 <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  {user.name}
+                  {user.firstName}
                 </button>
                 <ul className="dropdown-menu"  style={{paddingBottom:0, borderRadius:12, textAlign: 'center'}} aria-labelledby="dropdownMenuButton1">
                   <li style={{ fontSize: 18, borderBottom: '1px solid black', paddingBottom: 5}}><DropdownLink className='dropdown-item' to='/profile'>Profile</DropdownLink></li>
@@ -136,33 +136,6 @@ const Roles = () => {
             
         </NavLinks>
       </NavbarContainer>
-
-      <FilterBar>
-        <StyledLink to="/electronics">
-          <FilterLink>
-            Electronics  
-          </FilterLink>
-        </StyledLink>
-
-        <StyledLink to="/clothing">
-          <FilterLink>
-              Clothing
-          </FilterLink>
-        </StyledLink>
-
-
-        <StyledLink to="/groceries">
-          <FilterLink>
-            Groceries
-          </FilterLink>
-        </StyledLink>
-
-        <StyledLink to="/medicals">
-          <FilterLink>
-            Medicals
-          </FilterLink>
-        </StyledLink>
-      </FilterBar>
     </>
 
     

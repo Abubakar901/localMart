@@ -14,7 +14,6 @@ export const StyledLink = styled(Link)`
 
 export const MainContainer = styled.div`
     width:90%;
-    border:2px solid #5b5f97;
     background-color: ${props => props.bg || '#cfe2f3'};
     margin: 40px auto;
     justify-content: ${props => props.equally || 'center'};
@@ -22,7 +21,10 @@ export const MainContainer = styled.div`
     border-radius: 20px;
     display: flex;
     flex-direction:  ${props => props.horizontal || 'column'};
-    padding: 0px 0px 20px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right:0;
+    padding-bottom:${props => props.innerspace || '20px'};
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 `;
@@ -30,13 +32,19 @@ export const MainContainer = styled.div`
 export const TopContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:  ${props => props.equally || 'space-between'};
     width: 90%;
     margin-top: 10px;
     margin-bottom: 0;
     margin-right: auto;
     margin-left: auto;
     font-weight: 700;
+
+    h2 {
+        font-size: 40px;
+        margin-top:20px;
+        color: #5b5f97;
+    }
 
     h4 {
         font-size: 40px;
@@ -47,9 +55,10 @@ export const BottomContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: ${props => props.outerspace || '10px'};
+    height: auto;
 
     h4 {
         font-size: 40px;

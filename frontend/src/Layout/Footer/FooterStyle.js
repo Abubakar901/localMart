@@ -72,10 +72,10 @@ export const FooterMiddle = styled.div`
     justify-content: center;
     align-items: center;
 
-    > h6 {
-        font-size: 22px;
+    > a {
+        font-size: 30px;
         color: #b8b8d1;
-        text-decoration: underline;
+        font-weight: 500;
 
         :hover {
             cursor: pointer;

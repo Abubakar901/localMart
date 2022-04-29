@@ -89,32 +89,6 @@ export const Navtags = styled.div`
     }
 `; 
 
-export const FilterBar = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    width: 100%;
-    padding: 4px 0;
-    background-color:#878cd7;
-    letter-spacing: 0.5px;
-    
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-`;
-
-export const FilterLink = styled.div`
-    font-size: 17px;
-    color: #ffd966;
-    font-weight: 500;
-    letter-spacing: 1px;
-
-    :hover {
-        
-        color: #fc6e6e;
-        cursor: pointer;
-    }
-`;
-
 export const PopUpLogin = styled(CommonBtn)`
     && {
     color: white;

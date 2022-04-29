@@ -17,10 +17,12 @@ exports.registerUser = catchAsyncError(async(req,res,next) => {
         crop: 'scale'
     });
 
-    const { name, email, password } = req.body;
+    const { firstName, lastName , phone, email, password } = req.body;
 
     const user = await User.create({    
-        name,
+        firstName,
+        lastName,
+        phone,
         email,
         password,
         avatar: {

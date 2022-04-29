@@ -81,8 +81,9 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     shopName:{
-        type:String,
-        required: [true,"Please enter Shop Name"]
+        type:mongoose.Schema.ObjectId,
+        ref: "Shop",
+        required: true,
     },
 
     createdAt:{

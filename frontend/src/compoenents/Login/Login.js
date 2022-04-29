@@ -16,7 +16,6 @@ const Login = ({ handleChange }) => {
     dispatch(postLogin(email, password))
   }
 
-  
   return (
     <LoginContainer>
       <Medadata title='localMart - Login' />

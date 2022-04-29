@@ -4,7 +4,6 @@ export const bannerData = [
     'https://rukminim1.flixcart.com/flap/3376/560/image/ae9966569097a8b7.jpg?q=50',
     'https://rukminim1.flixcart.com/flap/3376/560/image/f6202f13b6f89b03.jpg?q=50'
 ];
-
 export const shops = [
     {
         id:'1',
@@ -87,72 +86,135 @@ export const shops = [
     }
 ];
 
-export const products = [
+export const states = [
     {
-        id:"product_1", 
-        url:'https://rukminim1.flixcart.com/image/150/150/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q=70',
-        title:'Home & Kitchen', 
-        discount:'Extra 10% Off',
-        tagline:'Deal of the day',
-        price:2990,
-        subTitle:"boAt Rockerz 235v2 with ASAP charging Version 5.0 Bluetooth Headset"
+        id:1,
+        name : "Andhra Pradesh",
     },
     {
-        id:"product_2",
-        url:'https://rukminim1.flixcart.com/image/416/416/kl6wx3k0/sandwich-maker/8/r/d/sandwich-01-flipkart-smartbuy-original-imagydds4zthxt8z.jpeg?q=70',
-        title: 'Sandwich Makers', 
-        discount: 'From 99+5% Off', 
-        tagline: 'Pestige, Nova & more',
-        price: 1499,
-        subTitle: 'Flipkart SmartBuy Sandwich 01 Grill  (Black)' 
+        id:2,
+        name : "Arunachal Pradesh",
     },
     {
-        id:"product_3",
-        url:'https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70',
-        title:'Fitness Gear',
-        discount:'Upto 70% Off',
-        tagline:'Deal of the day',
-        price:499,
-        subTitle:'AJRO DEAL New Adjustable Single Resistance Tube (Multicolor) Resistance Tube  (Multicolor)'
+        id:3,
+        name : "Assam",
     },
     {
-        id:"product_4",
-        url:'https://rukminim1.flixcart.com/image/300/300/kll7bm80/smartwatch/c/1/n/43-mo-sw-sense-500-android-ios-molife-original-imagyzyycnpujyjh.jpeg?q:70',
-        title:'Smart Watches', 
-        discount:'Grab Now',
-        tagline:'Best Seller',
-        price:6999,
-        subTitle:'Molife Sense 500 Smartwatch  (Black Strap, Freesize)'
+        id:4,
+        name : "Bihar",
     },
     {
-        id:"product_5",
-        url:'https://rukminim1.flixcart.com/image/150/150/kk01pjk0/fan/d/d/l/tiktik-quiet-portable-table-fan-zigma-original-imafzg7ftzuckpad.jpeg?q:70',
-        title:'Table Fans',
-        discount:'Extra 10% Off',
-        tagline:'Deal of the day',
-        price:2250, 
-        subTitle:"Portable 300 mm Ultra High Speed 3 Blade Table Fan  (Black, Pack of 1)"
+        id:5,
+        name : "Chhattisgarh",
     },
     {
-        id:"product_6",
-        url:'https://rukminim1.flixcart.com/image/150/150/kapoo7k0/electric-kettle/p/6/s/pigeon-favourite-original-imafs7xhj5uwgrh4.jpeg?q:70',
-        title:'Trimmers, Dryers',
-        discount:'From ₹499',
-        tagline:'Kubra, Nova & more',
-        price:1899, 
-        subTitle:"'Nova Professional NHP 8220 Hair Dryer  (1800 W, Multicolor)'",
-
-
-    },
-    {
-        id:"product_7",
-        url: 'https://rukminim1.flixcart.com/image/150/150/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q:70',
-        title:'Headphones',
-        discount:'Minimum 50% Off', 
-        tagline: 'Top Selling',
-        price:2990,
-        subTitle:"'boAt Rockerz 235v2 with ASAP charging Version 5.0 Bluetooth Headset '" 
+        id:6,
+        name : "Goa",
+    },{
+        id:7,
+        name : "Gujarat",
+    },{
+        id:8,
+        name : "Haryana",
+    },{
+        id:9,
+        name : "Himachal Pradesh",
+    },{
+        id:10,
+        name : "Jharkhand",
+    },{
+        id:11,
+        name : "Karnataka",
+    },{
+        id:12,
+        name : "Kerala",
+    },{
+        id:13,
+        name : "Madhya Pradesh",
+    },{
+        id:14,
+        name : "Maharashtra",
+    },{
+        id:15,
+        name : "Manipur",
+    },{
+        id:16,
+        name : "Meghalaya",
+    },{
+        id:17,
+        name : "Mizoram",
+    },{
+        id:18,
+        name : "Nagaland",
+    },{
+        id:19,
+        name : "Odisha",
+    },{
+        id:20,
+        name : "Punjab",
+    },{
+        id:21,
+        name : "Rajasthan",
+    },{
+        id:22,
+        name : "Sikkim",
+    },{
+        id:23,
+        name : "Tamil Nadu",
+    },{
+        id:24,
+        name : "Telangana",
+    },{
+        id:25,
+        name : "Tripura",
+    },{
+        id:26 ,
+        name : "Uttar Pradesh",
+    },{
+        id:27,
+        name : "Uttarakhand",
+    },{
+        id:28,
+        name : "West Bengal",
     }
 ]
 
-        
+
+export const andhraPradesh = [
+    {
+        id:1,
+        name : "Visakhapatnam",
+    },
+    {
+        id:2,
+        name : "Vijayawada",
+    },
+    {
+        id:3,
+        name : "Guntur",
+    },
+    {
+        id:4,
+        name : "Nellore",
+    },
+    {
+        id:5,
+        name : "Kurnool",
+    },
+    {
+        id:6,
+        name : "Kakinada",	
+    },
+    {
+        id:7,
+        name : "Rajamahendravaram"	
+    },
+    {
+        id:8,
+        name: "Kadapa",	
+    },
+    {
+        id:9,
+        name: "Tirupati"	
+    }
+]

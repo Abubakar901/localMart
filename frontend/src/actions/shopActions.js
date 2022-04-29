@@ -7,9 +7,12 @@ import {
     SHOP_DETAILS_REQUEST,
     SHOP_DETAILS_SUCCESS,
     SHOP_DETAILS_FAIL,
+    ADMIN_SHOP_REQUEST,
+    ADMIN_SHOP_SUCCESS,
+    ADMIN_SHOP_FAIL,
     CLEAR_ERRORS } from '../constant/keys';
 
-export const getShop = (pageNumber) => async (dispatch) => {
+export const getShop = (pageNumber ) => async (dispatch) => {
     try {
         dispatch({
              type :ALL_SHOP_REQUEST
@@ -32,26 +35,44 @@ export const getShop = (pageNumber) => async (dispatch) => {
     }
 };
 
-export const getShopDetails = (id) => async (dispatch) => {
+export const getShopDetails =(id) => async (dispatch) => {
+
     try {
-        dispatch({
-             type :SHOP_DETAILS_REQUEST
-        });
+      dispatch({ type:SHOP_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/shops/${id}`);
+      const { data } = await axios.get(`/api/v1/shop/${id}`);
+
+      dispatch({
+        type: SHOP_DETAILS_SUCCESS,
+        payload: data.shop,
+      });
+    } catch (error) {
+      dispatch({
+        type: SHOP_DETAILS_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+
+// get all shops for admin
+export const getAdminShops = () => async(dispatch) => {
+    try {
+        dispatch({ type: ADMIN_SHOP_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/unique/shops`) ;
 
         dispatch({
-            type: SHOP_DETAILS_SUCCESS,
-            payload:  data.shop,
+            type: ADMIN_SHOP_SUCCESS,
+            payload: data.shops
         })
-
-    }   catch (error) {
+    }catch(error) {
         dispatch({
-            type: SHOP_DETAILS_FAIL,
-            payload : error.response.data.message,
+            type: ADMIN_SHOP_FAIL,
+            payload : error.payload.data.message,
         })
     }
-};
+}
 
 export const clearErrors = () => async (dispatch) => {
     dispatch({

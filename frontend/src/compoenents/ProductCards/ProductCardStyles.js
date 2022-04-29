@@ -42,7 +42,7 @@ export const ProductCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:5px;
+    padding:15px;
     align-items: center;
     margin-left: 30px;
     margin-right: 20px;
@@ -50,10 +50,6 @@ export const ProductCard = styled.div`
     border-radius: 8px;
     padding-top:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    :hover{ 
-        cursor: pointer;
-    }
 
     > img {
         text-align: center;
@@ -81,13 +77,25 @@ export const ShopTwoItems = styled.div`
         font-size: 15px;
         color: #ff0000;
     }
+
+    p {
+        color: #5b5f97;
+        font-weight: 500;
+        margin-right:10px;
+        margin-left:10px;
+
+        >span {
+            color:#000;
+        }
+    }
 `;
 
 export const ExploreShopBtn = styled(Button)`
     && {
         margin-top:5px;    
         color: #fff;
-        width:200px;
+        margin-right: 5px;
+        margin-left: 5px;
         margin-bottom: 10px;
         font-size: 15px;
         background-color: ${props => props.bgColor || '#bd2377'};

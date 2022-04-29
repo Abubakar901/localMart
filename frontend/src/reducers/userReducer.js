@@ -10,6 +10,9 @@ import {
     LOAD_USER_FAIL,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
+    ADMIN_USER_REQUEST,
+    ADMIN_USER_SUCCESS,
+    ADMIN_USER_FAIL,
     CLEAR_ERRORS
 } from '../constant/keys';
 
@@ -18,6 +21,7 @@ export const userReducer = (state = { user : {} }, action) => {
         case USER_LOGIN_REQUEST:
         case USER_REGISTER_REQUEST:
         case LOAD_USER_REQUEST:
+        case ADMIN_USER_REQUEST:
             return {
                 loading : true,
                 isAuthenticated : false
@@ -58,6 +62,16 @@ export const userReducer = (state = { user : {} }, action) => {
                 ...state,
                 loading:false,
                 error: action.paylaod
+            }
+        case ADMIN_USER_SUCCESS:
+            return {
+                loading:false,
+                users:action.payload
+            }
+        case ADMIN_USER_FAIL:
+            return {
+                loading:false,
+                error: action.payload
             }
         case CLEAR_ERRORS : 
             return {

@@ -6,7 +6,11 @@ const shopSchema = new mongoose.Schema({
         required:[true, "Please enter Shop name"]
     },
     contact:{
-        type : Number,
+        type : String,
+        required:[true, "Please Enter Shop Contact Number"],
+    },
+    address:{
+        type : String,
         required:[true, "Please Enter Shop Contact Number"],
     },
     city : {

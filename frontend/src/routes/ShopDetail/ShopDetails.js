@@ -1,43 +1,56 @@
-import React, { useEffect} from 'react';
-import ImageCarousel from '../../compoenents/ImageCarousel/ImageCarousel';
-import Carousel from 'react-material-ui-carousel';
-import { MainContainer, TopContainer } from '../../GlobalStyle';
-import { OtherContainer, LeftContainer } from './ShopDetailsStyle'; 
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getShopDetails } from '../../actions/shopActions';
-import { useParams } from 'react-router-dom';
+import { MainContainer } from '../../GlobalStyle';
+import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, ButtonContainer ,DetailsPageBtn } from './ShopDetailsStyle';
+import ReactStars from 'react-rating-stars-component';
 
 const ShopDetails = () => {
 
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const params = useParams();
-
-  const { shop, loading, error } = useSelector(state => state.shopDetails)
+  const { shop } = useSelector((state) => state.shopDetails)
 
   useEffect(() => {
-    dispatch(getShopDetails(params.id));
-  }, [dispatch])
+    dispatch(getShopDetails(id))
+  }, [dispatch, id])
   
-  console.log(params)
+
+  
+  const options = {
+    edit:true,
+    color: "rgba(20,20,20,0.1)",
+    activeColor: "tomato",
+    size: window.innerWidth < 600 ? 50 : 30,
+    value: shop.ratings,
+    innerHeight:50
+  }
   return (
-    <MainContainer horizontal='row' equally='space-around'>
-        <LeftContainer>
-           <Carousel> 
-            { /*}
-            {
-              shop.images && shop.images.map((item, i) => (
-                <img key={item.url}
-                  src={item.url}
-                  alt={`${i} Slide`} />
+    <MainContainer innerspace='0'>
+    <UpperContainer>
+     <ImageContainer>
+       <img src={shop.images[0].url} alt={shop.name} />
+     </ImageContainer>
+     <DetailsContainer>
+       <h3>{shop.name}</h3>
+       <SingleContainer>
+         <ReactStars {...options}/> <span>{" "}
+             ({shop.numOfReviews} Reviews)</span> 
+       </SingleContainer>
+       <h4>Category : {shop.category} </h4>
+       <h5>Contact : {shop.contact}</h5>
+       <h6>Address : {shop.address}</h6>
 
-              ))
-            } */}
-          </Carousel>
-        </LeftContainer>
-        <OtherContainer>
+       <p>City : {shop.city}</p>
+       <p>State: {shop.state}</p>
+   <DetailsPageBtn>Explore Products</DetailsPageBtn>
+</DetailsContainer>
+ </UpperContainer>
+ <LowerContainer>
 
-        </OtherContainer>
-    </MainContainer>
+ </LowerContainer>
+ </MainContainer>
   )
 }
 

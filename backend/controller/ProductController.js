@@ -16,18 +16,18 @@ exports.createProduct = catchAsyncErros(async(req,res,next) => {
     }) 
 }); 
 
-// get all products -- admin, seller, customer
+// get all products --- customer
 exports.getAllProducts = catchAsyncErros(async(req, res) => {
 
     const resultPerPage = 6;
     const productCount = await Product.countDocuments();
 
-    const apifeature = new Apifeatures(Product.find(),req.query)
+    const apifeature = new Apifeatures(Product.find().populate("shopName","name city state" ), req.query)
     .search()
     .filter()
     .pagination(resultPerPage)
 
-    const products = await apifeature.query;  
+    const products = await apifeature.query
 
     res.status(200).json({
         success: true,
@@ -36,9 +36,20 @@ exports.getAllProducts = catchAsyncErros(async(req, res) => {
     })
 });
 
+// get all products -- admin, seller
+exports.getAdminProducts = catchAsyncErros(async(req, res, next) => {
+
+    const products = await Product.find().populate("shopName","name")
+
+    res.status(200).json({
+        success: true,
+        products,
+    })
+});
+
 // get products Details - admin/seller/customer
 exports.getProductDetails = catchAsyncErros(async(req,res,next) => {
-    let product = await Product.findById(req.params.id);
+    let product = await Product.findById(req.params.id).populate("shopName","name city state" );
 
     if(!product){
        return next(new ErrorHandler("Product Not Found", 404));
@@ -47,7 +58,6 @@ exports.getProductDetails = catchAsyncErros(async(req,res,next) => {
     res.status(200).json({
         success: true,
         product,
-        productCount
     })
 });
 

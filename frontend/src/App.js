@@ -12,11 +12,16 @@ import Product from './routes/Product/Product';
 import Cart from './routes/Cart/Cart';
 import ErrorPage from './routes/ErrorPage/ErrorPage';
 import ShopDetails from './routes/ShopDetail/ShopDetails';
+import ProductDetails from './routes/ProductDetail/ProductDetails';
 import store from './redux/store';
 import { useEffect } from 'react';
 import { loadUser } from './actions/userAction';
+import Profile from './routes/Profile/Profile';
 import Sellerboard from './seller/SellerBoard/Sellerboard';
-import Adminboard from './admin/AdminBoard/Adminboard';
+import Adminboard from './admin/Dashboard/Adminboard';
+import AdminShops from './admin/Shops/AdminShop';
+import AdminProducts from './admin/Products/AdminProduct';
+import AdminUsers from './admin/Users/AdminUser';
 
 function App() {
 
@@ -37,16 +42,26 @@ function App() {
             <Route path="/shops/:id" element={<ShopDetails /> }/>
 
             <Route path="/products" element={<Product /> }/>
+   
+            <Route path="/products/:id" element={<ProductDetails /> }/>
             
             <Route path="/cart" element={<Cart /> }/>
 
             <Route path="*" element={<ErrorPage /> }/>
 
             
+            <Route path="/profile" element={<Profile /> }/>
+            
             <Route path="/seller/dashboard" element={<Sellerboard /> }/>
 
             
             <Route path="/admin/dashboard" element={<Adminboard /> }/>
+            
+            <Route path='/admin/shops' element={<AdminShops /> } />
+
+            <Route path="/admin/products" element={<AdminProducts /> }/>
+
+            <Route path="/admin/users" element={<AdminUsers /> }/>
           
           </Routes>
           <Footer />

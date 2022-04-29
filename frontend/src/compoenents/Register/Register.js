@@ -13,7 +13,9 @@ const Register = ({ handleClose }) => {
   );
 
   const [userdetails, setUserDetails] = useState({
-    username: "",
+    fname: "",
+    lname: "",
+    phone : "",
     email: "",
     password: "",
     confirmPassword : ""
@@ -22,7 +24,7 @@ const Register = ({ handleClose }) => {
   const [avatarPreview, setAvatarPreview] = useState("./assests/Profile.png")
 
 
-  const { username, email, password, confirmPassword } = userdetails;
+  const { fname, lname, phone,  email, password, confirmPassword } = userdetails;
 
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
@@ -47,12 +49,13 @@ const Register = ({ handleClose }) => {
       
       const myForm = new FormData();
 
-      myForm.set("name", username);
+      myForm.set("firstName", fname);    
+      myForm.set("lastName", lname);  
+      myForm.set("phone", phone);
       myForm.set("email", email);
       myForm.set("password", password);
       myForm.set("avatar", avatar);
       dispatch(postRegister(myForm));
-      console.log('Registered')
 
     } else {
       alert("Password and Confirm Password Does not Match")
@@ -78,24 +81,31 @@ const Register = ({ handleClose }) => {
                 onSubmit={registerSubmit}>
         <Title>Register</Title>
         
-          <LabelBox>Username:</LabelBox>
-          <InputBox placeholder='Enter Username' type='text' name='username' value={username} onChange={registerDataChange} required />
+          <LabelBox>First Name:</LabelBox>
+          <InputBox placeholder='Enter Your First Name' type='text' name='fname' value={fname} onChange={registerDataChange} required />
+
+          
+          <LabelBox>Last Name:</LabelBox>
+          <InputBox placeholder='Enter Your Last Name' type='text' name='lname' value={lname} onChange={registerDataChange} required />
+
+          <LabelBox>Phone Number:</LabelBox>
+        <InputBox placeholder='Enter Your Phone Number' type='text' name='phone' value={phone} onChange={registerDataChange} required/>
 
           <LabelBox>Email:</LabelBox>
-        <InputBox placeholder='Enter Email' type='email' name='email' value={email} onChange={registerDataChange} required/>
+        <InputBox placeholder='Enter Your Email Address' type='email' name='email' value={email} onChange={registerDataChange} required/>
 
-          <LabelBox>Avatar:</LabelBox>
           
           <SidebySide>
+          <LabelBox>Avatar:</LabelBox>
             <img src={avatarPreview} alt='user-avatar' />
             <input type='file' name='avatar' accept="image/*"  onChange={registerDataChange} />
           </SidebySide>
 
         <LabelBox>Password:</LabelBox>
-        <InputBox placeholder='Enter Phone Number' type='password' name='password' value={password} onChange={registerDataChange} required/>
+        <InputBox placeholder='Enter Password' type='password' name='password' value={password} onChange={registerDataChange} required/>
         
         <LabelBox> Confirm:</LabelBox>
-        <InputBox placeholder='Enter City' type='password' name='confirmPassword' value={confirmPassword} onChange={registerDataChange} required/>
+        <InputBox placeholder='Enter Password Again' type='password' name='confirmPassword' value={confirmPassword} onChange={registerDataChange} required/>
 
         <Button  value='submit' type='submit'>Sign Up</Button>
       </RegistrationForm>

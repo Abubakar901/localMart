@@ -11,6 +11,9 @@ import {
     LOAD_USER_FAIL,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
+    ADMIN_USER_REQUEST,
+    ADMIN_USER_SUCCESS,
+    ADMIN_USER_FAIL,
     CLEAR_ERRORS
 } from '../constant/keys';
 
@@ -78,6 +81,25 @@ export const logout = () => async (dispatch) => {
     dispatch({ type : LOGOUT_USER_FAIL, payload: error.response.data.message });
   }
 }; 
+
+// get all users for admin
+export const getAdminUsers = () => async(dispatch) => {
+  try {
+      dispatch({ type: ADMIN_USER_REQUEST })
+
+      const { data } = await axios.get(`/api/v1/admin/users`) ;
+
+      dispatch({
+          type: ADMIN_USER_SUCCESS,
+          payload: data.users
+      })
+  }catch(error) {
+      dispatch({
+          type: ADMIN_USER_FAIL,
+          payload : error.payload.data.message,
+      })
+  }
+}
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({

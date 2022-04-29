@@ -47,6 +47,17 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
     })
 });
 
+// Get All Product (Admin)
+exports.getAdminShops = catchAsyncError (async (req, res, next) => {
+    const shops = await Shop.find();
+  
+    res.status(200).json({
+      success: true,
+      shops,
+    });
+  });
+
+
 // get Single Shop --- admin/seller/customer
 exports.getShopDetails = catchAsyncError( async( req, res, next) => {
     let shop = await Shop.findById(req.params.id);
@@ -136,6 +147,7 @@ exports.createShopReview = catchAsyncError (async (req, res, next) => {
         success: true,
     })
 });
+
 
 // get all shop reviews
 exports.getShopReviews = catchAsyncError( async (req, res, next) => {
