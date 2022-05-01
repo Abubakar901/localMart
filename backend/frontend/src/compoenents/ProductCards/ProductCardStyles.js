@@ -4,27 +4,26 @@ import { StyledLink } from "../../GlobalStyle";
 
 export const ProductLink = styled(StyledLink)`
     > img {
+        text-align: center;
         border-radius: 10px;
-        height: 150px;
-        width: 250px;
-        margin:10px;    
-        border:1px solid #000; 
+        min-height: 175px;
+        height: 175px;
+        width: 200px;
+        margin:7px;
+        background-color: #fff;
+
     }
 
     > h4 {
-        font-size: 30px;
+        font-size: 40px;
         margin: 2px 3px;
         color: #5b5f97;
     }
     
     > h5 {
-        margin-top:10px;
-        font-size: 20px;
-        color: #000;
-
-        >span {
-            color : green;
-        }
+        font-size: 27px;
+        margin: 5px 3px 0;
+        color: #3d85c6;
     }
 
     > p {  
@@ -36,35 +35,20 @@ export const ProductLink = styled(StyledLink)`
 export const ProductCard = styled.div`
     background-color: #fff;
     margin-top: 20px;
-    height: 410px;
-    width:300px ;
+    height:430px ;
+    width:315px ;
+    padding: 7px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:15px;
     align-items: center;
     margin-left: 30px;
     margin-right: 20px;
     margin-bottom: 15px;
     border-radius: 8px;
-    padding-top:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    > img {
-        text-align: center;
-        border-radius: 10px;
-        height:200px;
-        width: 200px;
-        margin:10px;
-        background-color: #fff;
-    }
-
-    > h5 {
-        font-size: 27px;
-        margin: 5px 3px 0;
-        color: #3d85c6;
-    }
 
 `;
 
@@ -96,14 +80,15 @@ export const ExploreShopBtn = styled(Button)`
         color: #fff;
         margin-right: 5px;
         margin-left: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        width:125px;
         font-size: 15px;
-        background-color: ${props => props.bgColor || '#bd2377'};
+        background-color: ${props => props.bgcolor || '#cc0000'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &&:hover {
-        background-color: ${props => props.bgColor  || '#c74981'};
+        background-color: ${props => props.bgcolor  || '#cc0000'};
     }
 `;
 

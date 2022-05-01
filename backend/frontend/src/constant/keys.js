@@ -1,57 +1,71 @@
+// all shop request for customer, admin, seller
 export const ALL_SHOP_REQUEST = "ALL_SHOP_REQUEST";
 export const ALL_SHOP_SUCCESS = "ALL_SHOP_SUCCESS";
 export const ALL_SHOP_FAIL = "ALL_SHOP_FAIL";
 
+// shop details for customer, admin, seller
 export const SHOP_DETAILS_REQUEST = "SHOP_DETAILS_REQUEST";
 export const SHOP_DETAILS_SUCCESS = "SHOP_DETAILS_SUCCESS";
 export const SHOP_DETAILS_FAIL = "SHOP_DETAILS_FAIL";
 
+// prduct request for customer, admin, seller
 export const ALL_PRODUCT_REQUEST = "ALL_PRODUCT_REQUEST";
 export const ALL_PRODUCT_SUCCESS = "ALL_PRODUCT_SUCCESS";
 export const ALL_PRODUCT_FAIL = "ALL_PRODUCT_FAIL";
 
+// product details request for customer, admin, seller
 export const PRODUCT_DETAILS_REQUEST = "PRODUCT_DETAILS_REQUEST";
 export const PRODUCT_DETAILS_SUCCESS =  "PRODUCT_DETAILS_SUCCESS";
 export const PRODUCT_DETAILS_FAIL =  "PRODUCT_DETAILS_FAIL";
 
+export const CREATE_CART_REQUEST = "CREATE_CART_REQUEST";
+export const CREATE_CART_SUCCESS = "CREATE_CART_SUCCESS";
+export const CREATE_CART_FAIL = "CREATE_CART_FAIL";
 
+/// login request common
 export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 
+// user register common
 export const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
 export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
 export const USER_REGISTER_FAIL = "USER_REGISTER_FAIL";
 
+// load user common
 export const LOAD_USER_REQUEST = "LOAD_USER_REQUEST";
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
 export const LOAD_USER_FAIL = "LOAD_USER_FAIL";
 
+// logout user common
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
 export const LOGOUT_USER_FAIL = "LOGOUT_USER_FAIL";
 
-
+// seller shops request --- seller
 export const SELLER_SHOP_REQUEST = "SELLER_SHOP_REQUEST";
 export const SELLER_SHOP_SUCCESS = "SELLER_SHOP_SUCCESS";
 export const SELLER_SHOP_FAIL = "SELLER_SHOP_FAIL";
 
+// for creating shops --- seller
 export const CREATE_SHOP_REQUEST = "CREATE_SHOP_REQUEST";
 export const CREATE_SHOP_SUCCESS = "CREATE_SHOP_SUCCESS";
 export const CREATE_SHOP_FAIL = "CREATE_SHOP_FAIL";
 
-
+// shop request --- admin
 export const ADMIN_SHOP_REQUEST = "ADMIN_SHOP_REQUEST";
 export const ADMIN_SHOP_SUCCESS = "ADMIN_SHOP_SUCCESS";
 export const ADMIN_SHOP_FAIL = "ADMIN_SHOP_FAIL";
 
+// product request --- admin
 export const ADMIN_PRODUCT_REQUEST = "ADMIN_PRODUCT_REQUEST";
 export const ADMIN_PRODUCT_SUCCESS =  "ADMIN_PRODUCT_SUCCESS";
 export const ADMIN_PRODUCT_FAIL =  "ADMIN_PRODUCT_FAIL";
 
+/// user request --- admin
 export const ADMIN_USER_REQUEST = "ADMIN_USER_REQUEST";
 export const ADMIN_USER_SUCCESS =  "ADMIN_USER_SUCCESS";
 export const ADMIN_USER_FAIL =  "ADMIN_USER_FAIL";
 
 
-
+// clear errors
 export const CLEAR_ERRORS = "CLEAR_ERRORS";

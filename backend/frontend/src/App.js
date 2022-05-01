@@ -16,6 +16,7 @@ import ProductDetails from './routes/ProductDetail/ProductDetails';
 import store from './redux/store';
 import { useEffect } from 'react';
 import { loadUser } from './actions/userAction';
+import { useSelector } from 'react-redux';
 import Profile from './routes/Profile/Profile';
 
 import Sellerboard from './seller/Dashboard/Sellerboard';
@@ -28,6 +29,10 @@ import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 
 function App() {
+
+  
+  const { user } = useSelector(state => state.user)
+  
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -49,27 +54,34 @@ function App() {
    
             <Route path="/products/:id" element={<ProductDetails /> }/>
             
-            <Route path="/cart" element={<Cart /> }/>
+            <Route path="/cart" element={<Cart user={user}/> }/>
 
             <Route path="*" element={<ErrorPage /> }/>
 
             
-            <Route path="/profile" element={<Profile /> }/>
+            { user ? (
+              <>
+                <Route path="/profile" element={<Profile /> }/>
             
-            <Route path="/seller/dashboard" element={<Sellerboard /> }/>
+                <Route path="/seller/dashboard" element={<Sellerboard /> }/>
             
-            <Route path="/seller/shop/new" element={<ShopNew /> }/>
+                <Route path="/seller/shop/new" element={<ShopNew /> }/>
 
-            <Route path="seller/shops" element={<ShopAll />} />
+                <Route path="seller/shops" element={<ShopAll />} />
 
             
-            <Route path="/admin/dashboard" element={<Adminboard /> }/>
+                <Route path="/admin/dashboard" element={<Adminboard /> }/>
             
-            <Route path='/admin/shops' element={<AdminShops /> } />
+                <Route path='/admin/shops' element={<AdminShops /> } />
 
-            <Route path="/admin/products" element={<AdminProducts /> }/>
+                <Route path="/admin/products" element={<AdminProducts /> }/>
 
-            <Route path="/admin/users" element={<AdminUsers /> }/>
+                <Route path="/admin/users" element={<AdminUsers /> }/>
+            </> 
+            ) : (
+              <>
+              </>
+            ) }
           
           </Routes>
           <Footer />

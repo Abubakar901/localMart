@@ -12,12 +12,15 @@ const Sidebar = () => {
 
        <TwiceContainer>
             <h5>Shops</h5>
+
             <SideLink to='/seller/shop/new'>
                 <h6>Add Shop</h6>
             </SideLink>
+
             <SideLink to='seller/shops'>
                 <h6>All Shops</h6>
             </SideLink>
+            
        </TwiceContainer>
 
        <TwiceContainer>

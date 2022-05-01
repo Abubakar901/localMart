@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { CommonBtn } from "../../GlobalStyle";
 
 export const ErrorPageContainer = styled.div`
-    height: 445px;
+    height: 500px;
     width:100%;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,7 @@ export const ErrorPageContainer = styled.div`
 
     > h1 {
         font-size: 40px;
+        font-weight: 700;
     }
 `;
 

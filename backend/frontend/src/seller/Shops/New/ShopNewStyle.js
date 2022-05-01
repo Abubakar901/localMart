@@ -43,7 +43,7 @@ export const ShopInputs = styled.input`
     border:none;
     border-radius: 30px;
     width: 300px;
-    font-size: 17px;
+    font-size: 15px;
     padding:2px 15px;
 `;
 

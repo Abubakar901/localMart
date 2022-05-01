@@ -11,7 +11,7 @@ const ProductDetails = () => {
   
   const {id} =useParams();
   const dispatch = useDispatch();
-  const { product, loading, error} = useSelector( (state) => state.productDetails)
+  const { product, loading } = useSelector( (state) => state.productDetails)
 
   useEffect(() => {
       dispatch(getProductDetails(id));
@@ -26,6 +26,8 @@ const ProductDetails = () => {
     innerHeight:50
   }
 
+  console.log(product)
+
   return (
     <MainContainer innerspace='0'>
       {
@@ -33,24 +35,24 @@ const ProductDetails = () => {
           <>
             <UpperContainer>
               <ImageContainer>
-                <img src={product.images[0].url} alt={product.name} />
+                <img src={product?.images?.[0]?.url} alt={product?.name} />
               </ImageContainer>
               <DetailsContainer>
-                <h4>{product.name}</h4>
-                <h5><span>₹ </span>{product.price}</h5>
+                <h4>{product?.name}</h4>
+                <h5><span>₹ </span>{product?.price}</h5>
                 <SingleContainer>
                   <ReactStars {...options}/> <span>{" "}
-                      ({product.numOfReviews} Reviews)</span> 
+                      ({product?.numOfReviews} Reviews)</span> 
                 </SingleContainer>
-                <h3>Stock : <span>{product.Stock < 1 ? "OutOfStock" : "InStock"}</span></h3>
+                <h3>Stock : <span>{product?.Stock < 1 ? "OutOfStock" : "InStock"}</span></h3>
                 <VerticalContainer>
                   <p>About this Item :</p>
-                  <p> {product.description}</p>
+                  <p> {product?.description}</p>
                 </VerticalContainer>
-                <ProductShopDetails to={`/shops/${product.shopName._id}`} >
-                  <h4>Shop Name : {product.shopName.name}</h4>
-                  <h6>City : {product.shopName.city}</h6>
-                  <h6>State : {product.shopName.state}</h6>
+                <ProductShopDetails to={`/shops/${product?.shopName?._id}`} >
+                  <h4>Shop Name : {product?.shopName?.name}</h4>
+                  <h6>City : {product?.shopName?.city}</h6>
+                  <h6>State : {product?.shopName?.state}</h6>
               </ProductShopDetails>
               <ButtonContainer>
                 <DetailsPageBtn>Add to Cart</DetailsPageBtn>

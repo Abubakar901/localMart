@@ -37,5 +37,7 @@ export const FilterLink = styled.div`
     }
 `;
 
-export const RightContainer = styled.div``;
+export const RightContainer = styled.div`
+    min-width: 80%;
+`;
 

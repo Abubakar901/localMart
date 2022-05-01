@@ -21,6 +21,7 @@ const Product = () => {
 
 const handleState = (stateName) => {
   console.log(stateName)
+  setQuery(stateName)
 }
 
   return (
@@ -56,7 +57,7 @@ const handleState = (stateName) => {
               <CardsContainer>
                 {
                    products && products.filter((product) => product.name.toLowerCase().includes(query)).map(product => (
-                  <ProductCards product={product}/>
+                  <ProductCards product={product} key={product._id}/>
                   ))   
                 }
               </CardsContainer>

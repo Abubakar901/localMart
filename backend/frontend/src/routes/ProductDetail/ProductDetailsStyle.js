@@ -71,12 +71,11 @@ export const VerticalContainer = styled.div`
 export const ProductShopDetails = styled(StyledLink)`
     > h4 {
         font-size: 30px;
-        color: #000;
-        text-decoration: underline;
+        color:green;
     }
 
     > h6 {
-        color: #000;
+        color: green;
         font-size: 18px;
     }
 `;

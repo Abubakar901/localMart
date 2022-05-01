@@ -97,7 +97,7 @@ const Register = ({ handleClose }) => {
           
           <SidebySide>
           <LabelBox>Avatar:</LabelBox>
-            <img src={avatarPreview} alt='user-avatar' />
+            <img src={avatarPreview} alt='no imge' />
             <input type='file' name='avatar' accept="image/*"  onChange={registerDataChange} />
           </SidebySide>
 

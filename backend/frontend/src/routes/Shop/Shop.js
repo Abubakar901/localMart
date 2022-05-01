@@ -90,7 +90,7 @@ const Shop = () => {
         {
             shops && shops.filter((shop) => (shop.city.toLowerCase().includes(query) || shop.name.toLowerCase().includes(query)) && shop.category.toLowerCase().includes(genres)).map(shop => (
                 <ShopCard
-                key={shop.id}
+                key={shop?._id}
                 shop={shop}
               />
           ))

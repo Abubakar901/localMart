@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
-import { clearErrors, getAdminShops } from '../../../actions/productAction';
-import { useAlert } from 'react-alert';
 import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
 import { getAdminProducts } from '../../../actions/productAction';
 import Loader from '../../../Layout/Loader/Loader';
@@ -19,20 +17,23 @@ const DataListProduct = () => {
       { loading ? <Loader /> : 
       (
         <TableContainer>
-          <tr>
+          <thead>
+            <tr>
               <th>Name</th>
               <th>Stock</th>
               <th>Price</th>
               <th>Shop</th>
               <th>Action</th>
-          </tr>
+            </tr>
+          </thead>
+          <tbody>
           {
             products && products.map((product) => (
-              <tr>
-                <td>{product.name}</td>
-                <td>{product.Stock}</td>
-                <td><strong>₹</strong>{product.price}</td>
-                <td>{product.shopName.name}</td>
+              <tr key={product?._id}>
+                <td>{product?.name}</td>
+                <td>{product?.Stock}</td>
+                <td><strong>₹</strong>{product?.price}</td>
+                <td>{product?.shopName?.name}</td>
                 <td>
                   <EditBtn />
                   <DeleteBtn />
@@ -40,6 +41,7 @@ const DataListProduct = () => {
               </tr>
             ))
           }
+          </tbody>
         </TableContainer>
       )
       }

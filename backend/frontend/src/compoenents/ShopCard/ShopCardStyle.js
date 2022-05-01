@@ -21,6 +21,7 @@ export const ShopLink = styled(StyledLink)`
         margin-top:10px;
         font-size: 20px;
         color: #000;
+        margin:3px;
 
         >span {
             color : green;
@@ -29,6 +30,7 @@ export const ShopLink = styled(StyledLink)`
 
     > p {  
         color: #000;
+        margin:5px;
     }
 `;
 
@@ -36,14 +38,6 @@ export const ShopTwoItems = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
-    > p {
-        text-align: center;
-        font-size: 17px;
-        padding: 0 10px;
-        margin: 5px auto;
-        color: #000;
-    }
 `;
 
 export const ShoppingCard = styled.div`
@@ -70,7 +64,7 @@ export const ExploreShopBtn = styled(Button)`
         width:200px;
         margin-bottom: 10px;
         font-size: 15px;
-        background-color: ${props => props.bgColor || '#bd2377'};
+        background-color: ${props => props.bgcolor || '#bd2377'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 

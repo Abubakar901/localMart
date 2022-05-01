@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledLink, CommonBtn } from "../../GlobalStyle";
+import { CommonBtn } from "../../GlobalStyle";
 
 export const UpperContainer = styled.div`
     display: flex;
@@ -58,6 +58,8 @@ export const DetailsContainer = styled.div`
 
     > h6 {
         font-size:22px;
+        min-height: 100px;
+        width:100%;
     }
 
     > p {
@@ -77,19 +79,6 @@ export const SingleContainer = styled.div`
     }
 `;
 
-export const ProductShopDetails = styled(StyledLink)`
-    > h4 {
-        font-size: 30px;
-        color: #000;
-        text-decoration: underline;
-    }
-
-    > h6 {
-        color: #000;
-        font-size: 18px;
-    }
-`;
-
 export const DetailsPageBtn = styled(CommonBtn)`
     && {
         color: white;
@@ -97,6 +86,7 @@ export const DetailsPageBtn = styled(CommonBtn)`
         padding:3px 20px;
         background-color: #df9704;
         height: 38px;
+        margin-top:30px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
