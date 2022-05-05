@@ -3,7 +3,7 @@
   import { HomeContainer, ShopCardContainer, ShopCarousel, StyledLink } from './HomeStyle';
   import Banner from '../../compoenents/Banner/Banner';
   import Slider from '../../compoenents/Slider/Slider';
-  import Medadata from '../../Layout/Medadata';
+  import Metadata from '../../Layout/Metadata';
   import { shops } from '../../constant/data';
   
   const Home = () => {
@@ -25,7 +25,7 @@
     return (
       <HomeContainer>
 
-      <Medadata title='localMart - Home' />
+      <Metadata title='localMart - Home' />
         <Banner />
 
         <ShopCardContainer>

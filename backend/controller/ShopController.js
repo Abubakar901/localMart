@@ -2,10 +2,32 @@ const Shop = require('../models/ShopModel');
 const ErrorHandler = require('../utils/errorhandler');
 const Apifeatures = require('../utils/apifeatures');
 const catchAsyncError = require('../middleware/catachAsyncError');
+const cloudinary = require('cloudinary');
 
 // create shops - seller
 exports.createShops = catchAsyncError( async( req, res, next) => {
+
+    let images = [];
+
+    if(typeof req.body.images==="string"){
+        images.push(req.body.images)
+    } else {
+        images = req.body.images
+    }
     
+    const imagesLink = [];
+
+    for(let i=0;i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: "shops",
+        })
+        imagesLink.push({
+            public_id :result.public_id,
+            url: result.secure_url
+        })
+    }
+
+    req.body.images = imagesLink;
     req.body.user = req.user.id;
 
     const shop = await Shop.create(req.body);
@@ -21,29 +43,29 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
 
     const resultPerPage = 8;
     const shopCount = await Shop.countDocuments();
-
-    const countingShops = await Shop.find();
-
-    let total = 0;
-    let totalShops = 0;
-    for(let i=1; i<=countingShops.length; i++) {
-        total += 1;
-    }
-    totalShops = total / 8 ;
+    let shopCategory = [];
 
     const apifeature = new Apifeatures(Shop.find(),req.query)
     .search()
     .filter()
     .pagination(resultPerPage)
 
-    const shops = await apifeature.query;  
+    const shops = await apifeature.query; 
+    
+    shops.map((shop) => {
+        if(shopCategory.includes(shop.category)){
+            return
+        } else {
+            shopCategory.push(shop.category)
+        }
+    })
 
     res.status(200).json({
         success: true,
         shops,
         shopCount,
         resultPerPage,
-        totalShops
+        shopCategory
     })
 });
 
@@ -173,13 +195,13 @@ exports.getShopReviews = catchAsyncError( async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        reviews : shop.reviews  
+        reviews : shop.reviews 
     })
 });
 
 // delete Shop Review 
 exports.deleteShopReview = catchAsyncError( async(req, res, next) =>{
-    const shop = await shop.findById(req.query.shopId);
+    const shop = await Shop.findById(req.query.shopId);
 
     if(!shop) {
         return next( new ErrorHandler("Shop Not Found", 404))
@@ -197,7 +219,7 @@ exports.deleteShopReview = catchAsyncError( async(req, res, next) =>{
 
     const numOfReviews = reviews.length;
 
-    await Product.findByIdAndUpdate(req.query.productId, {
+    await Shop.findByIdAndUpdate(req.query.shopId, {
         reviews,
         ratings,
         numOfReviews

@@ -27,11 +27,14 @@ exports.createCartItem = catchAsyncErros( async (req, res, next) => {
 exports.getCart = catchAsyncErros( async (req, res ,next) => {
     const user = req.user.id
 
-    const cartItems = await Cart.find({ user });
+    const cartCount = await Cart.countDocuments({ user });
+
+    const cartItems = await Cart.find({ user }).populate("product", "name images price Stock shopName");
 
     res.status(200).json({
         success: true,
-        cartItems
+        cartItems,
+        cartCount
     })
 });
 

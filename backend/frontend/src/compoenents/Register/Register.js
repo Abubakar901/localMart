@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import {  RegisterContainer, RegistrationForm,  Title,  InputBox, Button, LabelBox, SidebySide } from './RegisterStyle';
-import Medadata from '../../Layout/Medadata';
+import Metadata from '../../Layout/Metadata';
 import { useDispatch, useSelector } from 'react-redux';
 import {  postRegister } from '../../actions/userAction';
 
@@ -75,7 +75,7 @@ const Register = ({ handleClose }) => {
 
   return (
       <RegisterContainer>
-      <Medadata title='localMart - Register' />
+      <Metadata title='localMart - Register' />
       <RegistrationForm 
                 encType="multipart/form-data"
                 onSubmit={registerSubmit}>

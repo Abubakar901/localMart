@@ -1,28 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { MainContainer, TopContainer, CardsContainer, FormContainer, BottomContainer } from '../../GlobalStyle';
 import ProductCards from '../../compoenents/ProductCards/ProductCards';
-import Medadata from '../../Layout/Medadata';
-import { states } from '../../constant/data'
-import Sidebar from '../../compoenents/Sidebar/Sidebar';
-import { RightContainer, FilterContainer, FilterCity, FilterLink } from './ProductStyle';
+import Metadata from '../../Layout/Metadata';
+import { RightContainer, FilterContainer, FilterCity, FilterLink, MixContainer, SideBarContainer, InnerContainer   } from './ProductStyle';
 import { useSelector, useDispatch} from 'react-redux';
-import { getProduct  } from '../../actions/productAction';
+import { getProduct } from '../../actions/productAction';
 import Loader from '../../Layout/Loader/Loader';
+import { State, City }  from 'country-state-city';
 
 const Product = () => {
 
   const [ query, setQuery] = useState("");
   const dispatch = useDispatch();
-  const {products, loading } = useSelector((state)=>state.products);
- 
+  const [state, setState] = useState()
+  const [city, setCity] = useState("Mumbai");
+  const [typeCategory, setTypeCategory ] = useState("");
+  const {products, category, loading } = useSelector((state)=>state.products);
+  const states = State.getStatesOfCountry("IN")
+  let cities = City.getCitiesOfState("IN", state)
+
   useEffect(() => {
     dispatch(getProduct())
   }, [dispatch])
 
-const handleState = (stateName) => {
-  console.log(stateName)
-  setQuery(stateName)
+ const handleState = (stateCode) => {
+  setState(stateCode)
+} 
+
+const handleCity = (cityName) => {
+  setCity(cityName)
 }
+  
+  const checkCategory = (categoryType) => {
+    if(categoryType === undefined){
+      return ""
+    } else {
+      setTypeCategory(categoryType)
+    }
+  }
 
   return (
     <>
@@ -30,39 +45,58 @@ const handleState = (stateName) => {
         loading ? <Loader /> : 
         (
           <MainContainer>
-            <Medadata title='localMart - All Products' /> 
+            <Metadata title='localMart - All Products' /> 
               <FilterContainer>
                 <FilterCity topRound='20px'>
-                  {
+                {
                     states && states.map((state) => (
-                      <FilterLink key={state.id} onClick={() => handleState(state.name)} >
+                      <FilterLink key={state.name} onClick={() => handleState(state.isoCode)} >
                         {state.name}
                       </FilterLink>
                     ))
                   }
                 </FilterCity>
                 <FilterCity bottomRound='20px'>
-
+                {
+                    cities && cities.map((citie) => (
+                      <FilterLink key={citie.name} onClick={() => handleCity(citie.name)}>
+                        {citie.name}
+                      </FilterLink>
+                    ))
+                  }
               </FilterCity>
             </FilterContainer>
           <TopContainer>
             <h4>Products</h4>
             <FormContainer>
-              <input type='text' placeholder='Search City' />
+              <input type='text' placeholder='Search City' onChange={(e) => setQuery(e.target.value)} />
             </FormContainer>
         </TopContainer>
-          <BottomContainer>
-            <Sidebar />
+          <MixContainer>
+          
+            <SideBarContainer>
+          {
+            category && category.map((cate) => (
+              <InnerContainer>
+                 <p onClick={() => checkCategory(cate)} >{cate}</p>
+              </InnerContainer>
+            ))
+          }
+          
+            <InnerContainer>
+                 <p onClick={() => checkCategory("")} >Remove Filter</p>
+            </InnerContainer>
+          </SideBarContainer>
             <RightContainer>
               <CardsContainer>
                 {
-                   products && products.filter((product) => product.name.toLowerCase().includes(query)).map(product => (
+                   products && products.filter((product) => product.name.toLowerCase().includes(query) && product.category.includes(typeCategory)).map(product => (
                   <ProductCards product={product} key={product._id}/>
                   ))   
                 }
               </CardsContainer>
             </RightContainer>
-          </BottomContainer>
+          </MixContainer>
         </MainContainer>
         )
       }

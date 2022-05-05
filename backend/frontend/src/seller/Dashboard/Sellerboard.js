@@ -2,11 +2,13 @@ import React from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../GlobalStyle';
 import { AdminInnerContainer , AmountContainer, CircleContainer, CircleLinked } from './SellerboardStyle';
 import Sidebar from '../components/Sidebar/Siderbar';
+import Metadata from '../../Layout/Metadata';
 
 
 const Sellerboard = () => {
   return (
     <MainContainer innerspace='0'>
+    <Metadata title='localMart - Dashboard' />
       <TopContainer equally='center'>
           <h2>Admin Dashboard</h2>
       </TopContainer>

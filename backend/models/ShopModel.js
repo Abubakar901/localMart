@@ -11,7 +11,7 @@ const shopSchema = new mongoose.Schema({
     },
     address:{
         type : String,
-        required:[true, "Please Enter Shop Contact Number"],
+        required:[true, "Please Enter Shop Address"],
     },
     city : {
         type: String,

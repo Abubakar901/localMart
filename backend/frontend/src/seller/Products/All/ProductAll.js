@@ -2,24 +2,24 @@ import React from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../../GlobalStyle';
 import { SellerMainContainer } from '../../SellerStyle';
 import Sidebar from '../../components/Sidebar/Siderbar';
-import DataListShop from '../../components/DataListShop/DataListShop';
+import DataListProduct from '../../components/DataListProduct/DateListProduct';
 import Metadata from '../../../Layout/Metadata';
 
-const SellerShops = () => {
+const SellerProducts = () => {
   return (
-    <MainContainer innerspace='0'>
-    <Metadata title='localMart - All Shops Seller' /> 
+    <MainContainer innerspace='0'>\
+    <Metadata title='Seller Al Products' />
       <TopContainer equally='center'>-
-          <h2>All Shops</h2>
+          <h2>All Products</h2>
       </TopContainer>
       <BottomContainer outerspace='0'>
         <Sidebar />
         <SellerMainContainer>
-            <DataListShop />
+            <DataListProduct />
         </SellerMainContainer>
       </BottomContainer>
     </MainContainer>
   )
 }
 
-export default SellerShops
+export default SellerProducts

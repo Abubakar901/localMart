@@ -48,15 +48,47 @@ export const ShopInputs = styled.input`
 `;
 
 export const ImageInputContainer = styled.div`
-    margin-top:30px;
-    margin-bottom: 30px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100px;
 
-    > img {
-        width:100px;
-        height: 70px;
-        margin-right: 30px;
+`;
+
+export const ImageOneContainer = styled.div`
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+>    input {
+        font-size: 18px;
+        border:2px solid #000;
+        border-radius: 20px;
+        outline: none;
+        width:112px;
+        background-color: #fff;
     }
 `;
+
+export const ImageTwoContainer = styled.div`
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: auto;
+    
+    > img {
+        height: 70px;
+        margin-right:5px;
+        width:70px;
+    }
+`;
+
 
 export const CreateShopBtn = styled(CommonBtn)`
     && {

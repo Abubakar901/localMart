@@ -40,7 +40,7 @@ export const TopContainer = styled.div`
     align-items: center;
     justify-content:  ${props => props.equally || 'space-between'};
     width: 90%;
-    margin-top: 10px;
+    margin-top: ${props => props.spacing || '10px'};
     margin-bottom: 0;
     margin-right: auto;
     margin-left: auto;
@@ -53,7 +53,7 @@ export const TopContainer = styled.div`
     }
 
     h4 {
-        font-size: 40px;
+        font-size: 50px;
         color: #5b5f97;
     }
 `;

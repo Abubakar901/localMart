@@ -3,7 +3,7 @@ const { createShops , getAllShops, getShopDetails, updateShop, deleteShop, creat
 const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
-router.route("/unique/shops/new").post(isAuthenticatedUser, authorizeRoles("seller"), createShops);
+router.route("/seller/shops/new").post(isAuthenticatedUser, authorizeRoles("seller"), createShops);
 
 // get all shops
 router.route("/shops").get(getAllShops);
@@ -25,7 +25,7 @@ router.route("/unique/shop/:id")
 .delete(isAuthenticatedUser, authorizeRoles("seller"), deleteShop)
 
 // create shop review
-router.route("/shop/review").put(isAuthenticatedUser, createShopReview);
+router.route("/shop/review/new").put(isAuthenticatedUser, createShopReview);
 
 router.route("/shop/reviews").get(getShopReviews).delete(isAuthenticatedUser, deleteShopReview)
 

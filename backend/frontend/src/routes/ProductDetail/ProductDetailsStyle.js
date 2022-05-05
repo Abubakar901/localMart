@@ -14,12 +14,21 @@ export const UpperContainer = styled.div`
 
 export const LowerContainer = styled.div`
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height:350px;
+    height: 400px;
+    text-align: center;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    > h4 {
+        font-size: 40px;
+        margin-top:20px;
+        margin-bottom: 20px;
+        color :#5b5f97 ;
+    }
 `;
 
 export const ImageContainer = styled.div`
@@ -100,4 +109,20 @@ export const DetailsPageBtn = styled(CommonBtn)`
     &&:hover {
         background-color:#df9704;
     }
+`;
+
+export const ReviewOuterContaner = styled.div`
+    width:100%;
+    height: 100%;
+    display: flex;
+    padding:20px 20px;
+    flex-wrap: nowrap;
+`;
+
+export const NoReviewContainer = styled.div`
+    width:100%;
+    display:flex;
+    height:400px;
+    justify-content: center;
+    align-items: center;
 `;

@@ -27,17 +27,42 @@ export const FilterCity = styled.div`
 export const FilterLink = styled.div`
     margin-top:10px;
     margin-bottom: 10px;
-    margin-left:35px;
-    margin-right: 30px;
+    margin-left:20px;
+    margin-right: 25px;
     font-weight: 500;
-    border
 
     :hover {
         cursor: pointer;
     }
 `;
 
+export const MixContainer = styled.div`
+    display: flex;
+`;
+
 export const RightContainer = styled.div`
     min-width: 80%;
 `;
 
+
+export const SideBarContainer = styled.div`
+    background: rgb(207,226,243);   
+    border-top-right-radius: 30px;
+    background: linear-gradient(0deg, rgba(207,226,243,1) 0%, rgba(202,216,240,1) 5%, rgba(144,203,199,1) 36%, rgba(31,207,128,1) 100%);
+    height: 100%;
+    margin-top:30px;
+    padding-bottom:70px;
+    padding-left:20px;
+    padding-top:20px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const InnerContainer = styled.div`
+    > p {
+        font-size: 20px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+`;

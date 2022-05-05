@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductDetails } from '../../actions/productAction';
 import { MainContainer } from '../../GlobalStyle';
-import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, VerticalContainer, ProductShopDetails, ButtonContainer ,DetailsPageBtn } from './ProductDetailsStyle';
+import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, VerticalContainer, ProductShopDetails, ButtonContainer ,DetailsPageBtn, ReviewOuterContaner, NoReviewContainer } from './ProductDetailsStyle';
 import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
+import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
+import Metadata from '../../Layout/Metadata';
 
 const ProductDetails = () => {
   
@@ -30,6 +32,8 @@ const ProductDetails = () => {
 
   return (
     <MainContainer innerspace='0'>
+
+      <Metadata title='localMart - product name' />
       {
         loading ? <Loader /> : (
           <>
@@ -49,7 +53,7 @@ const ProductDetails = () => {
                   <p>About this Item :</p>
                   <p> {product?.description}</p>
                 </VerticalContainer>
-                <ProductShopDetails to={`/shops/${product?.shopName?._id}`} >
+                <ProductShopDetails to={`/shop/${product?.shopName?._id}`} >
                   <h4>Shop Name : {product?.shopName?.name}</h4>
                   <h6>City : {product?.shopName?.city}</h6>
                   <h6>State : {product?.shopName?.state}</h6>
@@ -61,7 +65,20 @@ const ProductDetails = () => {
             </DetailsContainer>
           </UpperContainer>
           <LowerContainer>
-
+              <h4>Reviews</h4>
+          {
+            product?.reviews && product?.reviews[0] ? (
+              <ReviewOuterContaner>
+                {
+                  product?.reviews.map((review) => <ReviewCard review={review} key={review._id}/>)
+                }
+              </ReviewOuterContaner>
+            ) : (
+              <NoReviewContainer>
+                <h2>No Reviews Yet</h2>
+              </NoReviewContainer>
+            )
+          }
           </LowerContainer>
         </>
         )

@@ -14,15 +14,15 @@ app.use(fileUpload());
 
 const productRoute = require('./routes/ProductRoute');
 const userRoute = require('./routes/userRoute');
-const orderRoute = require('./routes/orderRoute');
 const shopRoute = require('./routes/shopRoute');
 const cartRoute = require('./routes/cartRoute');
+const orderRoute = require('./routes/orderRoute');
 
 app.use('/api/v1', productRoute);
 app.use('/api/v1', userRoute);
-app.use('/api/v1', orderRoute);
 app.use('/api/v1', shopRoute);
 app.use('/api/v1', cartRoute);
+app.use('/api/v1', orderRoute);
 
 
 // middle ware for error

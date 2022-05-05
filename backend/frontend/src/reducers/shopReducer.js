@@ -1,18 +1,24 @@
 import { ALL_SHOP_REQUEST, 
         ALL_SHOP_SUCCESS,
         ALL_SHOP_FAIL,
+
         SHOP_DETAILS_REQUEST,
         SHOP_DETAILS_SUCCESS,
         SHOP_DETAILS_FAIL,
+
         ADMIN_SHOP_REQUEST,
         ADMIN_SHOP_SUCCESS,
         ADMIN_SHOP_FAIL,
+
         SELLER_SHOP_REQUEST,
         SELLER_SHOP_SUCCESS,
         SELLER_SHOP_FAIL,
+
         CREATE_SHOP_REQUEST,
         CREATE_SHOP_SUCCESS,
         CREATE_SHOP_FAIL,
+        CREATE_SHOP_RESET,
+        
         CLEAR_ERRORS} from "../constant/keys"
         
 export const shopReducer = (state = { shops : [] }, action) => {
@@ -29,7 +35,8 @@ export const shopReducer = (state = { shops : [] }, action) => {
                 loading: false,
                 shops: action.payload.shops,
                 shopsCounts : action.payload.shopsCounts,
-                resultPerPage: action.payload.resultPerPage
+                resultPerPage: action.payload.resultPerPage,
+                category: action.payload.shopCategory
             }
         case ADMIN_SHOP_SUCCESS:
         case SELLER_SHOP_SUCCESS:
@@ -81,3 +88,37 @@ export const shopDetailsReducer = (state = { shop: {} }, action)=>{
             return state;
     }
 } 
+
+export const newShopReducer = (state = { shop: {} }, action) => {
+    switch (action.type) {
+      case CREATE_SHOP_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case CREATE_SHOP_SUCCESS:
+        return {
+          loading: false,
+          success: action.payload.success,
+          shop: action.payload.shop,
+        };
+      case CREATE_SHOP_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case CREATE_SHOP_RESET:
+        return {
+          ...state,
+          success: false,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+      default:
+        return state;
+    }
+  };

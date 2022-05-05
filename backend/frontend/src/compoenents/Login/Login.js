@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Title, InputBox, LabelBox, Line, LoginContainer, DullText, LoginForm, ForgotPassLink, Button } from './LoginStyle';
-import Medadata from '../../Layout/Medadata';
+import Metadata from '../../Layout/Metadata';
 import { useDispatch } from 'react-redux';
 import { postLogin } from '../../actions/userAction';
 
@@ -18,7 +18,7 @@ const Login = ({ handleChange }) => {
 
   return (
     <LoginContainer>
-      <Medadata title='localMart - Login' />
+      <Metadata title='localMart - Login' />
       <LoginForm onSubmit={loginSubmit}>
         <Title>Login</Title>
 

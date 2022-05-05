@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { InnerContainer } from './SidebarStyle';
 
-const Sidebar = () => {
+const Sidebar = ({ productCategory }) => {
+
+  const checkCategory = (category) => {
+    console.log(category);
+  }
+  
   return (
-    <div>Sidebar</div>
+      <InnerContainer>
+        <p onClick={() => checkCategory(productCategory)} >{productCategory}</p>
+      </InnerContainer>
   )
 }
 

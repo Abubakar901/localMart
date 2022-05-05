@@ -17,7 +17,7 @@ const Sidebar = () => {
                 <h6>Add Shop</h6>
             </SideLink>
 
-            <SideLink to='seller/shops'>
+            <SideLink to='/seller/shops'>
                 <h6>All Shops</h6>
             </SideLink>
             
@@ -28,7 +28,7 @@ const Sidebar = () => {
             <SideLink to='/seller/product/new'>
                 <h6>Add Product</h6>
             </SideLink>
-            <SideLink to='seller/products'>
+            <SideLink to='/seller/products'>
                 <h6>All Products</h6>
             </SideLink>
        </TwiceContainer>

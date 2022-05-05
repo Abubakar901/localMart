@@ -1,13 +1,15 @@
 import React from 'react';
 import { BottomContainer, MainContainer, TopContainer } from '../../GlobalStyle';
 import { LeftContainer, RightContainer } from './ProfileStyle'; 
-import  { useSelector } from 'react-redux'
+import  { useSelector } from 'react-redux';
+import Metadata from '../../Layout/Metadata';
 
 const Profile = () => {
     const { user } = useSelector(state => state.user)
     console.log(user)
   return (
     <MainContainer bg='#87aeae' width='90%'>
+      <Metadata title='localMart - Profile' />
       <TopContainer width='100%' spacing='center'>
         <h1>Profile</h1>
       </TopContainer>

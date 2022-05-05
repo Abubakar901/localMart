@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {  MainContainer, TopContainer, FormContainer, CardsContainer, BottomContainer } from '../../GlobalStyle';
 import { ShopFilterMenu, FilterLink } from './ShopStyle';
 import ShopCard from '../../compoenents/ShopCard/ShopCard';
-import Medadata from '../../Layout/Medadata';
+import Metadata from '../../Layout/Metadata';
 import { getShop } from '../../actions/shopActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../../Layout/Loader/Loader';
@@ -22,8 +22,8 @@ const Shop = () => {
 
   const alert = useAlert();
 
-  const { loading, error, shops  } = useSelector(state => state.shops)
-  
+  const { loading, error, shops, category } = useSelector(state => state.shops)
+
   useEffect(() => {
     if(error) {
       return alert.error(error);
@@ -44,11 +44,14 @@ const Shop = () => {
       setGenres(shopType)
     } else if (shopType === 'grocery') {
       setGenres(shopType)
+    } else if (shopType === 'bakery') {
+      setGenres(shopType)
     } else {
       setGenres('')
     }
   }
 
+  console.log(category)
   return (
     <>
       {
@@ -56,26 +59,18 @@ const Shop = () => {
         (
           <MainContainer>
       
-      <Medadata title='localMart - All Shops' />
+      <Metadata title='localMart - All Shops' />
       <ShopFilterMenu>
 
-        <FilterLink onClick={() => handleType('electronics')}>
-          Electronics
-        </FilterLink>
-            
-        <FilterLink onClick={() => handleType('clothing')} >
-          Clothing
-        </FilterLink>
+        {
+          category?.map((cate) => (
+            <FilterLink onClick={() => handleType(cate)}>
+              {cate}
+            </FilterLink>
+          ))
+        }
 
-        <FilterLink onClick={() => handleType('medicals')} >
-          Medicals
-        </FilterLink>
-
-        <FilterLink onClick={() => handleType('grocery')} >
-          Groceries
-        </FilterLink>
-
-        <FilterLink onClick={() => handleType()} fontColor='#5b5f97' underline='underline' >
+        <FilterLink onClick={() => handleType() } >
           Remove Filter
         </FilterLink>
 

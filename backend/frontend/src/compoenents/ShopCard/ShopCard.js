@@ -17,30 +17,30 @@ const options = {
 }
 
 const redirectShop = (id) => {
-  navigate(`/shops/${id}`)
+  navigate(`/shop/${id}`)
 // console.log(id)
 }
 
   return (
     <ShoppingCard >  
-      <ShopLink to={shop?._id}>
+      <ShopLink to={`/shop/${shop?._id}`}>
         <img src={shop?.images[0]?.url} alt={shop?.name}/>
       </ShopLink>
-      <ShopLink to={shop?._id}>
+      <ShopLink to={`/shop/${shop?._id}`}>
         <h4>{shop?.name}</h4>
       </ShopLink>
-      <ShopLink to={shop?._id}>  
+      <ShopLink to={`/shop/${shop?._id}`}>  
         <h5>Category : <span>{shop?.category}</span> </h5>
       </ShopLink>
-      <ShopLink to={shop?._id}>
+      <ShopLink to={`/shop/${shop?._id}`}>
         <ShopTwoItems>
           <ReactStars {...options}/> {" "}<span style={{color: '#ff0000'}}>({shop?.numOfReviews} Reviews)</span>
         </ShopTwoItems>
         </ShopLink>
-      <ShopLink to={shop?._id}>
+      <ShopLink to={`/shop/${shop?._id}`}>
         <p>City: {shop?.city}</p>
       </ShopLink>
-      <ShopLink to={shop?._id}>
+      <ShopLink to={`/shop/${shop?._id}`}>
         <p>State: {shop?.state}</p>
       </ShopLink>
         <ExploreShopBtn bgcolor='#01796f' onClick={() => redirectShop(shop?._id)}>Shop Details</ExploreShopBtn>

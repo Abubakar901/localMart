@@ -18,10 +18,12 @@ import { useEffect } from 'react';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
 import Profile from './routes/Profile/Profile';
+import Shipping from './routes/Shipping/Shipping';
 
 import Sellerboard from './seller/Dashboard/Sellerboard';
 import ShopNew from './seller/Shops/New/ShopNew';
 import ShopAll from './seller/Shops/All/ShopAll';
+import ProductAll from './seller/Products/All/ProductAll';
 
 import Adminboard from './admin/Dashboard/Adminboard';
 import AdminShops from './admin/Shops/AdminShop';
@@ -48,11 +50,11 @@ function App() {
             
             <Route path="/shops" element={<Shop /> }/>
 
-            <Route path="/shops/:id" element={<ShopDetails /> }/>
+            <Route path="/shop/:id" element={<ShopDetails /> }/>
 
             <Route path="/products" element={<Product /> }/>
    
-            <Route path="/products/:id" element={<ProductDetails /> }/>
+            <Route path="/product/:id" element={<ProductDetails /> }/>
             
             <Route path="/cart" element={<Cart user={user}/> }/>
 
@@ -61,6 +63,9 @@ function App() {
             
             { user ? (
               <>
+
+                <Route path="/shipping" element={<Shipping /> } />
+          
                 <Route path="/profile" element={<Profile /> }/>
             
                 <Route path="/seller/dashboard" element={<Sellerboard /> }/>
@@ -68,6 +73,8 @@ function App() {
                 <Route path="/seller/shop/new" element={<ShopNew /> }/>
 
                 <Route path="seller/shops" element={<ShopAll />} />
+
+                <Route path="seller/products" element={<ProductAll />} />
 
             
                 <Route path="/admin/dashboard" element={<Adminboard /> }/>
