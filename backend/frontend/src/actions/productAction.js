@@ -2,15 +2,27 @@ import {
     ALL_PRODUCT_REQUEST,
     ALL_PRODUCT_SUCCESS,
     ALL_PRODUCT_FAIL,
+
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
+
     SELLER_PRODUCT_REQUEST,
     SELLER_PRODUCT_SUCCESS,
     SELLER_PRODUCT_FAIL,
+
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
+
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_FAIL,
+
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS,
+    DELETE_PRODUCT_FAIL,
+
     CLEAR_ERRORS
 } from '../constant/keys';
 import axios from 'axios';
@@ -53,6 +65,34 @@ export const getProduct =() => async (dispatch) => {
     }
   };
 
+  
+// Create product
+export const createProduct = (productData) => async (dispatch) => {
+  try {
+      dispatch({ type : CREATE_PRODUCT_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const { data } = await axios.post(
+      `/api/v1/seller/products/new`,
+      productData,
+      config
+    );
+
+    dispatch({
+      type: CREATE_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CREATE_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
   // get seller products
 export const getSellerProducts = () => async(dispatch) => {
   try {
@@ -72,6 +112,25 @@ export const getSellerProducts = () => async(dispatch) => {
   }
 }
 
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_PRODUCT_REQUEST });
+
+    const { data } = await axios.delete(`/api/v1/unique/product/${id}`);
+
+    dispatch({
+      type: DELETE_PRODUCT_SUCCESS,
+      payload : data.success
+    })
+
+  }catch(error) {
+    dispatch({
+      type: DELETE_PRODUCT_FAIL,
+      payload : error.response.data.message
+    })
+  }
+}
 
   // get all shops for admin/seller
 export const getAdminProducts = () => async(dispatch) => {

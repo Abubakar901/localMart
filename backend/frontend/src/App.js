@@ -29,6 +29,7 @@ import Adminboard from './admin/Dashboard/Adminboard';
 import AdminShops from './admin/Shops/AdminShop';
 import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
+import ProductNew from './seller/Products/New/ProductNew';
 
 function App() {
 
@@ -73,6 +74,8 @@ function App() {
                 <Route path="/seller/shop/new" element={<ShopNew /> }/>
 
                 <Route path="seller/shops" element={<ShopAll />} />
+
+                <Route path="seller/product/new" element={<ProductNew />} />
 
                 <Route path="seller/products" element={<ProductAll />} />
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState }from 'react'
 import { MainContainer, TopContainer } from '../../GlobalStyle';
-import { DefaultContainer, CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn } from './CartStyle';
+import { DefaultContainer, CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn, NoItemContaiener, ExploreShoppingBtn} from './CartStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCartItems } from '../../actions/cartAction';
@@ -19,7 +19,7 @@ const Cart = ({ user }) => {
 
   useEffect(() => {
     dispatch(getAllCartItems());
-  }, [dispatch])
+  }, [dispatch, user])
 
   cart?.forEach((item ) => {
     totalGross += item?.product?.price;
@@ -29,15 +29,20 @@ const Cart = ({ user }) => {
     navigate('/shipping')
   }
   
+  console.log(cart)
   return (
     <MainContainer>
     <Metadata title='localMart - Cart' />
       { 
         user ? (
           <>
+          {
+            cart?.[0] ? (
+              <>
+              
           <TopContainer equally='center' spacing='30px'>
             <h4>Cart</h4>
-          </TopContainer>
+          </TopContainer> 
           <CartContainer>
             <CartLeftContainer>
             {
@@ -52,6 +57,13 @@ const Cart = ({ user }) => {
               <CheckoutBtn onClick={redirectToShipping}>Procced to Checkout</CheckoutBtn>
             </TotalCardContainer>
           </CartContainer>
+              </> ) : (
+                <NoItemContaiener>
+                  No Items in cart
+                  <ExploreShoppingBtn>Add Items to Cart</ExploreShoppingBtn>
+                </NoItemContaiener>
+              )
+          }
           </>
         )  : (
           <>

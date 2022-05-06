@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { CommonBtn } from '../../GlobalStyle';
 
-
 export const CartProductContainer = styled.div`
     display: flex;
     height: 145px;

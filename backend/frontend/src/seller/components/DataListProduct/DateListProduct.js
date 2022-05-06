@@ -3,7 +3,8 @@ import {useSelector, useDispatch } from "react-redux";
 import { useAlert } from 'react-alert';
 import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
 import Loader from '../../../Layout/Loader/Loader';
-import { getSellerProducts } from '../../../actions/productAction';
+import { getSellerProducts, deleteProduct } from '../../../actions/productAction';
+import { DELETE_PRODUCT_RESET } from '../../../constant/keys';
 
 
 const DataListShop = () => {
@@ -12,14 +13,33 @@ const DataListShop = () => {
 
     const { error, products, loading } = useSelector((state) => state.products)
     
+    const {error:deleteError, isDeleted} = useSelector((state) => state.deleteProduct)
+
     useEffect(() => {
         if(error) {
           return alert.error(error);
         }
+        
+        if(deleteError) {
+          return alert.error(error);
+        }
+
+        if(isDeleted) {
+          alert.success('Product Deleted Successfully');
+          dispatch({ type: DELETE_PRODUCT_RESET});
+        }   
+
         dispatch(getSellerProducts());
-      }, [dispatch, error, alert])
+      
+      }, [dispatch, error, alert, isDeleted, deleteError])
 
       console.log(products)
+
+
+    const deleteProductHandler = (id) => {
+      dispatch(deleteProduct(id))
+    };
+
   return (
     <>
       {
@@ -45,7 +65,7 @@ const DataListShop = () => {
                   <td>{product?.price}</td>
                   <td>
                     <EditBtn />
-                    <DeleteBtn />
+                    <DeleteBtn onClick={() => deleteProductHandler(product?._id)} />
                   </td>
                 </tr>
               ))

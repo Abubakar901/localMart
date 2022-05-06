@@ -20,7 +20,10 @@ import {
     CREATE_SHOP_REQUEST,
     CREATE_SHOP_SUCCESS,
     CREATE_SHOP_FAIL,
-    CREATE_SHOP_RESET,
+
+    DELETE_SHOP_REQUEST,
+    DELETE_SHOP_SUCCESS,
+    DELETE_SHOP_FAIL,
 
     CLEAR_ERRORS } from '../constant/keys';
 
@@ -105,7 +108,7 @@ export const getSellerShops = () => async(dispatch) => {
     }
 }
 
-// Create Product
+// Create shop
 export const createShop = (shopData) => async (dispatch) => {
     try {
         dispatch({ type : CREATE_SHOP_REQUEST });
@@ -132,6 +135,25 @@ export const createShop = (shopData) => async (dispatch) => {
     }
   };
   
+
+export const deleteShop = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_SHOP_REQUEST });
+
+    const { data } = await axios.delete(`/api/v1/unique/shop/${id}`);
+
+    dispatch({
+      type: DELETE_SHOP_SUCCESS,
+      payload : data.success
+    })
+
+  }catch(error) {
+    dispatch({
+      type: DELETE_SHOP_FAIL,
+      payload : error.response.data.message
+    })
+  }
+}
 export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS

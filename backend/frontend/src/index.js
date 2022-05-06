@@ -10,7 +10,7 @@ import AlertTemplate from 'react-alert-template-basic';
 
 const options = {
   timeout:  5000,
-  positions: positions.BOTTOM_RIGHT,
+  position: positions.BOTTOM_RIGHT,
   transitions: transitions.SCALE,
 };
 
@@ -22,7 +22,7 @@ ReactDOM.render(
     </AlertProvider>
   </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root') 
 );
 
 // If you want to start measuring performance in your app, pass a function

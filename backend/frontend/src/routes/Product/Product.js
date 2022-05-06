@@ -39,6 +39,7 @@ const handleCity = (cityName) => {
     }
   }
 
+   console.log(products)
   return (
     <>
       {
@@ -69,7 +70,7 @@ const handleCity = (cityName) => {
           <TopContainer>
             <h4>Products</h4>
             <FormContainer>
-              <input type='text' placeholder='Search City' onChange={(e) => setQuery(e.target.value)} />
+              <input type='text' placeholder='Search Product' onChange={(e) => setQuery(e.target.value)} />
             </FormContainer>
         </TopContainer>
           <MixContainer>
@@ -78,7 +79,9 @@ const handleCity = (cityName) => {
           {
             category && category.map((cate) => (
               <InnerContainer>
-                 <p onClick={() => checkCategory(cate)} >{cate}</p>
+                 <p onClick={() => checkCategory(cate)} key={cate} >
+                    {cate}
+                 </p>
               </InnerContainer>
             ))
           }
@@ -91,12 +94,15 @@ const handleCity = (cityName) => {
               <CardsContainer>
                 {
                    products && products.filter((product) => product.name.toLowerCase().includes(query) && product.category.includes(typeCategory)).map(product => (
-                  <ProductCards product={product} key={product._id}/>
+                  <ProductCards product={product} key={product._id} />
                   ))   
                 }
               </CardsContainer>
             </RightContainer>
           </MixContainer>
+          <BottomContainer>
+            
+          </BottomContainer>
         </MainContainer>
         )
       }

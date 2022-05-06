@@ -19,6 +19,11 @@ import { ALL_SHOP_REQUEST,
         CREATE_SHOP_FAIL,
         CREATE_SHOP_RESET,
         
+        DELETE_SHOP_REQUEST,
+        DELETE_SHOP_SUCCESS,
+        DELETE_SHOP_FAIL,
+        DELETE_SHOP_RESET,
+
         CLEAR_ERRORS} from "../constant/keys"
         
 export const shopReducer = (state = { shops : [] }, action) => {
@@ -61,6 +66,39 @@ export const shopReducer = (state = { shops : [] }, action) => {
         }
 }  
 
+export const deleteShopReducer = (state = { shop: {} }, action) => {
+    switch (action.type) {
+      case DELETE_SHOP_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case DELETE_SHOP_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          isDeleted: action.payload
+        };
+      case DELETE_SHOP_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case DELETE_SHOP_RESET:
+        return {
+          ...state,
+          isDeleted: false,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+      default:
+        return state;
+    }
+  };
 
 export const shopDetailsReducer = (state = { shop: {} }, action)=>{
     switch (action.type) {

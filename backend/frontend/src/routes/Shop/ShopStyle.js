@@ -20,6 +20,7 @@ export const FilterLink = styled.div`
     font-weight: 500;
     text-decoration: ${props => props.underline || 'initial' };
     letter-spacing: 1px;
+    text-transform: capitalize;
 
     :hover {
         

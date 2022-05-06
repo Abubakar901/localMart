@@ -8,11 +8,11 @@ const router = express.Router();
 router.route("/products").get(getAllProducts);
 
 // creating new product route
-router.route("/unique/products/new").post(isAuthenticatedUser, authorizeRoles("seller"), createProduct);
+router.route("/seller/products/new").post(isAuthenticatedUser, authorizeRoles("seller"), createProduct);
 
 // updating and delete product route
-router.route("/unique/products/:id")
-.put(isAuthenticatedUser, authorizeRoles("seller"), updateProduct)
+router.route("/unique/product/:id")
+.put(isAuthenticatedUser, authorizeRoles("seller", "admin"), updateProduct)
 .delete(isAuthenticatedUser, authorizeRoles("admin" , "seller"), deleteProducts)
 
 

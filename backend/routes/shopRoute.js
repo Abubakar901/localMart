@@ -21,8 +21,8 @@ router.route("/seller/shops").get(isAuthenticatedUser, authorizeRoles("seller"),
 
 // updating and delete shop route
 router.route("/unique/shop/:id")
-.put(isAuthenticatedUser, authorizeRoles("seller"), updateShop)
-.delete(isAuthenticatedUser, authorizeRoles("seller"), deleteShop)
+.put(isAuthenticatedUser, authorizeRoles("seller", "admin"), updateShop)
+.delete(isAuthenticatedUser, authorizeRoles("seller", "admin"), deleteShop)
 
 // create shop review
 router.route("/shop/review/new").put(isAuthenticatedUser, createShopReview);

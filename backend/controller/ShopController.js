@@ -1,4 +1,5 @@
 const Shop = require('../models/ShopModel');
+const Product = require('../models/ProductModel');
 const ErrorHandler = require('../utils/errorhandler');
 const Apifeatures = require('../utils/apifeatures');
 const catchAsyncError = require('../middleware/catachAsyncError');
@@ -130,11 +131,15 @@ exports.updateShop = catchAsyncError( async( req, res, next )=> {
 exports.deleteShop = catchAsyncError( async( req, res, next) => {
     const shop = await Shop.findById(req.params.id);
 
-    if(!shop) {
-        return next(new ErrorHandler("Shop Not Found", 404))
-    }
+    // if(!shop) {
+    //     return next(new ErrorHandler("Shop Not Found", 404))
+    // }
 
+    const products = await Product.find({ shopName : req.params.id });
     await shop.remove();
+    products.forEach((product) => {
+        product.remove();
+    })
 
     res.status(200).json({
         success: true,

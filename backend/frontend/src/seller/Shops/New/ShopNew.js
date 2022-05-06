@@ -4,7 +4,7 @@ import { SellerMainContainer } from '../../SellerStyle';
 import { SellerShopForm , FormTopContainer, FirstContainer, SecondContainer,EachContainer, ShopLabels, ShopInputs, ImageInputContainer, ImageOneContainer, ImageTwoContainer, CreateShopBtn } from './ShopNewStyle';
 import Sidebar from '../../components/Sidebar/Siderbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, createShop } from '../../../actions/shopActions';
+import { createShop } from '../../../actions/shopActions';
 import { CREATE_SHOP_RESET } from '../../../constant/keys';
 import { useNavigate } from 'react-router-dom';
 import Metadata from '../../../Layout/Metadata';
@@ -23,7 +23,7 @@ const ShopNew = () => {
     const [shopImage, setShopImage] = useState([]);
     const [shopAvatarPreview, setShopAvatarPreview] = useState(["/assests/Shop.png"]);
 
-    const { loading, success} = useSelector((state) => state.newShop)
+    const { success} = useSelector((state) => state.newShop)
 
     const createShopImageChange = (e) => {
       const files = Array.from(e.target.files);
@@ -67,11 +67,10 @@ const ShopNew = () => {
         
         useEffect(() => {
           if(success) {
-            navigate('/seller/shops');
             alert.success("Shop Created Successfully");
           dispatch({ type: CREATE_SHOP_RESET });
         }
-      }, [success, dispatch, navigate])
+      }, [success, dispatch])
       
   return (
     <MainContainer innerspace='0'>

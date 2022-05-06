@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { CartProductContainer, BtnContainer, SameBtn, RemoveItemBtn, OneContainer } from './CartCardStyle';
-import { useDispatch  } from 'react-redux';
+import { useDispatch, useSelector  } from 'react-redux';
+import { useAlert } from 'react-alert';
 import { deleteCart } from '../../actions/cartAction';
+import { DELETE_CART_RESET } from '../../constant/keys';
 
 const CartCard = ({cartItems }) => {
     
     const [quantity, setQunatity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(cartItems?.product?.price);
+    
     const dispatch = useDispatch();
+    const alert = useAlert();
+    
+    const {error, isDeleted} = useSelector((state) => state.deleteCart)
 
     const increaseQunatity = (quantity) => {
         if(cartItems?.product?.Stock > quantity) {
@@ -31,13 +37,25 @@ const CartCard = ({cartItems }) => {
             let price = cartItems?.product?.price * quantity;
             setTotalPrice(price)
         }
-    }, [increaseQunatity, cartItems, quantity])
+
+        if(error) {
+            return alert.error(error);
+        }
+
+        if(isDeleted) {
+            alert.success('Cart Deleted Successfully');
+            dispatch({ type: DELETE_CART_RESET});
+        }
+
+    }, [increaseQunatity, cartItems, quantity, setTotalPrice , dispatch, alert, isDeleted, error])
 
     
     const DeleteCartItem = (id) => {
         dispatch(deleteCart(id))
+        console.log(id)
     }
 
+    console.log(cartItems)
   return (
     <CartProductContainer>
         <img src={cartItems?.product?.images?.[0]?.url} alt={cartItems?.product?.name} />
