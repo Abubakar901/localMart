@@ -65,8 +65,26 @@ export const getProduct =() => async (dispatch) => {
     }
   };
 
-  
-// Create product
+  // get seller products
+export const getSellerProducts = () => async(dispatch) => {
+  try {
+      dispatch({ type: SELLER_PRODUCT_REQUEST })
+
+      const { data } = await axios.get(`/api/v1/seller/products`) ;
+
+      dispatch({
+          type: SELLER_PRODUCT_SUCCESS,
+          payload: data.products
+      })
+  }catch(error) {
+      dispatch({
+          type: SELLER_PRODUCT_FAIL,
+          payload : error.payload.data.message,
+      })
+  }
+}
+
+// Create prdoocut
 export const createProduct = (productData) => async (dispatch) => {
   try {
       dispatch({ type : CREATE_PRODUCT_REQUEST });
@@ -92,26 +110,6 @@ export const createProduct = (productData) => async (dispatch) => {
     });
   }
 };
-
-  // get seller products
-export const getSellerProducts = () => async(dispatch) => {
-  try {
-      dispatch({ type: SELLER_PRODUCT_REQUEST })
-
-      const { data } = await axios.get(`/api/v1/seller/products`) ;
-
-      dispatch({
-          type: SELLER_PRODUCT_SUCCESS,
-          payload: data.products
-      })
-  }catch(error) {
-      dispatch({
-          type: SELLER_PRODUCT_FAIL,
-          payload : error.payload.data.message,
-      })
-  }
-}
-
 
 export const deleteProduct = (id) => async (dispatch) => {
   try {

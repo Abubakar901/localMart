@@ -10,7 +10,7 @@ const Sellerboard = () => {
     <MainContainer innerspace='0'>
     <Metadata title='localMart - Dashboard' />
       <TopContainer equally='center'>
-          <h2>Admin Dashboard</h2>
+          <h2>Seller Dashboard</h2>
       </TopContainer>
       <BottomContainer outerspace='0'>
         <Sidebar />

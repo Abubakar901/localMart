@@ -18,6 +18,11 @@ import { ALL_SHOP_REQUEST,
         CREATE_SHOP_SUCCESS,
         CREATE_SHOP_FAIL,
         CREATE_SHOP_RESET,
+
+        UPDATE_SHOP_REQUEST,
+        UPDATE_SHOP_SUCCESS,
+        UPDATE_SHOP_FAIL,
+        UPDATE_SHOP_RESET,
         
         DELETE_SHOP_REQUEST,
         DELETE_SHOP_SUCCESS,
@@ -69,6 +74,7 @@ export const shopReducer = (state = { shops : [] }, action) => {
 export const deleteShopReducer = (state = { shop: {} }, action) => {
     switch (action.type) {
       case DELETE_SHOP_REQUEST:
+      case UPDATE_SHOP_REQUEST:
         return {
           ...state,
           loading: true,
@@ -79,7 +85,14 @@ export const deleteShopReducer = (state = { shop: {} }, action) => {
           loading: false,
           isDeleted: action.payload
         };
+      case UPDATE_SHOP_SUCCESS:
+        return {
+            ...state,
+            loading: false,
+            isUpdated: action.payload
+          };
       case DELETE_SHOP_FAIL:
+      case UPDATE_SHOP_FAIL:
         return {
           ...state,
           loading: false,
@@ -89,6 +102,11 @@ export const deleteShopReducer = (state = { shop: {} }, action) => {
         return {
           ...state,
           isDeleted: false,
+        };
+      case UPDATE_SHOP_RESET: 
+        return {
+          ...state,
+          isUpdated: false,
         };
       case CLEAR_ERRORS:
         return {

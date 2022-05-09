@@ -131,14 +131,24 @@ exports.updateShop = catchAsyncError( async( req, res, next )=> {
 exports.deleteShop = catchAsyncError( async( req, res, next) => {
     const shop = await Shop.findById(req.params.id);
 
-    // if(!shop) {
-    //     return next(new ErrorHandler("Shop Not Found", 404))
-    // }
+    if(!shop) {
+        return next(new ErrorHandler("Shop Not Found", 404))
+    }
+
+    // deleteing images from cloudinary
+    for(let i=0; i < shop.images.length; i++) {
+        await cloudinary.v2.uploader.destroy(shop.images[i].public_id)
+    }
 
     const products = await Product.find({ shopName : req.params.id });
     await shop.remove();
-    products.forEach((product) => {
-        product.remove();
+
+    products.forEach( async (product) => {
+            // deleteing images from cloudinary
+        for(let i=0; i < product.images.length; i++) {
+            await cloudinary.v2.uploader.destroy(product.images[i].public_id)
+        }
+        await product.remove();
     })
 
     res.status(200).json({

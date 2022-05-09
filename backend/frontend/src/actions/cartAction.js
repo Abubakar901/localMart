@@ -16,26 +16,32 @@ import  {
 } from '../constant/keys';
 
   
-// Create Order
-export const createCartItem = (id) => async (dispatch) => {
+// Create cart
+export const createCart = (id) => async (dispatch) => {
   try {
-    dispatch({ type: CREATE_CART_REQUEST });
+      dispatch({ type : CREATE_CART_REQUEST });
 
     const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     };
-    const { data } = await axios.post('/api/v1/cart/new', id , config);
 
-    dispatch({ type: CREATE_CART_SUCCESS, payload: data });
+    const { data } = await axios.post(
+      `/api/v1/cart/new`,
+      id,
+      config
+    );
+
+    dispatch({
+      type: CREATE_CART_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
     dispatch({
       type: CREATE_CART_FAIL,
       payload: error.response.data.message,
     });
   }
-}
+};
 
 
   export const getAllCartItems = ( ) => async (dispatch) => {

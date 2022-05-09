@@ -1,13 +1,21 @@
-import React from 'react';
+import React,  { useState, useEffect }  from 'react';
 import { ProductCard, ShopTwoItems, ExploreShopBtn, ProductLink } from './ProductCardStyles';
 import ReactStars from 'react-rating-stars-component';
+import { useAlert } from 'react-alert';
 import  { useDispatch, useSelector } from 'react-redux';
-import { createCartItem } from '../../actions/cartAction';
+import { createCart } from '../../actions/cartAction';
+import { CREATE_CART_RESET } from '../../constant/keys';
+import Login from '../../routes/PopupLogin/PopupLogin';
 
 const ProductCards = ({product}) => {
-
+  
   const dispatch = useDispatch();
-  const {  cart } = useSelector((state) => state.cart)
+  const alert = useAlert();
+  const { error, success } = useSelector((state) => state.newCart)
+  const { user } = useSelector(state => state.user)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+
   const options = {
     edit:true,
     color: "rgba(20,20,20,0.1)",
@@ -18,11 +26,20 @@ const ProductCards = ({product}) => {
   }
 
   const addItemtoCart = (id) => {
-    console.log(id)
-    dispatch(createCartItem(id));
-    console.log(cart)
+      console.log(id)
+      dispatch(createCart(id));
   }
 
+  useEffect(() => {
+    if(error) {
+      return alert.error(error);
+    }
+
+    if(success) {
+      alert.success("Cart Created Successfully");
+      dispatch({ type: CREATE_CART_RESET });
+    }
+  }, [success, dispatch, error, alert])
 
   return (
     <ProductCard>  
@@ -48,8 +65,20 @@ const ProductCards = ({product}) => {
         </ShopTwoItems>
       </ProductLink>
       <ShopTwoItems>
-        <ExploreShopBtn bgcolor='#3d85c6' onClick={() => addItemtoCart(product?._id)} >Add to Cart</ExploreShopBtn>
-        <ExploreShopBtn>Buy Now</ExploreShopBtn>
+      {
+        user ? (
+          <>
+            <ExploreShopBtn bgcolor='#3d85c6' onClick={() => addItemtoCart(product?._id)} >Add to Cart</ExploreShopBtn>
+            <ExploreShopBtn>Buy Now</ExploreShopBtn>
+          </> ) : (
+            <>
+              <ExploreShopBtn bgcolor='#3d85c6' onClick={handleOpen}>Add to Cart</ExploreShopBtn>
+              <Login open={open} setOpen={setOpen} />
+              <ExploreShopBtn onClick={handleOpen}>Buy Now</ExploreShopBtn>
+              <Login open={open} setOpen={setOpen} />
+            </>
+          )
+      }
       </ShopTwoItems>
     </ProductCard>
   )

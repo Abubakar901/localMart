@@ -4,9 +4,9 @@ const catchAsyncErros = require('../middleware/catachAsyncError');
 
 exports.createCartItem = catchAsyncErros( async (req, res, next) => {
 
-    req.body.user = req.user.id;
+    const user = req.user.id;
 
-    const {user, product} = (req.body)
+    const { product } = (req.body)
 
     const findProducdId = await Cart.findOne({ user, product })
 

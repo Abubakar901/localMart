@@ -65,14 +65,16 @@ const ProductNew = () => {
           productImage.forEach((image) => {
             productData.append("images", image)
           })
+          
           dispatch(createProduct(productData));
+          navigate('/seller/dashboard')
         }
         
         useEffect(() => {
           dispatch(getSellerShops());
           if(success) {
             alert.success("Product Created Successfully");
-          dispatch({ type: CREATE_PRODUCT_RESET });
+            dispatch({ type: CREATE_PRODUCT_RESET });
         }
       }, [success, dispatch])
     

@@ -21,6 +21,10 @@ import {
     CREATE_SHOP_SUCCESS,
     CREATE_SHOP_FAIL,
 
+    UPDATE_SHOP_REQUEST,
+    UPDATE_SHOP_SUCCESS,
+    UPDATE_SHOP_FAIL,
+
     DELETE_SHOP_REQUEST,
     DELETE_SHOP_SUCCESS,
     DELETE_SHOP_FAIL,
@@ -134,7 +138,33 @@ export const createShop = (shopData) => async (dispatch) => {
       });
     }
   };
-  
+
+// update shop
+export const updateShop = (id, shopData) => async (dispatch) => {
+  try {
+      dispatch({ type : UPDATE_SHOP_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const { data } = await axios.put(
+      `/api/v1/unique/shop/${id}`,
+      shopData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_SHOP_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_SHOP_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 export const deleteShop = (id) => async (dispatch) => {
   try {
@@ -154,6 +184,7 @@ export const deleteShop = (id) => async (dispatch) => {
     })
   }
 }
+
 export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS

@@ -2,6 +2,7 @@ import  {
     CREATE_CART_REQUEST,
     CREATE_CART_SUCCESS,
     CREATE_CART_FAIL,
+    CREATE_CART_RESET,
 
     GET_CART_REQUEST,
     GET_CART_SUCCESS,
@@ -33,6 +34,11 @@ import  {
             ...state,
             loading: false,
             error: action.payload,
+          };
+        case CREATE_CART_RESET:
+          return {
+            ...state,
+            success: false,
           };
         case CLEAR_ERRORS:
           return {

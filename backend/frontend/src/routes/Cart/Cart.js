@@ -29,7 +29,10 @@ const Cart = ({ user }) => {
     navigate('/shipping')
   }
   
-  console.log(cart)
+  const redirectToProducts = () => {
+    navigate('/products')
+  }
+
   return (
     <MainContainer>
     <Metadata title='localMart - Cart' />
@@ -60,7 +63,7 @@ const Cart = ({ user }) => {
               </> ) : (
                 <NoItemContaiener>
                   No Items in cart
-                  <ExploreShoppingBtn>Add Items to Cart</ExploreShoppingBtn>
+                  <ExploreShoppingBtn onClick={redirectToProducts}>Add Items to Cart</ExploreShoppingBtn>
                 </NoItemContaiener>
               )
           }

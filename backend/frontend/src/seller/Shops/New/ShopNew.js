@@ -63,6 +63,7 @@ const ShopNew = () => {
             shopData.append("images", image)
           })
           dispatch(createShop(shopData));
+          navigate('/seller/dashboard')
         }
         
         useEffect(() => {
