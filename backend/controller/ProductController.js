@@ -71,11 +71,18 @@ exports.getAllProducts = catchAsyncErros(async(req, res) => {
 // get all products -- admin 
 exports.getAdminProducts = catchAsyncErros(async(req, res, next) => {
 
-    const products = await Product.find().populate("shopName","name")
+    const products = await Product.find().populate("shopName","name");
+
+    let totalProduct = 0;
+
+    products.map((product) => {
+        totalProduct += 1;
+    });
 
     res.status(200).json({
         success: true,
         products,
+        totalProduct
     })
 });
 

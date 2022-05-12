@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { CommonBtn } from "../../GlobalStyle";
+import Carousel from "react-material-ui-carousel";
 
 export const UpperContainer = styled.div`
     display: flex;
@@ -31,6 +32,12 @@ export const LowerContainer = styled.div`
     }
 `;
 
+export const ShopImageCarousel = styled(Carousel)`
+    height: 400px;
+    width: 400px;
+`;
+
+
 export const ImageContainer = styled.div`
     width:50%;
     display: flex;
@@ -38,11 +45,12 @@ export const ImageContainer = styled.div`
     align-items: center;
     padding:20px;
     min-height: 500px;
+`;
 
-    > img {
-        height:400px;
-        width:400px;
-    }
+export const ImageShop = styled.img`
+    height:400px;
+    width:400px;
+    background-size: cover;
 `;
 
 export const DetailsContainer = styled.div`

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getShopDetails } from '../../actions/shopActions';
 import { MainContainer } from '../../GlobalStyle';
-import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer ,DetailsPageBtn, ReviewOuterContaner, NoReviewContainer } from './ShopDetailsStyle';
+import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer ,DetailsPageBtn, ReviewOuterContaner, NoReviewContainer, ShopImageCarousel, ImageShop  } from './ShopDetailsStyle';
 import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
 import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
@@ -18,7 +18,7 @@ const ShopDetails = () => {
   useEffect(() => {
     dispatch(getShopDetails(id))
   }, [dispatch, id])
-  
+   
 
   
   const options = {
@@ -33,13 +33,24 @@ const ShopDetails = () => {
   console.log(shop)
 
   return (
-    <MainContainer innerspace='0'>
+    <MainContainer innerspace='0'> 
     <Metadata title='localMart - shop id' />
     { loading ? <Loader /> : (
       <>
         <UpperContainer>
           <ImageContainer>
-            <img src={shop.images?.[0]?.url} alt={shop?.name} />
+            <ShopImageCarousel>
+
+          {
+            shop.images &&
+                  shop.images.map((item, i) => (
+                    <ImageShop
+                      key={i}
+                      src={item.url}
+                      alt={`${i} Slide`}
+                    />
+                  ))}
+            </ShopImageCarousel>
           </ImageContainer>
           <DetailsContainer>
             <h3>{shop?.name}</h3>

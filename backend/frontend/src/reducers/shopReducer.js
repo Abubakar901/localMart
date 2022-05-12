@@ -49,11 +49,16 @@ export const shopReducer = (state = { shops : [] }, action) => {
                 category: action.payload.shopCategory
             }
         case ADMIN_SHOP_SUCCESS:
-        case SELLER_SHOP_SUCCESS:
             return {
                 loading:false,
-                shops:action.payload
+                shops:action.payload.shops,
+                totalShops: action.payload.totalShops
             }
+        case SELLER_SHOP_SUCCESS:
+            return {
+              loading:false,
+              shops:action.payload,
+            } 
         case ALL_SHOP_FAIL :
         case ADMIN_SHOP_FAIL:
         case SELLER_SHOP_FAIL:

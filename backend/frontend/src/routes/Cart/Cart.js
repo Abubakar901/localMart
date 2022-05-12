@@ -1,83 +1,109 @@
-import React, { useEffect, useState }from 'react'
+import React, {  useState }from 'react'
 import { MainContainer, TopContainer } from '../../GlobalStyle';
-import { DefaultContainer, CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn, NoItemContaiener, ExploreShoppingBtn} from './CartStyle';
-import Login from '../../routes/PopupLogin/PopupLogin';
+import { CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn,CartProductContainer, OneContainer, TwoContainer, SameBtn, BtnContainer, RemoveItemBtn,  NoItemContaiener, ExploreShoppingBtn} from './CartStyle';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllCartItems } from '../../actions/cartAction';
 import CartCard from '../../compoenents/CartCard/CartCard';
+import { useAlert } from 'react-alert';
 import { useNavigate } from 'react-router-dom';
 import Metadata from '../../Layout/Metadata';
+import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction';
 
 const Cart = ({ user }) => {
   
   const dispatch = useDispatch();
+  const alert = useAlert();
   const navigate = useNavigate();
-  const { cart  } = useSelector((state) => state.cart);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const { cartItems } = useSelector((state) => state.cart);
   let totalGross = 0;
 
-  useEffect(() => {
-    dispatch(getAllCartItems());
-  }, [dispatch, user])
+  const redirectToShipping = () => {
+    if(user) {
+       navigate('/shipping')
+    } else {
+        alert.info("Please Login First")
+    }
 
-  cart?.forEach((item ) => {
-    totalGross += item?.product?.price;
+  }
+
+  cartItems.map((item) => {
+    totalGross += (item?.quantity * item?.price)
   })
 
-  const redirectToShipping = () => {
-    navigate('/shipping')
-  }
-  
   const redirectToProducts = () => {
     navigate('/products')
   }
 
+  const increaseQunatity = (id, quantity, stock) => {
+    const newQty = quantity + 1;
+    if(stock <= quantity ) {
+      return;
+    }
+    dispatch(addItemsToCart(id, newQty))
+  }
+  
+  const  decreaseQunatity = (id, quantity) => {  
+    const newQty = quantity - 1;
+    if(1 >= quantity ) {
+      return;
+    }
+    dispatch(addItemsToCart(id, newQty))
+  }
+
+  const RemoveProductFromCart = (id) => {
+    dispatch(removeItemsFromCart(id))
+  } 
+  
   return (
     <MainContainer>
     <Metadata title='localMart - Cart' />
-      { 
-        user ? (
-          <>
-          {
-            cart?.[0] ? (
+            
+           {
+             cartItems && cartItems[0] ? (
               <>
-              
-          <TopContainer equally='center' spacing='30px'>
+              <TopContainer equally='center' spacing='30px'>
             <h4>Cart</h4>
           </TopContainer> 
-          <CartContainer>
-            <CartLeftContainer>
+              <CartLeftContainer>
             {
-              cart && cart.map((cartItems) => (
-                <CartCard cartItems={cartItems}  />
+              cartItems && cartItems.map((item) => (
+                <CartProductContainer>  
+                  <CartCard item={item} key={item?.product} />
+                  <OneContainer>
+                   <BtnContainer>
+                     <SameBtn onClick={() => decreaseQunatity(item?.product, item?.quantity)} >-</SameBtn>
+                     <p>{item?.quantity}</p>
+                     <SameBtn onClick={() => increaseQunatity(item?.product, item?.quantity, item?.stock)}>+</SameBtn>
+                 </BtnContainer>
+             </OneContainer>
+             <TwoContainer>
+                 <p>Total Price : ₹ {item?.quantity * item?.price} </p>
+                 <RemoveItemBtn onClick={() => RemoveProductFromCart(item?.product)}>Remove From Cart</RemoveItemBtn>
+             </TwoContainer>
+            </CartProductContainer>
               ))
             }
-            </CartLeftContainer>
+
+
+          </CartLeftContainer>
+          
+          <CartContainer>
             <TotalCardContainer>
-              <h4>Total Items : {cart?.length}</h4>
-              <h5>Total Amount : {totalGross}</h5>
+              <h4>Total Items : {cartItems.length} </h4>
+               <h5>Total Amount : {totalGross}</h5> 
               <CheckoutBtn onClick={redirectToShipping}>Procced to Checkout</CheckoutBtn>
             </TotalCardContainer>
           </CartContainer>
-              </> ) : (
+              </>
+              
+             ) : (
+               
                 <NoItemContaiener>
                   No Items in cart
                   <ExploreShoppingBtn onClick={redirectToProducts}>Add Items to Cart</ExploreShoppingBtn>
                 </NoItemContaiener>
-              )
-          }
-          </>
-        )  : (
-          <>
-            <h4>No Item Found</h4>
-            <DefaultContainer onClick={handleOpen}>
-                Please Login to Access this Page
-            </DefaultContainer>
-            <Login open={open} setOpen={setOpen} />
-          </>
-        ) 
-      }
+             )
+           }
+
     </MainContainer>
   )
 }

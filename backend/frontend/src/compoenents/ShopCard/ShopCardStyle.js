@@ -8,7 +8,15 @@ export const ShopLink = styled(StyledLink)`
         height: 150px;
         width: 250px;
         margin:10px;    
-        border:1px solid #000; 
+        border:1px solid #000;    
+        
+        @media (max-width: 1100px) {
+            width: 200px;
+        }
+
+        @media (max-width: 1000px) {
+            width: 250px;
+        }
     }
 
     > h4 {
@@ -54,7 +62,17 @@ export const ShoppingCard = styled.div`
     padding-top:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+    @media (max-width: 1167px) {
+        width: 280px;
+    }
 
+    @media (max-width: 1100px) {
+        width: 250px;
+    }
+
+    @media (max-width: 1000px) {
+        width: 300px;
+    }
 `;
 
 export const ExploreShopBtn = styled(Button)`

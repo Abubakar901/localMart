@@ -139,7 +139,7 @@ export const getAdminProducts = () => async(dispatch) => {
 
         dispatch({
             type: ADMIN_PRODUCT_SUCCESS,
-            payload: data.products
+            payload: data
         })
     } catch(error) {
         dispatch({

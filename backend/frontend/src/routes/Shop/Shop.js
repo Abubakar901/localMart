@@ -51,7 +51,6 @@ const Shop = () => {
     }
   }
 
-  console.log(category)
   return (
     <>
       {
@@ -64,7 +63,7 @@ const Shop = () => {
 
         {
           category?.map((cate) => (
-            <FilterLink onClick={() => handleType(cate)}>
+            <FilterLink onClick={() => handleType(cate)} key={cate}>
               {cate}
             </FilterLink>
           ))

@@ -30,6 +30,7 @@ import AdminShops from './admin/Shops/AdminShop';
 import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 import ProductNew from './seller/Products/New/ProductNew';
+import Order from './routes/Orders/Order';
 
 function App() {
 
@@ -58,6 +59,8 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails /> }/>
             
             <Route path="/cart" element={<Cart user={user}/> }/>
+
+            <Route path="/orders" element={<Order/> }/>
 
             <Route path="*" element={<ErrorPage /> }/>
 

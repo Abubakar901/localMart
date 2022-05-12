@@ -83,7 +83,7 @@ export const getAdminShops = () => async(dispatch) => {
 
         dispatch({
             type: ADMIN_SHOP_SUCCESS,
-            payload: data.shops
+            payload: data
         })
     }catch(error) {
         dispatch({

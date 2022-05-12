@@ -8,20 +8,51 @@ export const NavbarContainer = styled.nav`
     height:60px;
     display: flex;
     align-items: center;
+    padding:0;
     z-index: 100;
     position: sticky;
     top:0;
-    
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media (max-width: 1467px) {
+        justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: baseline;
+        height:auto;
+        padding-top:10px;
+    }
 `;
 
-export const NavTitle = styled.div`
+export const FirstLink = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    @media (max-width: 900px) {   
+        width:100%;
+    }
+`;
+
+export const NavTitle = styled(StyledLink)`
     color: #fff;
     margin-left:40px;
     margin-right: 40px;
+    padding-top:10px;
     font-size: 23px;
     font-weight: 800;
     letter-spacing: 0.5px;
+    
+    @media (max-width: 1467px) {
+        margin-right:10px;
+    }
+
+    @media (max-width: 1055px) {
+        margin-right:5px;
+        margin-left:15px;
+    }
 
     :hover {
         color: #ff6cbc;
@@ -38,6 +69,22 @@ export const SearchContainer = styled.div`
     margin-left: 10px;
     align-items: center;
 
+    @media (max-width: 1467px) {
+        width: 40%;
+        margin-right:10px;
+    }
+
+    @media (max-width: 1055px) {
+        width: 35%;
+    }
+
+    @media (max-width: 900px) {
+        justify-content: center;
+        width: 90%;
+        margin:4px auto;
+        display: ${props => props.show || 'none'};
+    }
+
     > .MuiSvgIcon-root {
         font-size: 25px;
 
@@ -45,6 +92,34 @@ export const SearchContainer = styled.div`
         color: #ff6cbc;
         cursor: pointer;
         }
+    }
+`;
+
+export const ResponsiveBtn = styled.button`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    outline: none;
+    border:0;
+    height: 37px;
+    width: 45px;
+    margin-right:10px;
+    background-color: #000;
+    border-radius: 10px;
+    padding:3px 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+
+    @media (max-width: 900px) {
+        display: flex;
+    }
+
+    > span {
+        height:3px;
+        width:70%;
+        margin:0 auto;
+        background-color:#fff;
+        border-radius: 10px;
     }
 `;
 
@@ -59,6 +134,14 @@ export const SearchBar = styled.input`
     padding-top:5px;
     padding-bottom:5px;
 
+    @media (max-width: 1100px) {
+        margin-left: 15px;
+    }
+
+    
+    @media (max-width: 1055px) {
+        margin-left: 5px;
+    }
 `;
 
 export const Search = styled(SearchIcon)`
@@ -74,6 +157,29 @@ export const NavLinks = styled.div`
     align-items: center;
     justify-content: space-around;
     text-align: center;
+
+    @media (max-width: 1467px) {
+        width: 50%;
+    }
+
+    @media (max-width: 1055px) {
+        width: 40%;
+    }
+
+    @media (max-width: 950px) {
+        width: 50%;
+    }
+
+    @media (max-width: 900px) {
+        width: 90%;
+        margin:10px auto;
+        display:${props => props.show};
+    }
+
+    @media (max-width: 540px) {
+        flex-direction: column; 
+        height: auto;
+    }
 `;
 
 export const Navtags = styled.div`
@@ -82,6 +188,17 @@ export const Navtags = styled.div`
     width: 100px;
     font-size: 18px;
     font-weight: 600;
+
+    @media (max-width: 1055px) {
+        width: auto;
+        margin-left:15px;
+        margin-right: 15px;
+    }
+
+    @media (max-width: 540px) {
+        margin:7px auto;
+        font-size: 20px;
+    }
 
     :hover {
         color: #ff6cbc;

@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { shopReducer, shopDetailsReducer, newShopReducer, deleteShopReducer } from '../reducers/shopReducer';
 import { userReducer } from '../reducers/userReducer';
 import { productReducer, productDetailsReducer, newProductReducer, deleteProductReducer} from '../reducers/productReducer';
-import { getCartReducer, deleteCartReducer, newCartReducer } from '../reducers/cartReducer';
+import { cartReducer } from '../reducers/cartReducer';
 
 const reducer=combineReducers({
     user: userReducer,
@@ -12,16 +12,20 @@ const reducer=combineReducers({
     shopDetails: shopDetailsReducer,
     products: productReducer,
     productDetails:productDetailsReducer,
-    cart : getCartReducer,
-    deleteCart: deleteCartReducer,
-    newCart: newCartReducer,
     newShop: newShopReducer,
     newProduct : newProductReducer,
     deleteProduct: deleteProductReducer,
-    deleteShop: deleteShopReducer 
+    deleteShop: deleteShopReducer,
+    cart: cartReducer
 });
 
-let initialState = {};
+let initialState = {
+    cart : {
+            cartItems: localStorage.getItem("cartItems")
+            ? JSON.parse(localStorage.getItem("cartItems"))
+            : [],
+    }
+};
 
 const middleware = [thunk];
 

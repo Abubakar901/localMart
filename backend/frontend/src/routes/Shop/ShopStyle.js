@@ -12,6 +12,11 @@ export const ShopFilterMenu = styled.div`
     align-items: center;
     background-color: #93c47d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media (max-width: 1467px) {
+        overflow: scroll;
+        flex-wrap: nowrap;
+    }
 `;
 
 export const FilterLink = styled.div`
@@ -21,6 +26,11 @@ export const FilterLink = styled.div`
     text-decoration: ${props => props.underline || 'initial' };
     letter-spacing: 1px;
     text-transform: capitalize;
+
+    @media (max-width: 1467px) {
+        margin-left:10px;
+        margin-right:10px;
+    }
 
     :hover {
         

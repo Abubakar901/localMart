@@ -1,116 +1,35 @@
-import  {
-    CREATE_CART_REQUEST,
-    CREATE_CART_SUCCESS,
-    CREATE_CART_FAIL,
-    CREATE_CART_RESET,
+import { ADD_TO_CART, REMOVE_CART_ITEM } from '../constant/keys'
 
-    GET_CART_REQUEST,
-    GET_CART_SUCCESS,
-    GET_CART_FAIL,
-    
-    DELETE_CART_REQUEST,
-    DELETE_CART_SUCCESS,
-    DELETE_CART_FAIL,
-    DELETE_CART_RESET,
-
-    CLEAR_ERRORS } from '../constant/keys';
-
-
-    export const newCartReducer = (state = { cart: {} }, action) => {
-      switch (action.type) {
-        case CREATE_CART_REQUEST:
+export const cartReducer = ( state = { cartItems: [] }, action  ) => {
+    switch (action.type) {
+      case ADD_TO_CART:
+        const item = action.payload;
+  
+        const isItemExist = state.cartItems.find(
+          (i) => i.product === item.product
+        );
+  
+        if (isItemExist) {
           return {
             ...state,
-            loading: true,
+            cartItems: state.cartItems.map((i) =>
+              i.product === isItemExist.product ? item : i
+            ),
           };
-        case CREATE_CART_SUCCESS:
-          return {
-            loading: false,
-            success: action.payload.success,
-            cart: action.payload.cart,
-          };
-        case CREATE_CART_FAIL:
+        } else {
           return {
             ...state,
-            loading: false,
-            error: action.payload,
+            cartItems: [...state.cartItems, item],
           };
-        case CREATE_CART_RESET:
-          return {
-            ...state,
-            success: false,
-          };
-        case CLEAR_ERRORS:
-          return {
-            ...state,
-            error: null,
-          };
-        default:
-          return state;
-      }
-    };
-    
-
- export const getCartReducer = (state = { cart : [] }, action) => {
-        switch (action.type) {
-          case GET_CART_REQUEST:
-            return {
-              ...state,
-              loading: true,
-            };
-            case GET_CART_SUCCESS:
-              return {
-                loading: false,
-                cart: action.payload.cartItems,
-                cartCount: action.payload.cartCount,
-              };
-          case GET_CART_FAIL:
-            return {
-              loading: false,
-              error: action.payload,
-            };
-          case CLEAR_ERRORS:
-            return {
-              ...state,
-              error: null,
-            };
-      
-          default:
-            return state;
         }
-      };
-
- 
-export const deleteCartReducer = (state = { cart: {} }, action) => {
-  switch (action.type) {
-    case DELETE_CART_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case DELETE_CART_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        isDeleted: action.payload
-      };
-    case DELETE_CART_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case DELETE_CART_RESET:
-      return {
-        ...state,
-        isDeleted: false,
-      };
-    case CLEAR_ERRORS:
-      return {
-        ...state,
-        error: null,
-      };
-    default:
+        
+      case REMOVE_CART_ITEM:
+          return {
+            ...state,
+          cartItems: state.cartItems.filter((i) => i.product !== action.payload),
+        };
+        
+        default:
       return state;
-  }
-};
+    }
+}

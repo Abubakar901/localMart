@@ -1,23 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductDetails } from '../../actions/productAction';
+import { getProductDetails, clearErrors } from '../../actions/productAction';
 import { MainContainer } from '../../GlobalStyle';
-import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, VerticalContainer, ProductShopDetails, ButtonContainer ,DetailsPageBtn, ReviewOuterContaner, NoReviewContainer } from './ProductDetailsStyle';
+import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, VerticalContainer, BreakLine, ProductImageCarousel, ImageProduct, ProductShopDetails, DetailsPageBtn, ReviewOuterContaner, NoReviewContainer } from './ProductDetailsStyle';
 import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
 import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
+import { useAlert } from "react-alert";
 import Metadata from '../../Layout/Metadata';
+import { addItemsToCart } from '../../actions/cartAction';
 
 const ProductDetails = () => {
   
   const {id} =useParams();
   const dispatch = useDispatch();
-  const { product, loading } = useSelector( (state) => state.productDetails)
+  const alert = useAlert();
+  const { product, error, loading } = useSelector( (state) => state.productDetails)
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-      dispatch(getProductDetails(id));
-  }, [dispatch, id])
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+      dispatch(getProductDetails(id, quantity));
+  }, [ dispatch, id, quantity, error, alert ])
 
   const options = {
     edit:true,
@@ -28,7 +36,10 @@ const ProductDetails = () => {
     innerHeight:50
   }
 
-  console.log(product)
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
+  };
 
   return (
     <MainContainer innerspace='0'>
@@ -39,29 +50,42 @@ const ProductDetails = () => {
           <>
             <UpperContainer>
               <ImageContainer>
-                <img src={product?.images?.[0]?.url} alt={product?.name} />
+                <ProductImageCarousel>
+                  {product.images &&
+                    product.images.map((item, i) => (
+                      <ImageProduct
+                        key={i}
+                        src={item.url}
+                        alt={`${i} Slide`}
+                      />
+                    ))}
+                </ProductImageCarousel>
               </ImageContainer>
               <DetailsContainer>
                 <h4>{product?.name}</h4>
-                <h5><span>₹ </span>{product?.price}</h5>
+                <BreakLine />
                 <SingleContainer>
                   <ReactStars {...options}/> <span>{" "}
                       ({product?.numOfReviews} Reviews)</span> 
                 </SingleContainer>
+                <BreakLine />
+                <h5><span>₹ </span>{product?.price}</h5>
+                <DetailsPageBtn onClick={addToCartHandler}>Add to Cart</DetailsPageBtn>
+                <BreakLine />
                 <h3>Stock : <span>{product?.Stock < 1 ? "OutOfStock" : "InStock"}</span></h3>
+                <BreakLine />
                 <VerticalContainer>
                   <p>About this Item :</p>
                   <p> {product?.description}</p>
                 </VerticalContainer>
+                <BreakLine />
                 <ProductShopDetails to={`/shop/${product?.shopName?._id}`} >
                   <h4>Shop Name : {product?.shopName?.name}</h4>
                   <h6>City : {product?.shopName?.city}</h6>
                   <h6>State : {product?.shopName?.state}</h6>
-              </ProductShopDetails>
-              <ButtonContainer>
-                <DetailsPageBtn>Add to Cart</DetailsPageBtn>
-                <DetailsPageBtn>Buy Now</DetailsPageBtn>
-              </ButtonContainer>
+                </ProductShopDetails>
+                <BreakLine /> 
+                <DetailsPageBtn>Add Review</DetailsPageBtn>
             </DetailsContainer>
           </UpperContainer>
           <LowerContainer>

@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import { StyledLink } from '../../GlobalStyle';
-import { NavbarContainer, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu } from './HeaderStyle';
+import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu, ResponsiveBtn } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
@@ -12,8 +12,12 @@ const Header = () => {
   const { user } = useSelector(state => state.user)
 
   const [open, setOpen] = useState(false);
+
+  let [openBar, setOpenBar] = useState('none')
+
+  const handleOpen = () => setOpen(true);
   
-  const handleOpen = () => setOpen(true)
+  let openPanel = false;
 
   // useEffect(() => {
   //   if(isAuthenticated) {
@@ -32,6 +36,16 @@ const Header = () => {
   //     }
   //   }
   // }, [isAuthenticated, user, navigate])
+
+  const handlePanel = () => {
+    openPanel = !openPanel;
+    if(openPanel) {
+      setOpenBar('flex')
+    } else {
+      setOpenBar('none')
+    }
+  }
+  
   
 
   const logoutUser = () => {
@@ -74,20 +88,28 @@ const Roles = () => {
     <>
       <NavbarContainer>
         {/* Link from React Router Dom */}
-        <StyledLink to='/'>
+        <FirstLink>
           {/* Div for Custom Styling of Logo */}
-          <NavTitle>localMart</NavTitle>
-        </StyledLink>
+          <NavTitle to='/'>localMart</NavTitle>
+
+          <ResponsiveBtn onClick={() => handlePanel()}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </ResponsiveBtn>
+
+        </FirstLink>
+
 
        {/* Div for Custom Styling of search bar */}
-        <SearchContainer>
+        <SearchContainer show={openBar}>
            {/* Input for Search */}
             <SearchBar placeholder='Search City, Shop or Products'/>
             {/* Search Icon */}
             <Search />
         </SearchContainer>
 
-        <NavLinks>
+        <NavLinks show={openBar}>
 
           <Roles />
 

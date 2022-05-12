@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledLink, CommonBtn } from "../../GlobalStyle";
+import Carousel from "react-material-ui-carousel";
 
 export const UpperContainer = styled.div`
     display: flex;
@@ -38,11 +39,17 @@ export const ImageContainer = styled.div`
     align-items: center;
     padding:20px;
     min-height: 500px;
+`;
 
-    > img {
-        height:400px;
-        width:400px;
-    }
+export const ProductImageCarousel = styled(Carousel)`
+    height: 400px;
+    width: 400px;
+`;
+
+export const ImageProduct = styled.img`
+    height:400px;
+    width:400px;
+    background-size: cover;
 `;
 
 export const DetailsContainer = styled.div`
@@ -55,7 +62,7 @@ export const DetailsContainer = styled.div`
 
     > h5 {
         font-size: 30px;
-        margin-bottom: 0;
+        margin-bottom: 10;
     }
 `;
 
@@ -89,10 +96,8 @@ export const ProductShopDetails = styled(StyledLink)`
     }
 `;
 
-export const ButtonContainer = styled.div`
-    display: flex;
-    margin-top:10px;
-    flex-direction: row;
+export const BreakLine = styled.hr`
+    width: 400px;
 `;
 
 export const DetailsPageBtn = styled(CommonBtn)`

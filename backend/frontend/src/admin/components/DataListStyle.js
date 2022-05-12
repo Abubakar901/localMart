@@ -30,8 +30,15 @@ import styled
 
  export const EditBtn = styled(EditIcon)`
    margin-right:10px;
+   :hover{
+     cursor: pointer;
+   }
  `;
 
  export const DeleteBtn = styled(DeleteIcon)`
    margin-left:10px;
+
+   :hover{
+     cursor: pointer;
+   }
  `;

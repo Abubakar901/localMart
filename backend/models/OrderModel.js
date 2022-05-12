@@ -17,7 +17,15 @@ const orderSchema = new mongoose.Schema({
         pinCode : {
             type: Number,
             required: true
-        }, 
+        },
+        country: {
+          type: String,
+          required: true,
+        },
+        phoneNo: {
+            type: Number,
+            required: true,
+        },
     },
 
     orderItems: [
@@ -43,11 +51,6 @@ const orderSchema = new mongoose.Schema({
                 ref: "Product",
                 required: true
             },
-            shop : {
-                type: mongoose.Schema.ObjectId,
-                ref: "Shop",
-                required: true
-            }
         }
     ],
     user: {

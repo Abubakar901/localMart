@@ -73,10 +73,17 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
 // Get All Product (Admin)
 exports.getAdminShops = catchAsyncError (async (req, res, next) => {
     const shops = await Shop.find();
-  
+    
+    let totalShops = 0;
+
+    shops.map((shop) => {
+        totalShops += 1;
+    })
+    
     res.status(200).json({
       success: true,
       shops,
+      totalShops
     });
   });
 
