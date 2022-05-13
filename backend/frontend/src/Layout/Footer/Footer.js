@@ -22,7 +22,7 @@ const Footer = () => {
             <a href="https://wa.me/9372409041">Become a Seller</a>
             <p>Contact Us</p>
             <p>Privacy</p>
-            <p>Help</p>v
+            <p>Help</p>
         </FooterMiddle>
 
         <FooterRight>

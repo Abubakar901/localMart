@@ -91,7 +91,7 @@ export const getAdminUsers = () => async(dispatch) => {
 
       dispatch({
           type: ADMIN_USER_SUCCESS,
-          payload: data.users
+          payload: data
       })
   }catch(error) {
       dispatch({

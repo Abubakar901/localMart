@@ -19,7 +19,7 @@ export const MainContainer = styled.div`
     background-color: ${props => props.bg || '#cfe2f3'};
     margin: 40px auto;
     justify-content: ${props => props.equally || 'center'};
-    align-items: center;
+    align-items: ${props => props.vertical || 'center'};
     border-radius: 20px;
     display: flex;
     flex-direction:  ${props => props.horizontal || 'column'};

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ErrorPageContainer, ReturnHomeBtn } from './ErrorPageStyle';
+import {MainContainer , ErrorPageContainer, ReturnHomeBtn } from './ErrorPageStyle';
 import Metadata from '../../Layout/Metadata';
-import { MainContainer } from '../../GlobalStyle';
 
 const ErrorPage = () => {
     const navigate = useNavigate();

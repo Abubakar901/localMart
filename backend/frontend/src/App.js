@@ -19,6 +19,9 @@ import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
 import Profile from './routes/Profile/Profile';
 import Shipping from './routes/Shipping/Shipping';
+import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
+import Order from './routes/Orders/Order';
+import Payment from './routes/Payment/Payment';
 
 import Sellerboard from './seller/Dashboard/Sellerboard';
 import ShopNew from './seller/Shops/New/ShopNew';
@@ -30,7 +33,6 @@ import AdminShops from './admin/Shops/AdminShop';
 import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 import ProductNew from './seller/Products/New/ProductNew';
-import Order from './routes/Orders/Order';
 
 function App() {
 
@@ -69,7 +71,11 @@ function App() {
               <>
 
                 <Route path="/shipping" element={<Shipping /> } />
-          
+
+                <Route path="/order/confirm" element={<ConfirmOrder /> }/>
+              
+                <Route path="/process/payment" element={<Payment />} />
+
                 <Route path="/profile" element={<Profile /> }/>
             
                 <Route path="/seller/dashboard" element={<Sellerboard /> }/>

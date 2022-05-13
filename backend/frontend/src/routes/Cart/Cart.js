@@ -1,4 +1,4 @@
-import React, {  useState }from 'react'
+import React from 'react'
 import { MainContainer, TopContainer } from '../../GlobalStyle';
 import { CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn,CartProductContainer, OneContainer, TwoContainer, SameBtn, BtnContainer, RemoveItemBtn,  NoItemContaiener, ExploreShoppingBtn} from './CartStyle';
 import { useSelector, useDispatch } from 'react-redux';
@@ -66,8 +66,8 @@ const Cart = ({ user }) => {
               <CartLeftContainer>
             {
               cartItems && cartItems.map((item) => (
-                <CartProductContainer>  
-                  <CartCard item={item} key={item?.product} />
+                <CartProductContainer key={item?.product}>  
+                  <CartCard item={item} />
                   <OneContainer>
                    <BtnContainer>
                      <SameBtn onClick={() => decreaseQunatity(item?.product, item?.quantity)} >-</SameBtn>

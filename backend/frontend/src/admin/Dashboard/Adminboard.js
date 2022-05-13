@@ -5,16 +5,19 @@ import { AdminInnerContainer , AmountContainer, CircleContainer, CircleLinked} f
 import { useSelector, useDispatch } from 'react-redux';
 import {  getAdminShops } from '../../actions/shopActions';
 import { getAdminProducts } from '../../actions/productAction';
+import { getAdminUsers } from '../../actions/userAction';
 
 const Adminboard = () => {
   
   const { totalShops  } = useSelector((state) => state.shops)
   const { totalProducts  } = useSelector((state) => state.products)
+  const { usersCount } = useSelector((state) => state.users)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAdminShops());
     dispatch(getAdminProducts());
+    dispatch(getAdminUsers())
   }, [dispatch])
   
   return (
@@ -47,7 +50,7 @@ const Adminboard = () => {
 
             <CircleLinked to='/admin/users'>
               <h6>Users</h6>
-              <p>34</p>
+              <p>{usersCount}</p>
             </CircleLinked>
           </CircleContainer>
         </AdminInnerContainer>
