@@ -1,6 +1,6 @@
 const Order = require("../models/OrderModel");
 const Product = require("../models/ProductModel");
-const Shop = require("../models/ProductModel");
+const Shop = require("../models/ShopModel");
 const catachAsyncError = require("../middleware/catachAsyncError");
 const ErrorHandler = require("../utils/errorhandler");
 
@@ -56,6 +56,28 @@ exports.getAllOrderAdmin = catachAsyncError( async (req, res, next) => {
         orders,
         totalAmount 
     })
+});
+
+
+exports.getSellerOrders = catachAsyncError( async (req, res, next) => {
+    
+    const user = req.user.id;
+    
+    const shops = await Shop.find({ user });
+    
+    let shopId = []; 
+    shops.map((shop) => {
+        shopId.push(shop._id);
+    })
+        // console.log(shopId)
+    const orders = await Order.findById({ shopId })
+        // const orders =  await Order.findById({ shopId })
+
+    res.status(200).json({
+        success: true,
+        orders
+    })
+
 });
 
 

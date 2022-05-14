@@ -34,6 +34,8 @@ import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 import ProductNew from './seller/Products/New/ProductNew';
 
+import { Helmet } from "react-helmet";
+
 function App() {
 
   

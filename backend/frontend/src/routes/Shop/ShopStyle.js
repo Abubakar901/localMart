@@ -23,14 +23,12 @@ export const FilterLink = styled.div`
     font-size: 24px;
     color:  ${props => props.fontColor || '#fff' };
     font-weight: 500;
+    min-width:200px;
+    text-align: center;
     text-decoration: ${props => props.underline || 'initial' };
     letter-spacing: 1px;
     text-transform: capitalize;
 
-    @media (max-width: 1467px) {
-        margin-left:10px;
-        margin-right:10px;
-    }
 
     :hover {
         
