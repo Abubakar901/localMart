@@ -14,9 +14,8 @@ export const ShopLink = styled(StyledLink)`
             width: 200px;
         }
 
-        @media (max-width: 1000px) {
-            width: 250px;
-        }
+
+      
     }
 
     > h4 {
@@ -62,17 +61,24 @@ export const ShoppingCard = styled.div`
     padding-top:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    @media (max-width: 1167px) {
+    
+    @media (max-width:1385px) {
+        width: 280px; 
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    @media (max-width: 1200px) {
         width: 280px;
+        margin-left: 30px;
+        margin-right: 20px;
     }
 
     @media (max-width: 1100px) {
         width: 250px;
     }
 
-    @media (max-width: 1000px) {
-        width: 300px;
-    }
+
 `;
 
 export const ExploreShopBtn = styled(Button)`
@@ -85,6 +91,7 @@ export const ExploreShopBtn = styled(Button)`
         background-color: ${props => props.bgcolor || '#bd2377'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
 
     &&:hover {
         background-color: ${props => props.bgColor  || '#c74981'};

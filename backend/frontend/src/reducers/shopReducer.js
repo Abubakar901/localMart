@@ -45,7 +45,6 @@ export const shopReducer = (state = { shops : [] }, action) => {
                 loading: false,
                 shops: action.payload.shops,
                 shopsCounts : action.payload.shopsCounts,
-                resultPerPage: action.payload.resultPerPage,
                 category: action.payload.shopCategory
             }
         case ADMIN_SHOP_SUCCESS:

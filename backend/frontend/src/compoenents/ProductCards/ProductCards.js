@@ -23,7 +23,6 @@ const ProductCards = ({product}) => {
   }
 
   const addToCart = (id) => {
-    console.log(id)
   }
 
   return (
@@ -39,12 +38,11 @@ const ProductCards = ({product}) => {
       </ProductLink>
       <ProductLink to={`/product/${product?._id}`}>
         <ShopTwoItems>
-          <ReactStars {...options}/> <span>{" "}
-                ({product?.numOfReviews} Reviews)</span>
+          <ReactStars {...options}/> 
         </ShopTwoItems>
       </ProductLink>
       <ProductLink to={`/product/${product?._id}`}>
-        <ShopTwoItems>
+        <ShopTwoItems side='column'>
           <p>City : <span>{product?.shopName?.city}</span></p>
           <p>State: <span>{product?.shopName?.state}</span></p>
         </ShopTwoItems>

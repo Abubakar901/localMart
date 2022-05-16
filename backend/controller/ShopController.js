@@ -41,18 +41,18 @@ exports.createShops = catchAsyncError( async( req, res, next) => {
 
 // get all shops --- admin/seller/customer
 exports.getAllShops = catchAsyncError( async(req, res, next) =>{
-
-    const resultPerPage = 8;
+;
     const shopCount = await Shop.countDocuments();
     let shopCategory = [];
 
     const apifeature = new Apifeatures(Shop.find(),req.query)
     .search()
     .filter()
-    .pagination(resultPerPage)
 
     const shops = await apifeature.query; 
     
+    // const shops = await Shop.find();
+
     shops.map((shop) => {
         if(shopCategory.includes(shop.category)){
             return
@@ -61,12 +61,17 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
         }
     })
 
+    
+
+    // if(totalPage < ){
+
+    // }
+
     res.status(200).json({
         success: true,
         shops,
         shopCount,
-        resultPerPage,
-        shopCategory
+        shopCategory,
     })
 });
 

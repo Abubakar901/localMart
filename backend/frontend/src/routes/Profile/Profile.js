@@ -5,8 +5,8 @@ import  { useSelector } from 'react-redux';
 import Metadata from '../../Layout/Metadata';
 
 const Profile = () => {
-    const { user } = useSelector(state => state.user)
-    console.log(user)
+    const { user } = useSelector(state => state.user);
+    
   return (
     <MainContainer bg='#87aeae' width='90%'>
       <Metadata title='localMart - Profile' />

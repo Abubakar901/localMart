@@ -12,8 +12,6 @@ const ReviewCard = ({ review }) => {
         value: review?.rating,
         innerHeight:50
       }
-
-      console.log(review)
       
   return (
     <ReviewInnerContainer>

@@ -101,7 +101,7 @@ export const createProduct = (productData) => async (dispatch) => {
 
     dispatch({
       type: CREATE_PRODUCT_SUCCESS,
-      payload: data,
+      payload: data
     });
   } catch (error) {
     dispatch({

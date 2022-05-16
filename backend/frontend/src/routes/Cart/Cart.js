@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MainContainer, TopContainer } from '../../GlobalStyle';
 import { CartLeftContainer, CartContainer, TotalCardContainer, CheckoutBtn,CartProductContainer, OneContainer, TwoContainer, SameBtn, BtnContainer, RemoveItemBtn,  NoItemContaiener, ExploreShoppingBtn} from './CartStyle';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,6 +24,10 @@ const Cart = ({ user }) => {
     }
 
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
 
   cartItems.map((item) => {
     totalGross += (item?.quantity * item?.price)

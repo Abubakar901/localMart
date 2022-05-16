@@ -40,14 +40,12 @@ exports.createProduct = catchAsyncErros(async(req,res,next) => {
 // get all products --- customer
 exports.getAllProducts = catchAsyncErros(async(req, res) => {
 
-    const resultPerPage = 6;
     const productCount = await Product.countDocuments();
     const category = [];
 
     const apifeature = new Apifeatures(Product.find().populate("shopName","name city state" ), req.query)
     .search()
     .filter()
-    .pagination(resultPerPage)
 
     const products = await apifeature.query
     

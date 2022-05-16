@@ -34,8 +34,7 @@ export const ProductLink = styled(StyledLink)`
 
 export const ProductCard = styled.div`
     background-color: #fff;
-    margin-top: 20px;
-    height:430px ;
+    height:auto ;
     width:315px ;
     padding: 7px;
     text-align: center;
@@ -49,14 +48,20 @@ export const ProductCard = styled.div`
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-
+    @media (max-width:1530px) {
+        width:260px ;
+    }
 `;
 
 export const ShopTwoItems = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
+    @media (max-width:1530px) {
+        flex-direction: ${props => props.side || 'initial'};
+    }
+
     > span {
         font-size: 15px;
         color: #ff0000;
@@ -67,6 +72,12 @@ export const ShopTwoItems = styled.div`
         font-weight: 500;
         margin-right:10px;
         margin-left:10px;
+        
+        @media (max-width:1530px) {
+            
+        margin-top:0;
+        margin-bottom:0;
+        }
 
         >span {
             color:#000;
@@ -81,10 +92,17 @@ export const ExploreShopBtn = styled(Button)`
         margin-right: 5px;
         margin-left: 5px;
         margin-bottom: 5px;
+        text-transform: capitalize;
         width:125px;
         font-size: 15px;
         background-color: ${props => props.bgcolor || '#cc0000'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    @media (max-width:1530px) {
+        && {
+            width:100px;
+        }
     }
 
     &&:hover {

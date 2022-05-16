@@ -57,6 +57,7 @@ export const TopContainer = styled.div`
         color: #5b5f97;
     }
 `;
+
 export const BottomContainer = styled.div`
     display: flex;
     align-items: center;
