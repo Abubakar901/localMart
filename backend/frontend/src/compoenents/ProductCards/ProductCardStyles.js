@@ -93,7 +93,7 @@ export const ExploreShopBtn = styled(Button)`
         margin-left: 5px;
         margin-bottom: 5px;
         text-transform: capitalize;
-        width:125px;
+        width:90%;
         font-size: 15px;
         background-color: ${props => props.bgcolor || '#cc0000'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

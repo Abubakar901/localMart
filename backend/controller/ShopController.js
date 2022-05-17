@@ -50,8 +50,7 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
     .filter()
 
     const shops = await apifeature.query; 
-    
-    // const shops = await Shop.find();
+
 
     shops.map((shop) => {
         if(shopCategory.includes(shop.category)){
@@ -61,11 +60,7 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
         }
     })
 
-    
 
-    // if(totalPage < ){
-
-    // }
 
     res.status(200).json({
         success: true,
@@ -172,13 +167,13 @@ exports.deleteShop = catchAsyncError( async( req, res, next) => {
 // create new review or update the review 
 exports.createShopReview = catchAsyncError (async (req, res, next) => {
 
-    const {rating, comment, shopId} = req.body
-
+    const {rating, comment, shopId} = req.body;
+    
     const review = {
-        user: req.user.id,
-        name: req.body.name,
+        user: req.user._id,
+        name: req.user.firstName + " " + req.user.lastName,
         rating: Number(rating),
-        comment 
+        comment,
     }
 
     const shop = await Shop.findById(shopId);

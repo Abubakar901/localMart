@@ -17,7 +17,7 @@ const ReviewCard = ({ review }) => {
     <ReviewInnerContainer>
         <UserContainer>
             <img src='https://i.pinimg.com/736x/bb/d5/eb/bbd5eb8953cff9d99ddc96063cf2b63e.jpg' alt={review?.name} />
-            <h6>{review?.name}Hardik</h6> 
+            <h6>{review?.name}</h6> 
         </UserContainer>
         <ReactStars {...options}/>
         <p>{review?.comment}</p>

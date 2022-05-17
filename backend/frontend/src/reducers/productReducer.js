@@ -41,7 +41,8 @@ export const productReducer = (state = { product:[] }, action) =>{
             return{
                  loading:false,
                  products:action.payload.products,
-                 category: action.payload.category
+                 category: action.payload.category,
+                 city: action.payload.city
              };
         case ADMIN_PRODUCT_SUCCESS:
             return {

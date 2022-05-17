@@ -3,15 +3,12 @@ import { ProductCard, ShopTwoItems, ExploreShopBtn, ProductLink } from './Produc
 import ReactStars from 'react-rating-stars-component';
 import { useAlert } from 'react-alert';
 import  { useDispatch, useSelector } from 'react-redux';
-import Login from '../../routes/PopupLogin/PopupLogin';
+import { addItemsToCart } from '../../actions/cartAction';
 
 const ProductCards = ({product}) => {
   
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { user } = useSelector(state => state.user)
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
 
   const options = {
     edit:true,
@@ -22,7 +19,9 @@ const ProductCards = ({product}) => {
     innerHeight:50
   }
 
-  const addToCart = (id) => {
+  const addToCart = (id, quantity) => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
   }
 
   return (
@@ -47,22 +46,8 @@ const ProductCards = ({product}) => {
           <p>State: <span>{product?.shopName?.state}</span></p>
         </ShopTwoItems>
       </ProductLink>
-      <ShopTwoItems>
-      {
-        user ? (
-          <>
-            <ExploreShopBtn bgcolor='#3d85c6' onClick={() => addToCart(product?._id)} >Add to Cart</ExploreShopBtn>
-            <ExploreShopBtn>Buy Now</ExploreShopBtn>
-          </> ) : (
-            <>
-              <ExploreShopBtn bgcolor='#3d85c6' onClick={handleOpen}>Add to Cart</ExploreShopBtn>
-              <Login open={open} setOpen={setOpen} />
-              <ExploreShopBtn onClick={handleOpen}>Buy Now</ExploreShopBtn>
-              <Login open={open} setOpen={setOpen} />
-            </>
-          )
-      }
-      </ShopTwoItems>
+      <ExploreShopBtn bgcolor='#3d85c6' onClick={() => addToCart(product?._id, 1)} >Add to Cart</ExploreShopBtn>
+
     </ProductCard>
   )
 }

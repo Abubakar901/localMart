@@ -24,9 +24,7 @@ const Shop = () => {
     const [query, setQuery] = useState("");
     const [genres, setGenres] = useState("");
     let [openBar, setOpenBar] = useState('none')
-    const [value, setValue] = React.useState(0);
   
-
     const alert = useAlert();
 
     const {loading, error, shops, category} = useSelector(state => state.shops)

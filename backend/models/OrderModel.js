@@ -51,11 +51,19 @@ const orderSchema = new mongoose.Schema({
                 ref: "Product",
                 required: true
             },
-            shop : {
-                type: mongoose.Schema.ObjectId,
+            shop:{
+                type:mongoose.Schema.ObjectId,
                 ref: "Shop",
+                required: true,
+            },
+            shopName: {
+                type: String,
                 required: true
             },
+            shopCity : {
+                type: String,
+                required: true
+            }
         }
     ],
     user: {

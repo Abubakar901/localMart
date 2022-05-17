@@ -42,6 +42,7 @@ exports.getAllProducts = catchAsyncErros(async(req, res) => {
 
     const productCount = await Product.countDocuments();
     const category = [];
+    const city = [];
 
     const apifeature = new Apifeatures(Product.find().populate("shopName","name city state" ), req.query)
     .search()
@@ -57,19 +58,29 @@ exports.getAllProducts = catchAsyncErros(async(req, res) => {
         }
     })
 
+    products.map((product) => {
+        if(city.includes(product.shopName.city)){
+            return
+        } else {
+            city.push(product.shopName.city)
+        }
+    })
+
+
 
     res.status(200).json({
         success: true,
         products,
         productCount,
-        category
+        category,
+        city
     })
 });
 
 // get all products -- admin 
 exports.getAdminProducts = catchAsyncErros(async(req, res, next) => {
 
-    const products = await Product.find().populate("shopName","name");
+    const products = await Product.find().populate("shopName","name city");
 
     let totalProduct = 0;
 
@@ -154,7 +165,7 @@ exports.createProductReview = catchAsyncErros( async( req, res, next ) => {
     const {rating, comment, productId} = req.body
     const review = {
         user: req.user.id,
-        name: req.body.name,
+        name: req.user.firstName + " " + req.user.lastName,
         rating: Number(rating),
         comment 
     }

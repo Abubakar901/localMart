@@ -27,6 +27,11 @@ export const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
 // shipping 
 export const SAVE_SHIPPING_INFO = "SAVE_SHIPPING_INFO";
 
+// orders --- all
+export const USER_ORDER_REQUSET = "USER_ORDER_REQUSET";
+export const USER_ORDER_SUCCESS = "USER_ORDER_SUCCESS";
+export const USER_ORDER_FAIL = "USER_ORDER_FAIL";
+
 /// login request common
 export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";

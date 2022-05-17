@@ -11,6 +11,12 @@ export const UpperContainer = styled.div`
     border-top-right-radius: 30px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media (max-width:850px){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 export const LowerContainer = styled.div`
@@ -45,6 +51,10 @@ export const ImageContainer = styled.div`
     align-items: center;
     padding:20px;
     min-height: 500px;
+
+    @media (max-width:850px){
+        width:100%;
+    }
 `;
 
 export const ImageShop = styled.img`
@@ -57,6 +67,15 @@ export const DetailsContainer = styled.div`
     width:50%;
     padding-left:40px;
     padding-top:30px;
+
+    @media (max-width:850px){
+        width:100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
     > h3 {
         font-size: 45px;
@@ -91,6 +110,14 @@ export const SingleContainer = styled.div`
     display: flex;
     align-items: center;
 
+    @media (max-width:850px){
+        width:100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
     > span {
         margin-left:10px;
     }
@@ -103,13 +130,18 @@ export const DetailsPageBtn = styled(CommonBtn)`
         padding:3px 20px;
         background-color: #df9704;
         height: 38px;
-        margin-top:30px;
+        margin-top:10px;
+        margin-right:10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     &&:hover {
         background-color:#df9704;
     }
+`;
+
+export const InputBox = styled.input`
+
 `;
 
 export const ReviewOuterContaner = styled.div`

@@ -5,10 +5,12 @@ import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
 import { getAdminProducts, deleteProduct} from '../../../actions/productAction';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_PRODUCT_RESET } from '../../../constant/keys';
+import { useNavigate } from 'react-router-dom';
 
 const DataListProduct = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
+    const navigate = useNavigate();
 
     const  { error, products, loading } = useSelector((state) => state.products)
 
@@ -36,6 +38,10 @@ const DataListProduct = () => {
       };
   
 
+    const handleEditBtn = (id)  => {
+      navigate(`/admin/user/${id}`)
+    }
+
   return (
     <>
       { loading ? <Loader /> : 
@@ -47,6 +53,7 @@ const DataListProduct = () => {
               <th>Stock</th>
               <th>Price</th>
               <th>Shop</th>
+              <th>City</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -58,8 +65,9 @@ const DataListProduct = () => {
                 <td>{product?.Stock}</td>
                 <td><strong>₹</strong>{product?.price}</td>
                 <td>{product?.shopName?.name}</td>
+                <td>{product?.shopName?.city}</td>
                 <td>
-                  <EditBtn />
+                  <EditBtn onClick={() => handleEditBtn(product?._id)}/>
                   <DeleteBtn onClick={() => deleteProductHandler(product?._id)} />
                 </td>
               </tr>

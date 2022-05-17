@@ -7,7 +7,8 @@ export const ProductMainContainer = styled.div `
     background-color: #cfe2f3;
     margin: 40px auto;
     align-items: ${
-    props => props.vertical || 'center'};
+    props => props.vertical || 'center'
+};
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -20,17 +21,15 @@ export const ProductMainContainer = styled.div `
 
 `;
 
-export const ProductTopContainer = styled.div`
+export const ProductTopContainer = styled.div `
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    width: 90%;
-    margin-top:30px;
-    margin-bottom: 0;
-    margin-right: auto;
-    margin-left: auto;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
     font-weight: 700;
-    
+    padding:0 60px;
+
     @media (max-width: 700px) {
         flex-direction: column;
     }
@@ -68,10 +67,10 @@ export const FormContainer = styled.form `
 export const MixContainer = styled.div `
     display: flex;
     width:100%;
-`;
 
-export const RightContainer = styled.div `
-    min-width: 80%;
+    @media (max-width: 950px) {
+        flex-direction: column;
+    }
 `;
 
 export const ProductCardsContainer = styled.div `
@@ -83,12 +82,48 @@ export const ProductCardsContainer = styled.div `
     display: flex;
     flex-wrap: wrap;
 
-    @media (max-width:895px) {
-        width:100%;;
+    
+    @media (max-width: 1450px) {
+        width:75%;
+    }
+
+    @media (max-width: 1200px) {
+        width:70%;
+    }
+    
+    @media (max-width: 950px) {
+        width:100%;
     }
 `;
 
+export const ResponsiveBtn = styled.button `
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    outline: none;
+    border:0;
+    height: 37px;
+    width: 45px;
+    margin-left:10px;
+    margin-right:10px;
+    background-color: #000;
+    border-radius: 10px;
+    padding:3px 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
 
+    @media (max-width: 895px) {
+        display: flex;
+    }
+
+    > span {
+        height:3px;
+        width:70%;
+        margin:0 auto;
+        background-color:#fff;
+        border-radius: 10px;
+    }
+`;
 
 export const SideBarContainer = styled.div `
     background: rgb(207,226,243);   
@@ -99,9 +134,39 @@ export const SideBarContainer = styled.div `
     padding-bottom:70px;
     padding-left:20px;
     padding-top:20px;
-    width:100%;
+    width:25%;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1450px) {
+        width:25%;
+    }
+
+    @media (max-width: 1200px) {
+        width:30%;
+    }
+
+    @media (max-width: 950px) {
+         display:${props => props.show};
+        width:35%;    
+        height: auto;
+        margin-top:100px;
+        width:auto;
+        padding-bottom:10px;
+        position:absolute;
+        top:140px;
+        left:50px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius:30px;
+        z-index:1;
+        flex-direction: column;
+    }
+
+    @media (max-width: 700px) {
+        top:200px;
+        left:30px;
+    }
+
 `;
 
 export const InnerContainer = styled.div `
