@@ -2,6 +2,7 @@ import styled
  from "styled-components";
  import EditIcon from '@mui/icons-material/Edit';
  import DeleteIcon from '@mui/icons-material/Delete';
+ import { StyledLink } from "../../GlobalStyle";
 
  export const TableContainer = styled.table`
 
@@ -19,14 +20,21 @@ import styled
     }
 
     td {
-       font-size: 20px;
-       margin-bottom: 10px;
-       border-bottom: 2px solid #6a329f;
-       border-right: 2px solid #6a329f;
-       font-weight: 600;
-       padding:5px 5px;
+        border-bottom: 2px solid #6a329f;
+        border-right: 2px solid #6a329f;
+        text-align: center;
+        margin-bottom: 10px;
+        padding:5px 5px;
     }
  `;
+
+export const AdvancedLink = styled(StyledLink)`
+    width: 100%;
+   font-size: 20px;
+   font-weight: 600;
+    color:#000;
+`;
+
 
  export const EditBtn = styled(EditIcon)`
    margin-right:10px;

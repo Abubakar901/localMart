@@ -7,11 +7,13 @@ router.route("/order/new").post(isAuthenticatedUser, newOrder);
 
 router.route("/order/me").get(isAuthenticatedUser, myOrders);
 
-router.route("/order/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getOrderDetails);
+router.route("/order/:id").get(isAuthenticatedUser, getOrderDetails);
 
 router.route("/admin/orders").get(isAuthenticatedUser, authorizeRoles("admin"), getAllOrderAdmin);
 
-router.route("/admin/order/:id").put(isAuthenticatedUser, authorizeRoles("admin"), updateOrderStatus).delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder);
+router.route("/admin/order/:id").put(isAuthenticatedUser, authorizeRoles("admin"), updateOrderStatus)
+
+router.route("/order/:id").delete(isAuthenticatedUser, deleteOrder);
 
 router.route("/seller/orders").get(isAuthenticatedUser, authorizeRoles("seller"), getSellerOrders);
 

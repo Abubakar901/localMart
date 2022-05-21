@@ -130,6 +130,7 @@ export const DetailsPageBtn = styled(CommonBtn)`
         padding:3px 20px;
         background-color: #df9704;
         height: 38px;
+        text-transform: capitalize;
         margin-top:10px;
         margin-right:10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -140,9 +141,40 @@ export const DetailsPageBtn = styled(CommonBtn)`
     }
 `;
 
-export const InputBox = styled.input`
-
+export const ReviewSingleContainer = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    width:100%;
 `;
+
+export const InputBox = styled.textarea`
+    border-radius: 7px;
+    width:250px;
+    padding: 10px;
+    height:150px;
+`;
+
+export const ReviewBtn = styled(CommonBtn)`
+    && {
+        color: white;
+        margin-left: 0px;
+        padding:3px 20px;
+        width:30%;
+        background-color: #df9704;
+        height: 38px;
+        margin-right:10px;
+        margin-top:10px;
+        background-color: ${props => props.bcolor || '#48b618'};
+        margin-bottom: 10px;
+        text-transform: capitalize;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    &&:hover {
+        background-color:${props => props.bcolor || '#48b618'};
+    }
+`;
+
 
 export const ReviewOuterContaner = styled.div`
     width:100%;

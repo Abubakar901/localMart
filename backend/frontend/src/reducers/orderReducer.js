@@ -1,28 +1,101 @@
-import {USER_ORDER_REQUSET, USER_ORDER_SUCCESS, USER_ORDER_FAIL, CLEAR_ERRORS } from "../constant/keys";
+import {
+    USER_ORDER_REQUSET,
+    USER_ORDER_SUCCESS,
+    USER_ORDER_FAIL,
+    ADMIN_ORDER_REQUEST,
+    ADMIN_ORDER_SUCCESS,
+    ADMIN_ORDER_FAIL,
+    DELETE_ORDER_REQUEST,
+    DELETE_ORDER_SUCCESS,
+    DELETE_ORDER_FAIL,
+    DELETE_ORDER_RESET,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_DETAILS_FAIL,
+    CLEAR_ERRORS
+} from "../constant/keys";
 
-export const userOrderReducer =  (state = { orders:[] }, action) => {
-    switch(action.type) {
+export const userOrderReducer = (state = {
+    orders: []
+}, action) => {
+    switch (action.type) {
         case USER_ORDER_REQUSET:
-            return {
-                loading: true,
-                orders: []
-            }
+        case ADMIN_ORDER_REQUEST:
+            return {loading: true, orders: []}
         case USER_ORDER_SUCCESS:
-            return {
-                loading: false,
-                orders:action.payload.orders
-            }
+            return {loading: false, orders: action.payload.orders}
+        case ADMIN_ORDER_SUCCESS:
+            return {loading: false, orders: action.payload.orders, totalAmount: action.payload.totalAmount, totalOrders: action.payload.totalOrders}
         case USER_ORDER_FAIL:
+        case ADMIN_ORDER_FAIL:
+            return {loading: false, error: action.payload}
+        case CLEAR_ERRORS:
             return {
-                loading:false,
-                error:action.payload,
-            }
-            case CLEAR_ERRORS:
-                return{
-                    ...state,
-                    error: null,
-                };
-         default:
+                ...state,
+                error: null
+            };
+        default:
             return state;
     }
 }
+
+
+export const orderDetailsReducer = (state = {
+    order: {}
+}, action) => {
+    switch (action.type) {
+        case ORDER_DETAILS_REQUEST:
+            return {
+                loading: true,
+                ...state
+            }
+        case ORDER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                order: action.payload
+            }
+        case ORDER_DETAILS_FAIL:
+            return {loading: false, error: action.payload}
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state;
+    }
+}
+
+export const editDeleteOrderReducer = (state = { order: {} }, action) => {
+    switch (action.type) {
+      case DELETE_ORDER_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case DELETE_ORDER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          isDeleted: action.payload
+        };
+      case DELETE_ORDER_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case DELETE_ORDER_RESET:
+        return {
+          ...state,
+          isDeleted: false,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+      default:
+        return state;
+    }
+  };

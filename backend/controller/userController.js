@@ -193,12 +193,7 @@ exports.updatePassword = catchAsyncError( async(req, res, next) => {
 exports.getallUsers = catchAsyncError( async(req, res, next) => {
     const users = await User.find();
     
-    let usersCount = 0;
-    
-    users.map((user) => {
-        usersCount += 1;
-    })
-
+    const usersCount = users.length;
 
     res.status(200).json({
         success: true,

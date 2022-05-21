@@ -1,8 +1,8 @@
-import React,  { useState }  from 'react';
+import React  from 'react';
 import { ProductCard, ShopTwoItems, ExploreShopBtn, ProductLink } from './ProductCardStyles';
 import ReactStars from 'react-rating-stars-component';
 import { useAlert } from 'react-alert';
-import  { useDispatch, useSelector } from 'react-redux';
+import  { useDispatch } from 'react-redux';
 import { addItemsToCart } from '../../actions/cartAction';
 
 const ProductCards = ({product}) => {

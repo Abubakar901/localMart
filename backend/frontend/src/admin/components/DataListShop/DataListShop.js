@@ -20,7 +20,7 @@ const DataListShop = () => {
           return alert.error(error);
         }
         if(deleteError) {
-          return alert.error(error);
+          return alert.error(deleteError);
         }
         if(isDeleted) {
           alert.success('Shop Deleted Successfully');

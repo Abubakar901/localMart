@@ -5,10 +5,10 @@ const catachAsyncError = require("../middleware/catachAsyncError");
 const ErrorHandler = require("../utils/errorhandler");
 
 exports.newOrder = catachAsyncError( async(req, res, next ) => {
-    const { shippingInfo, orderItems, paymentInfo, Itemsprice, TaxPrice, shippingPrice, totalPrice } = req.body;
+    const { shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
 
     const order = await Order.create({
-        shippingInfo, orderItems, paymentInfo, Itemsprice, TaxPrice, shippingPrice, totalPrice, paidAt:Date.now(), user: req.user._id,
+        shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice, shippingPrice, totalPrice, paidAt:Date.now(), user: req.user._id,
     })
 
     res.status(201).json({
@@ -18,7 +18,7 @@ exports.newOrder = catachAsyncError( async(req, res, next ) => {
 })
 
 exports.getOrderDetails = catachAsyncError( async (req, res, next) => {
-    const order = await Order.findById(req.params.id).populate("user", "firstName lastName email")
+    const order = await Order.findById(req.params.id);
 
     if(!order) {
         return next(new ErrorHandler("Order Not Found!", 404));
@@ -43,7 +43,7 @@ exports.myOrders = catachAsyncError( async (req, res, next) => {
 
 
 exports.getAllOrderAdmin = catachAsyncError( async (req, res, next) => {
-    const orders = await Order.find();
+    const orders = await Order.find().populate("user", "firstName lastName");
 
     let totalAmount = 0;
 
@@ -51,10 +51,13 @@ exports.getAllOrderAdmin = catachAsyncError( async (req, res, next) => {
         totalAmount += order.totalPrice
     })
 
+    const totalOrders = orders.length;
+
     res.status(200).json({
         success: true,
         orders,
-        totalAmount 
+        totalAmount,
+        totalOrders
     })
 });
 

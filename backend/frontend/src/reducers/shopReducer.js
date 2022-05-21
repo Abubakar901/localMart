@@ -5,6 +5,16 @@ import { ALL_SHOP_REQUEST,
         SHOP_DETAILS_REQUEST,
         SHOP_DETAILS_SUCCESS,
         SHOP_DETAILS_FAIL,
+        
+        NEW_SHOP_REVIEW_REQUEST,
+        NEW_SHOP_REVIEW_SUCCESS,
+        NEW_SHOP_REVIEW_FAIL,
+        NEW_SHOP_REVIEW_RESET,
+
+        DELETE_SHOP_REVIEW_REQUEST,
+        DELETE_SHOP_REVIEW_SUCCESS,
+        DELETE_SHOP_REVIEW_FAIL,
+        DELETE_SHOP_REVIEW_RESET,
 
         ADMIN_SHOP_REQUEST,
         ADMIN_SHOP_SUCCESS,
@@ -182,3 +192,72 @@ export const newShopReducer = (state = { shop: {} }, action) => {
         return state;
     }
   };
+
+  
+export const newShopReviewReducer = (state = { }, action) => {
+  switch(action.type) {
+    case NEW_SHOP_REVIEW_REQUEST: 
+      return {
+        ...state,
+        loading: true 
+      }
+    case NEW_SHOP_REVIEW_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload
+      } 
+    case NEW_SHOP_REVIEW_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+    case NEW_SHOP_REVIEW_RESET:
+      return {
+        ...state,
+        success: false
+      }
+    case CLEAR_ERRORS: 
+      return {
+        ...state,
+        error: null
+      }
+    default: 
+     return state;  
+  }
+
+}
+
+export const deleteShopReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_SHOP_REVIEW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_SHOP_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isDeleted: action.payload,
+      };
+    case DELETE_SHOP_REVIEW_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case DELETE_SHOP_REVIEW_RESET:
+      return {
+        ...state,
+        isDeleted: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};

@@ -1,29 +1,25 @@
-import React from 'react'
+import React from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../GlobalStyle';
 import { AdminMainContainer } from '../AdminStyle';
 import Sidebar from '../components/Sidebar/Sidebar';
-import DataListUser from '../components/DataListUser/DataListUser';
+import DataListOrder from '../components/DataListOrder/DataListOrder';
 import Metadata from '../../Layout/Metadata';
 
-const AdminUser = () => {
+const AdminOrder = () => {
   return (
     <MainContainer innerspace='0'>
-    <Metadata title='localMart - Users(Admin)' />
+    <Metadata title='localMart - Orders(Admin)' />
       <TopContainer equally='center'>-
-          <h2>Admin All Shops</h2>
+          <h2>All Orders</h2>
       </TopContainer>
       <BottomContainer outerspace='0'>
         <Sidebar />
         <AdminMainContainer>
-            <DataListUser />
+            <DataListOrder />
         </AdminMainContainer>
       </BottomContainer>
     </MainContainer>
   )
 }
 
-export default AdminUser
-
-
-
-  
+export default AdminOrder

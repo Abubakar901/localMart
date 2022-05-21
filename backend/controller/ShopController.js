@@ -74,11 +74,7 @@ exports.getAllShops = catchAsyncError( async(req, res, next) =>{
 exports.getAdminShops = catchAsyncError (async (req, res, next) => {
     const shops = await Shop.find();
     
-    let totalShops = 0;
-
-    shops.map((shop) => {
-        totalShops += 1;
-    })
+    const totalShops = shops.length;
     
     res.status(200).json({
       success: true,
@@ -93,11 +89,14 @@ exports.getShopSeller = catchAsyncError(async (req, res, next) => {
 
     const user = req.user.id
     
-    const shops = await Shop.find({ user })
+    const shops = await Shop.find({ user });
+
+    const totalShops = shops.length;
 
     res.status(200).json({
         success: true,
-        shops
+        shops,
+        totalShops
     })
 });
 

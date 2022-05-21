@@ -1,11 +1,11 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { shopReducer, shopDetailsReducer, newShopReducer, deleteShopReducer } from '../reducers/shopReducer';
+import { shopReducer, shopDetailsReducer, newShopReducer, deleteShopReducer,newShopReviewReducer,deleteShopReviewReducer } from '../reducers/shopReducer';
 import { userReducer, allUsersReducer} from '../reducers/userReducer';
 import { productReducer, productDetailsReducer, newProductReducer, deleteProductReducer} from '../reducers/productReducer';
 import { cartReducer } from '../reducers/cartReducer';
-import { userOrderReducer } from '../reducers/orderReducer';
+import { userOrderReducer, orderDetailsReducer, editDeleteOrderReducer } from '../reducers/orderReducer';
 
 const reducer=combineReducers({
     user: userReducer,
@@ -19,7 +19,11 @@ const reducer=combineReducers({
     deleteShop: deleteShopReducer,
     cart: cartReducer,
     users: allUsersReducer,
-    orders: userOrderReducer
+    orders: userOrderReducer,
+    orderDetails: orderDetailsReducer,
+    editAndDeleteOrder: editDeleteOrderReducer,
+    newShopReview: newShopReviewReducer,
+    deleteShopReview: deleteShopReviewReducer
 });
 
 let initialState = {

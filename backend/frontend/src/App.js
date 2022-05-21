@@ -21,20 +21,20 @@ import Profile from './routes/Profile/Profile';
 import Shipping from './routes/Shipping/Shipping';
 import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
 import Order from './routes/Orders/Order';
+import OrderDetail from './routes/OrderDetail/OrderDetail';
 import Payment from './routes/Payment/Payment';
 
 import Sellerboard from './seller/Dashboard/Sellerboard';
 import ShopNew from './seller/Shops/New/ShopNew';
 import ShopAll from './seller/Shops/All/ShopAll';
 import ProductAll from './seller/Products/All/ProductAll';
+import ProductNew from './seller/Products/New/ProductNew';
 
 import Adminboard from './admin/Dashboard/Adminboard';
 import AdminShops from './admin/Shops/AdminShop';
 import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
-import ProductNew from './seller/Products/New/ProductNew';
-
-import { Helmet } from "react-helmet";
+import AdminOrder from './admin/Orders/AdminOrder';
 
 function App() {
 
@@ -64,8 +64,6 @@ function App() {
             
             <Route path="/cart" element={<Cart user={user}/> }/>
 
-            <Route path="/orders" element={<Order/> }/>
-
             <Route path="*" element={<ErrorPage /> }/>
 
             
@@ -77,6 +75,10 @@ function App() {
                 <Route path="/order/confirm" element={<ConfirmOrder /> }/>
               
                 <Route path="/process/payment" element={<Payment />} />
+              
+                <Route path="/orders" element={<Order user={user} /> }/>
+
+                <Route path="/order/:id" element={<OrderDetail user={user} /> }/>
 
                 <Route path="/profile" element={<Profile /> }/>
             
@@ -96,6 +98,9 @@ function App() {
                 <Route path='/admin/shops' element={<AdminShops /> } />
 
                 <Route path="/admin/products" element={<AdminProducts /> }/>
+
+                <Route path="/admin/orders" element={<AdminOrder /> }/>
+
 
                 <Route path="/admin/users" element={<AdminUsers /> }/>
             </> 

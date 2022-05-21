@@ -6,22 +6,27 @@ import { useSelector, useDispatch } from 'react-redux';
 import {  getAdminShops } from '../../actions/shopActions';
 import { getAdminProducts } from '../../actions/productAction';
 import { getAdminUsers } from '../../actions/userAction';
+import { getAdminOrders } from '../../actions/orderAction';
+import Metadata from '../../Layout/Metadata';
 
 const Adminboard = () => {
   
   const { totalShops  } = useSelector((state) => state.shops)
   const { totalProducts  } = useSelector((state) => state.products)
   const { usersCount } = useSelector((state) => state.users)
+  const  { totalAmount, totalOrders } = useSelector((state) => state.orders)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAdminShops());
     dispatch(getAdminProducts());
-    dispatch(getAdminUsers())
+    dispatch(getAdminUsers());
+    dispatch(getAdminOrders());
   }, [dispatch])
   
   return (
     <MainContainer innerspace='0'>
+      <Metadata title='localMart - Dashboard(Admin)' />
       <TopContainer equally='center'>
           <h2>Admin Dashboard</h2>
       </TopContainer>
@@ -29,7 +34,7 @@ const Adminboard = () => {
         <Sidebar />
         <AdminInnerContainer>
           <AmountContainer>
-            <p>Total Amount: 2000</p>
+            <p>Total Amount: {totalAmount}</p>
           </AmountContainer>
 
           <CircleContainer>
@@ -45,7 +50,7 @@ const Adminboard = () => {
 
             <CircleLinked to='/admin/orders'>
               <h6>Orders</h6>
-              <p>34</p>
+              <p>{totalOrders}</p>
             </CircleLinked>
 
             <CircleLinked to='/admin/users'>

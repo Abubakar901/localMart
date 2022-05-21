@@ -1,19 +1,25 @@
 import React, { useState }  from 'react';
 import { StyledLink } from '../../GlobalStyle';
-import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu, ResponsiveBtn } from './HeaderStyle';
+import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu,SearchBtn, ResponsiveBtn } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
+import { useSearchParams } from 'react-router-dom';
+
 
 const Header = () => {
   
   const dispatch = useDispatch();
 
-  const { user } = useSelector(state => state.user)
+  const { user } = useSelector(state => state.user);
 
   const [open, setOpen] = useState(false);
 
   let [openBar, setOpenBar] = useState('none')
+
+  const [keyword, setKeyword] = useState();
+
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const handleOpen = () => setOpen(true);
   
@@ -47,10 +53,14 @@ const Header = () => {
   }
   
   
+const searchHandler = (e) =>{
+  e.preventDefault();
+  console.log(keyword)
+  setSearchParams({   })
+}
 
   const logoutUser = () => {
     dispatch(logout());
-    console.log("userout")
   }
 
 const Roles = () => {
@@ -84,6 +94,7 @@ const Roles = () => {
       </StyledLink>)
   }
 }
+
   return (
     <>
       <NavbarContainer>
@@ -102,11 +113,13 @@ const Roles = () => {
 
 
        {/* Div for Custom Styling of search bar */}
-        <SearchContainer show={openBar}>
+        <SearchContainer onSubmit={searchHandler}  show={openBar}>
            {/* Input for Search */}
-            <SearchBar placeholder='Search City, Shop or Products'/>
+            <SearchBar placeholder='Search City, Shop or Products' name='keyword' value={keyword} onChange={(e) => setKeyword(e.target.value)} autoComplete='false' />
             {/* Search Icon */}
-            <Search />
+            <SearchBtn value='submit' type='submit'>
+              <Search  />
+            </SearchBtn>
         </SearchContainer>
 
         <NavLinks show={openBar}>

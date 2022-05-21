@@ -1,5 +1,50 @@
 import styled from "styled-components";
-import { StyledLink } from '../../GlobalStyle';
+import {StyledLink} from '../../GlobalStyle';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CommonBtn } from "../../GlobalStyle";
+
+export const NoOrderContaiener = styled.div`
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border:2px solid red;
+    font-weight: 500;
+    height: 500px;
+    width:100%;
+
+    @media (max-width: 500px) {    
+        font-size: 25px;
+    }
+`;
+
+export const ExploreProductsBtn = styled(CommonBtn)`
+    && {
+        color: white;
+        margin-left: 0px;
+        font-size: 20px;
+        margin-top:5px;
+        padding:3px 20px;
+        background-color: #5b5f97;
+        height: 48px;
+        width:300px;
+        border-radius: 20px;
+        text-transform: capitalize;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    @media (max-width: 500px) {  
+        && {
+            padding:3px 15px;
+            font-size: 18px;
+            width:auto;
+        }
+    }
+    &&:hover {
+        background-color:#5b5f97;
+    }
+`;
 
 export const OrderMainContainer = styled.div `
     width:95%;
@@ -34,6 +79,7 @@ export const OrderTopContainer = styled.div `
     h4 {
         font-size: 45px;
         color: #5b5f97;
+        text-transform: capitalize;
     }
 `;
 
@@ -46,7 +92,7 @@ export const OrderBottomContainer = styled.div `
 `;
 
 
-export const TableContainer = styled.table`
+export const TableContainer = styled.table `
     width:100%;
 th{
     text-align: center;
@@ -76,4 +122,12 @@ export const OrderLink = styled(StyledLink)`
    font-size: 20px;
    font-weight: 600;
     color:#000;
+`;
+
+export const DeleteBtn = styled(DeleteIcon)`
+margin-left:10px;
+
+:hover{
+  cursor: pointer;
+}
 `;

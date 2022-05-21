@@ -9,6 +9,14 @@ import {
     SHOP_DETAILS_SUCCESS,
     SHOP_DETAILS_FAIL,
 
+    NEW_SHOP_REVIEW_REQUEST,
+    NEW_SHOP_REVIEW_SUCCESS,
+    NEW_SHOP_REVIEW_FAIL,
+
+    DELETE_SHOP_REVIEW_REQUEST,
+    DELETE_SHOP_REVIEW_SUCCESS,
+    DELETE_SHOP_REVIEW_FAIL,
+
     SELLER_SHOP_REQUEST,
     SELLER_SHOP_SUCCESS,
     SELLER_SHOP_FAIL,
@@ -184,6 +192,48 @@ export const deleteShop = (id) => async (dispatch) => {
     })
   }
 }
+
+
+export const newShopReview = (reviewData) => async (dispatch) => {
+  try {
+    dispatch({ type: NEW_SHOP_REVIEW_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const { data } = await axios.put(`/api/v1/shop/review/new`, reviewData, config);
+
+    dispatch({
+      type: NEW_SHOP_REVIEW_SUCCESS,
+      payload: data.success
+    })
+  }catch(error) {
+    dispatch({
+      type: NEW_SHOP_REVIEW_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+// export const deleteShopReview = (id) => async (dispatch) => {
+//   try {
+//     dispatch({ type: DELETE_SHOP_REVIEW_REQUEST });
+
+//     const { data } = await axios.delete(`/api/v1/unique/shop/${id}`);
+
+//     dispatch({
+//       type: DELETE_SHOP_REVIEW_SUCCESS,
+//       payload : data.success
+//     })
+
+//   }catch(error) {
+//     dispatch({
+//       type: DELETE_SHOP_REVIEW_FAIL,
+//       payload : error.response.data.message
+//     })
+//   }
+// }
 
 export const clearErrors = () => async (dispatch) => {
     dispatch({

@@ -82,11 +82,7 @@ exports.getAdminProducts = catchAsyncErros(async(req, res, next) => {
 
     const products = await Product.find().populate("shopName","name city");
 
-    let totalProduct = 0;
-
-    products.map((product) => {
-        totalProduct += 1;
-    });
+    const totalProduct = products.length;
 
     res.status(200).json({
         success: true,
@@ -100,11 +96,14 @@ exports.getSellerProducts = catchAsyncErros(async(req, res, next) => {
     
     const user = req.user.id;
 
-    const products = await Product.find({ user })
+    const products = await Product.find({ user });
+
+    const totalProduct = products.length;
 
     res.status(200).json({
         success: true,
         products,
+        totalProduct
     })
 });
 
@@ -248,3 +247,17 @@ exports.deleteReview = catchAsyncErros( async( req, res, next) => {
         success: true
     })
 })
+
+
+exports.getProductsByShop = catchAsyncErros( async(req, res, next) => {
+    
+    const shop = req.body.id;
+
+    const products = await Product.findById({ shop });
+    
+    res.status(200).json({
+        message: success,
+        products
+    })
+
+});

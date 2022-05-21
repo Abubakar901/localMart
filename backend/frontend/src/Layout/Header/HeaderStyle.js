@@ -60,7 +60,7 @@ export const NavTitle = styled(StyledLink)`
     }
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
     background-color : #b8b8d1;
     width: 55%;
     height:35px;
@@ -142,6 +142,15 @@ export const SearchBar = styled.input`
     @media (max-width: 1055px) {
         margin-left: 5px;
     }
+`;
+
+export const SearchBtn = styled.button`
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #b8b8d1;
+
 `;
 
 export const Search = styled(SearchIcon)`

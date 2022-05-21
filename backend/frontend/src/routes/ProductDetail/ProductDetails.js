@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductDetails, clearErrors } from '../../actions/productAction';
@@ -16,8 +16,8 @@ const ProductDetails = () => {
   const {id} =useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { product, error, loading } = useSelector( (state) => state.productDetails)
-  const [quantity, setQuantity] = useState(1);
+  const { product, error, loading } = useSelector( (state) => state.productDetails);
+  const quantity = 1;
 
   useEffect(() => {
     if (error) {

@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {getShopDetails} from '../../actions/shopActions';
+import {getShopDetails, newShopReview} from '../../actions/shopActions';
 import {MainContainer} from '../../GlobalStyle';
 import {
     UpperContainer,
@@ -14,7 +14,9 @@ import {
     NoReviewContainer,
     ShopImageCarousel,
     ImageShop,
-    InputBox
+    InputBox,
+    ReviewBtn,
+    ReviewSingleContainer
 } from './ShopDetailsStyle';
 import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
@@ -23,7 +25,8 @@ import Metadata from '../../Layout/Metadata';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-
+import { NEW_SHOP_REVIEW_RESET } from '../../constant/keys';
+import Rating from '@mui/material/Rating';
 
 const style = {
     position: 'absolute',
@@ -32,24 +35,44 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 300,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4
+    p: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 };
 
 const ShopDetails = () => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    const {shop, loading} = useSelector((state) => state.shopDetails)
+    const { shop, loading, error} = useSelector((state) => state.shopDetails);
+    
+    const { error:newreviewError, success } = useSelector((state) => state.newShopReview);
 
-    const [open, setOpen] = React.useState(false);
+
+    const [open, setOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
+        if (error) {
+            return alert.error(error);
+        }
+
+        if(newreviewError) {
+            return alert.error(newreviewError);
+          }
+
+        if (success) {
+            alert.success('Review Created Successfully');
+            dispatch({type: NEW_SHOP_REVIEW_RESET });
+        }
         dispatch(getShopDetails(id))
-    }, [dispatch, id])
+    }, [dispatch, id, error])
 
 
     const options = {
@@ -61,6 +84,18 @@ const ShopDetails = () => {
         innerHeight: 50
     }
 
+    const reviewSubmitHandler = () => {
+        const ReviewForm = new FormData();
+    
+        ReviewForm.set("rating", rating);
+        ReviewForm.set("comment", comment);
+        ReviewForm.set("shopId", id);
+    
+        dispatch(newShopReview(ReviewForm));
+
+        setOpen(false);
+    };
+
     return (
         <MainContainer innerspace='0'>
             <Metadata title='localMart - shop id'/> {
@@ -68,14 +103,14 @@ const ShopDetails = () => {
                 <>
                     <UpperContainer>
                         <ImageContainer>
-                            <ShopImageCarousel> {
-                                shop.images && shop.images.map((item, i) => (
-                                    <ImageShop key={i}
+                            <ShopImageCarousel autoPlay={false}> {
+                                shop.images && shop?.images.map((item) => (
+                                    <ImageShop key={item?.url}
                                         src={
-                                            item.url
+                                            item?.url
                                         }
                                         alt={
-                                            `${i} Slide`
+                                            `${item?.name}`
                                         }/>
                                 ))
                             } </ShopImageCarousel>
@@ -113,10 +148,15 @@ const ShopDetails = () => {
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description">
                                 <Box sx={style}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    <Typography id="modal-modal-title" component="h2" style={{fontWeight:500,  fontSize: '30px'}}>
                                         Add Review
                                     </Typography>
-                                    <InputBox place/>
+                                    <Rating name="simple-controlled" value={rating} onChange={(e) => setRating(e.target.value)} style={{marginBottom: '10px'}}/>
+                                    <InputBox placeholder='Add Review' value={comment} onChange={(e) => setComment(e.target.value)}/>
+                                    <ReviewSingleContainer>
+                                        <ReviewBtn onClick={reviewSubmitHandler}>Submit</ReviewBtn>
+                                        <ReviewBtn  bcolor='#ff0000' onClick={handleClose}>Cancel</ReviewBtn>
+                                    </ReviewSingleContainer>
                                 </Box>
                             </Modal>
                             <DetailsPageBtn>Explore Products</DetailsPageBtn>
@@ -126,7 +166,7 @@ const ShopDetails = () => {
                         <h4>Reviews</h4>
                         {
                         shop?.reviews && shop?.reviews[0] ? (
-                            <ReviewOuterContaner> {
+                            <ReviewOuterContaner> { 
                                 shop?.reviews.map((review) => <ReviewCard review={review}
                                     key={
                                         review?._id

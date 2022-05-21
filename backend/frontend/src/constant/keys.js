@@ -3,6 +3,20 @@ export const ALL_SHOP_REQUEST = "ALL_SHOP_REQUEST";
 export const ALL_SHOP_SUCCESS = "ALL_SHOP_SUCCESS";
 export const ALL_SHOP_FAIL = "ALL_SHOP_FAIL";
 
+
+// create shop review for customer, admin, seller
+export const NEW_SHOP_REVIEW_REQUEST = "NEW_SHOP_REVIEW_REQUEST";
+export const NEW_SHOP_REVIEW_SUCCESS = "NEW_SHOP_REVIEW_SUCCESS";
+export const NEW_SHOP_REVIEW_FAIL = "NEW_SHOP_REVIEW_FAIL";
+export const NEW_SHOP_REVIEW_RESET = "NEW_SHOP_REVIEW_RESET";
+
+// delete shop review for customer, admin, seller
+export const DELETE_SHOP_REVIEW_REQUEST = "DELETE_SHOP_REVIEW_REQUEST";
+export const DELETE_SHOP_REVIEW_SUCCESS = "DELETE_SHOP_REVIEW_SUCCESS";
+export const DELETE_SHOP_REVIEW_FAIL = "DELETE_SHOP_REVIEW_FAIL";
+export const DELETE_SHOP_REVIEW_RESET = "DELETE_SHOP_REVIEW_RESET";
+
+
 // shop details for customer, admin, seller
 export const SHOP_DETAILS_REQUEST = "SHOP_DETAILS_REQUEST";
 export const SHOP_DETAILS_SUCCESS = "SHOP_DETAILS_SUCCESS";
@@ -18,6 +32,12 @@ export const PRODUCT_DETAILS_REQUEST = "PRODUCT_DETAILS_REQUEST";
 export const PRODUCT_DETAILS_SUCCESS =  "PRODUCT_DETAILS_SUCCESS";
 export const PRODUCT_DETAILS_FAIL =  "PRODUCT_DETAILS_FAIL";
 
+// product review for customer, admin, seller
+export const PRODUCT_REVIEW_REQUEST = "PRODUCT_REVIEW_REQUEST";
+export const PRODUCT_REVIEW_SUCCESS = "PRODUCT_REVIEW_SUCCESS";
+export const PRODUCT_REVIEW_FAIL = "PRODUCT_REVIEW_FAIL";
+export const PRODUCT_REVIEW_RESET = "PRODUCT_REVIEW_RESET";
+
 // add to cart 
 export const ADD_TO_CART = "ADD_TO_CART";
 
@@ -31,6 +51,22 @@ export const SAVE_SHIPPING_INFO = "SAVE_SHIPPING_INFO";
 export const USER_ORDER_REQUSET = "USER_ORDER_REQUSET";
 export const USER_ORDER_SUCCESS = "USER_ORDER_SUCCESS";
 export const USER_ORDER_FAIL = "USER_ORDER_FAIL";
+
+// orders --- all
+export const ORDER_DETAILS_REQUEST = "ORDER_DETAILS_REQUEST";
+export const ORDER_DETAILS_SUCCESS = "ORDER_DETAILS_SUCCESS";
+export const ORDER_DETAILS_FAIL = "ORDER_DETAILS_FAIL";
+
+// delete orders --- admin, seller, customer
+export const DELETE_ORDER_REQUEST = "DELETE_ORDER_REQUEST";
+export const DELETE_ORDER_SUCCESS = "DELETE_ORDER_SUCCESS";
+export const DELETE_ORDER_FAIL = "DELETE_ORDER_FAIL";
+export const DELETE_ORDER_RESET = "DELETE_ORDER_RESET";
+
+// admin orders --- admin
+export const ADMIN_ORDER_REQUEST = "ADMIN_ORDER_REQUEST";
+export const ADMIN_ORDER_SUCCESS = "ADMIN_ORDER_SUCCESS";
+export const ADMIN_ORDER_FAIL = "ADMIN_ORDER_FAIL";
 
 /// login request common
 export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
