@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 import { StyledLink } from "../../GlobalStyle";
+import Rating from '@mui/material/Rating';
 
 export const ProductLink = styled(StyledLink)`
     > img {
@@ -82,6 +83,12 @@ export const ShopTwoItems = styled.div`
         >span {
             color:#000;
         }
+    }
+`;
+
+export const RatingComp = styled(Rating)`
+    && {    
+        font-size: 30px;
     }
 `;
 

@@ -1,23 +1,14 @@
 import React  from 'react';
-import { ProductCard, ShopTwoItems, ExploreShopBtn, ProductLink } from './ProductCardStyles';
-import ReactStars from 'react-rating-stars-component';
+import { ProductCard, ShopTwoItems, ExploreShopBtn, ProductLink,RatingComp } from './ProductCardStyles';
 import { useAlert } from 'react-alert';
 import  { useDispatch } from 'react-redux';
 import { addItemsToCart } from '../../actions/cartAction';
+
 
 const ProductCards = ({product}) => {
   
   const dispatch = useDispatch();
   const alert = useAlert();
-
-  const options = {
-    edit:true,
-    color: "rgba(20,20,20,0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 600 ? 50 : 30,
-    value: product.ratings,
-    innerHeight:50
-  }
 
   const addToCart = (id, quantity) => {
     dispatch(addItemsToCart(id, quantity));
@@ -37,7 +28,7 @@ const ProductCards = ({product}) => {
       </ProductLink>
       <ProductLink to={`/product/${product?._id}`}>
         <ShopTwoItems>
-          <ReactStars {...options}/> 
+         <RatingComp value={product?.ratings} readOnly />
         </ShopTwoItems>
       </ProductLink>
       <ProductLink to={`/product/${product?._id}`}>

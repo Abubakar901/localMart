@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import { useAlert } from "react-alert";
 import {useSelector, useDispatch} from 'react-redux';
 import {getShopDetails, newShopReview} from '../../actions/shopActions';
 import {MainContainer} from '../../GlobalStyle';
@@ -20,7 +21,7 @@ import {
     BreakLine
 } from './ShopDetailsStyle';
 import Loader from '../../Layout/Loader/Loader';
-import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
+import ReviewCard from '../../compoenents/ShopReviewCard/ShopReviewCard';
 import Metadata from '../../Layout/Metadata';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -47,9 +48,12 @@ const ShopDetails = () => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
+    const alert = useAlert();
     const { shop, loading, error} = useSelector((state) => state.shopDetails);
     
     const { error:newreviewError, success } = useSelector((state) => state.newShopReview);
+
+    const { isDeleted } = useSelector((state) => state.deleteShopReview);
 
 
     const [open, setOpen] = useState(false);
@@ -72,7 +76,7 @@ const ShopDetails = () => {
             dispatch({type: NEW_SHOP_REVIEW_RESET });
         }
         dispatch(getShopDetails(id))
-    }, [dispatch, id, error])
+    }, [dispatch, id, error, newreviewError, success, isDeleted, alert])
 
     const reviewSubmitHandler = () => {
         const ReviewForm = new FormData();
@@ -159,7 +163,7 @@ const ShopDetails = () => {
                         {
                         shop?.reviews && shop?.reviews[0] ? (
                             <ReviewOuterContaner> { 
-                                shop?.reviews.map((review) => <ReviewCard review={review}
+                                shop?.reviews.map((review) => <ReviewCard review={review} shopId={id}
                                     key={
                                         review?._id
                                     }/>)

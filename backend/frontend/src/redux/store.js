@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { shopReducer, shopDetailsReducer, newShopReducer, deleteShopReducer,newShopReviewReducer,deleteShopReviewReducer } from '../reducers/shopReducer';
 import { userReducer, allUsersReducer} from '../reducers/userReducer';
-import { productReducer, productDetailsReducer, newProductReducer, deleteProductReducer} from '../reducers/productReducer';
+import { productReducer, productDetailsReducer, newProductReducer, deleteProductReducer, newProductReviewReducer, deleteProductReviewReducer} from '../reducers/productReducer';
 import { cartReducer } from '../reducers/cartReducer';
 import { userOrderReducer, orderDetailsReducer, editDeleteOrderReducer } from '../reducers/orderReducer';
 
@@ -23,7 +23,9 @@ const reducer=combineReducers({
     orderDetails: orderDetailsReducer,
     editAndDeleteOrder: editDeleteOrderReducer,
     newShopReview: newShopReviewReducer,
-    deleteShopReview: deleteShopReviewReducer
+    deleteShopReview: deleteShopReviewReducer,
+    newProductReview: newProductReviewReducer,
+    deleteProductReview: deleteProductReviewReducer
 });
 
 let initialState = {

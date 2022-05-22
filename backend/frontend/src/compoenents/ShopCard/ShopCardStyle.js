@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 import { StyledLink } from "../../GlobalStyle";
+import Rating from '@mui/material/Rating';
+
+export const RatingComp = styled(Rating)`
+    && {    
+        font-size: 30px;
+    }
+`;
 
 export const ShopLink = styled(StyledLink)`
     > img {

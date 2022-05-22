@@ -217,12 +217,13 @@ export const newShopReview = (reviewData) => async (dispatch) => {
 }
 
 // delete shop review 
-export const deleteReviews = (reviewId, shopId) => async (dispatch) => {
+export const deleteShopReviewByUser = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_SHOP_REVIEW_REQUEST });
 
+
     const { data } = await axios.delete(
-      `/api/v1/reviews?id=${reviewId}&productId=${shopId}`
+      `/api/v1/shop/delete/reviews?shopId=${id}`
     );
 
     dispatch({

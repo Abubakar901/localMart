@@ -1,20 +1,10 @@
 import React from 'react';
-import { ExploreShopBtn, ShoppingCard, ShopTwoItems, ShopLink } from './ShopCardStyle';
-import ReactStars from 'react-rating-stars-component';
+import { ExploreShopBtn, ShoppingCard, ShopTwoItems, ShopLink,  RatingComp} from './ShopCardStyle';
 import { useNavigate } from 'react-router-dom';
 
-const ShopCard = ({ shop }) => {
-  const navigate = useNavigate();
 
-const options = {
-  edit:true,
-  color: "rgba(20,20,20,0.1)",
-  activeColor: "tomato",
-  size: window.innerWidth < 600 ? 50 : 30,
-  value: shop.ratings,
-  innerHeight:50,
-  isHalf: true
-}
+const ShopCard = ({ shop }) => {
+  const navigate = useNavigate(); 
 
 const redirectShop = (id) => {
   navigate(`/shop/${id}`)
@@ -34,7 +24,7 @@ const redirectShop = (id) => {
       </ShopLink>
       <ShopLink to={`/shop/${shop?._id}`}>
         <ShopTwoItems>
-          <ReactStars {...options}/> {" "}<span style={{color: '#ff0000'}}>({shop?.numOfReviews} Reviews)</span>
+         <RatingComp value={shop?.ratings} readOnly />
         </ShopTwoItems>
         </ShopLink>
       <ShopLink to={`/shop/${shop?._id}`}>

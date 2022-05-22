@@ -3,6 +3,16 @@ import {
     ALL_PRODUCT_REQUEST, 
     ALL_PRODUCT_SUCCESS, 
 
+    NEW_PRODUCT_REVIEW_REQUEST,
+    NEW_PRODUCT_REVIEW_SUCCESS,
+    NEW_PRODUCT_REVIEW_FAIL,
+    NEW_PRODUCT_REVIEW_RESET,
+
+    DELETE_PRODUCT_REVIEW_REQUEST,
+    DELETE_PRODUCT_REVIEW_SUCCESS,
+    DELETE_PRODUCT_REVIEW_FAIL,
+    DELETE_PRODUCT_REVIEW_RESET,
+
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
@@ -154,6 +164,77 @@ export const deleteProductReducer = (state = { product: {} }, action) => {
         error: action.payload,
       };
     case DELETE_PRODUCT_RESET:
+      return {
+        ...state,
+        isDeleted: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+
+
+  
+export const newProductReviewReducer = (state = { }, action) => {
+  switch(action.type) {
+    case NEW_PRODUCT_REVIEW_REQUEST: 
+      return {
+        ...state,
+        loading: true 
+      }
+    case NEW_PRODUCT_REVIEW_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload
+      } 
+    case NEW_PRODUCT_REVIEW_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+    case NEW_PRODUCT_REVIEW_RESET:
+      return {
+        ...state,
+        success: false
+      }
+    case CLEAR_ERRORS: 
+      return {
+        ...state,
+        error: null
+      }
+    default: 
+     return state;  
+  }
+
+}
+
+export const deleteProductReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_PRODUCT_REVIEW_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_PRODUCT_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isDeleted: action.payload,
+      };
+    case DELETE_PRODUCT_REVIEW_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case DELETE_PRODUCT_REVIEW_RESET:
       return {
         ...state,
         isDeleted: false,

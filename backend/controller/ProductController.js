@@ -249,6 +249,43 @@ exports.deleteReview = catchAsyncErros( async( req, res, next) => {
 })
 
 
+// delete Product Review --- by user
+exports.deleteProductReviewByUser = catchAsyncErros( async(req, res, next) =>{
+
+    const product = await Product.findById(req.query.productId);
+
+    if(!product) {
+        return next( new ErrorHandler("Product Not Found", 404))
+    }
+ 
+    const reviews = product.reviews.filter(rev => rev.user.toString() !== req.user.id.toString());
+
+    let avg = 0;
+
+    reviews.forEach((rev) => {
+        avg += rev.rating;
+    })
+
+    const ratings = avg/ reviews.length;
+
+    const numOfReviews = reviews.length;
+
+    await Product.findByIdAndUpdate(req.query.productId, {
+        reviews,
+        ratings,
+        numOfReviews
+    }, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+
 exports.getProductsByShop = catchAsyncErros( async(req, res, next) => {
     
     const shop = req.body.id;
