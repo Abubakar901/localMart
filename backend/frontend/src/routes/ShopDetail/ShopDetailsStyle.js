@@ -19,6 +19,10 @@ export const UpperContainer = styled.div`
     }
 `;
 
+export const BreakLine = styled.hr`
+    width: 400px;
+`;
+
 export const LowerContainer = styled.div`
     display: flex;
     flex-direction: column;

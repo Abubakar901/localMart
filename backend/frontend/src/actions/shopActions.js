@@ -216,24 +216,27 @@ export const newShopReview = (reviewData) => async (dispatch) => {
   }
 }
 
-// export const deleteShopReview = (id) => async (dispatch) => {
-//   try {
-//     dispatch({ type: DELETE_SHOP_REVIEW_REQUEST });
+// delete shop review 
+export const deleteReviews = (reviewId, shopId) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_SHOP_REVIEW_REQUEST });
 
-//     const { data } = await axios.delete(`/api/v1/unique/shop/${id}`);
+    const { data } = await axios.delete(
+      `/api/v1/reviews?id=${reviewId}&productId=${shopId}`
+    );
 
-//     dispatch({
-//       type: DELETE_SHOP_REVIEW_SUCCESS,
-//       payload : data.success
-//     })
+    dispatch({
+      type: DELETE_SHOP_REVIEW_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_SHOP_REVIEW_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
-//   }catch(error) {
-//     dispatch({
-//       type: DELETE_SHOP_REVIEW_FAIL,
-//       payload : error.response.data.message
-//     })
-//   }
-// }
 
 export const clearErrors = () => async (dispatch) => {
     dispatch({

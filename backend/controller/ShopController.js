@@ -220,7 +220,7 @@ exports.getShopReviews = catchAsyncError( async (req, res, next) => {
     })
 });
 
-// delete Shop Review 
+// delete Shop Review --- admin, seller
 exports.deleteShopReview = catchAsyncError( async(req, res, next) =>{
     const shop = await Shop.findById(req.query.shopId);
 
@@ -229,6 +229,44 @@ exports.deleteShopReview = catchAsyncError( async(req, res, next) =>{
     }
  
     const reviews = shop.reviews.filter(rev => rev._id.toString() !== req.query.id.toString());
+
+    let avg = 0;
+
+    reviews.forEach((rev) => {
+        avg += rev.rating;
+    })
+
+    const ratings = avg/ reviews.length;
+
+    const numOfReviews = reviews.length;
+
+    await Shop.findByIdAndUpdate(req.query.shopId, {
+        reviews,
+        ratings,
+        numOfReviews
+    }, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+
+// delete Shop Review --- by user
+exports.deleteShopReviewByUser = catchAsyncError( async(req, res, next) =>{
+
+
+    const shop = await Shop.findById(req.query.shopId);
+
+    if(!shop) {
+        return next( new ErrorHandler("Shop Not Found", 404))
+    }
+ 
+    const reviews = shop.reviews.filter(rev => rev.user.toString() !== req.user.id.toString());
 
     let avg = 0;
 

@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProductDetails, clearErrors } from '../../actions/productAction';
 import { MainContainer } from '../../GlobalStyle';
 import { UpperContainer, LowerContainer, ImageContainer, DetailsContainer, SingleContainer, VerticalContainer, BreakLine, ProductImageCarousel, ImageProduct, ProductShopDetails, DetailsPageBtn, ReviewOuterContaner, NoReviewContainer } from './ProductDetailsStyle';
-import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
 import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
 import { useAlert } from "react-alert";
 import Metadata from '../../Layout/Metadata';
 import { addItemsToCart } from '../../actions/cartAction';
+import Rating from '@mui/material/Rating';
 
 const ProductDetails = () => {
   
@@ -65,8 +65,7 @@ const ProductDetails = () => {
                 <h4>{product?.name}</h4>
                 <BreakLine />
                 <SingleContainer>
-                  <ReactStars {...options}/> <span>{" "}
-                      ({product?.numOfReviews} Reviews)</span> 
+                  <Rating name="read-only" value={product?.ratings} readOnly />
                 </SingleContainer>
                 <BreakLine />
                 <h5><span>₹ </span>{product?.price}</h5>

@@ -1,5 +1,5 @@
 const express = require("express");
-const { createShops , getAllShops, getShopDetails, updateShop, deleteShop, createShopReview, deleteShopReview, getShopReviews, getAdminShops, getShopSeller} = require('../controller/ShopController');
+const { createShops , getAllShops, getShopDetails, updateShop, deleteShop, createShopReview, deleteShopReview, getShopReviews, getAdminShops, getShopSeller,  deleteShopReviewByUser} = require('../controller/ShopController');
 const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth');
 const router = express.Router();
 
@@ -27,6 +27,8 @@ router.route("/unique/shop/:id")
 // create shop review
 router.route("/shop/review/new").put(isAuthenticatedUser, createShopReview);
 
-router.route("/shop/reviews").get(getShopReviews).delete(isAuthenticatedUser, deleteShopReview)
+router.route("/shop/reviews").get(getShopReviews).delete(isAuthenticatedUser, deleteShopReview);
+
+router.route("/shop/delete/reviews").delete(isAuthenticatedUser, deleteShopReviewByUser)
 
 module.exports = router;

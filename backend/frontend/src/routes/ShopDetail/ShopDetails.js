@@ -16,9 +16,9 @@ import {
     ImageShop,
     InputBox,
     ReviewBtn,
-    ReviewSingleContainer
+    ReviewSingleContainer,
+    BreakLine
 } from './ShopDetailsStyle';
-import ReactStars from 'react-rating-stars-component';
 import Loader from '../../Layout/Loader/Loader';
 import ReviewCard from '../../compoenents/ReviewCard/ReviewCard';
 import Metadata from '../../Layout/Metadata';
@@ -74,16 +74,6 @@ const ShopDetails = () => {
         dispatch(getShopDetails(id))
     }, [dispatch, id, error])
 
-
-    const options = {
-        edit: true,
-        color: "rgba(20,20,20,0.1)",
-        activeColor: "tomato",
-        size: window.innerWidth < 600 ? 50 : 30,
-        value: shop?.ratings,
-        innerHeight: 50
-    }
-
     const reviewSubmitHandler = () => {
         const ReviewForm = new FormData();
     
@@ -119,29 +109,31 @@ const ShopDetails = () => {
                             <h3>{
                                 shop?.name
                             }</h3>
+                            <BreakLine />
                             <SingleContainer>
-                                <ReactStars {...options}/>
-                                <span>{" "}
-                                    ({
-                                    shop?.numOfReviews
-                                }
-                                    Reviews)</span>
+                                <Rating name="read-only" value={shop?.ratings} readOnly />
                             </SingleContainer>
+                            <BreakLine />
                             <h4>Category : {
                                 shop?.category
                             } </h4>
+                            <BreakLine  />
                             <h5>Contact : {
-                                shop?.contact
+                                shop?.contact   
                             }</h5>
+                            <BreakLine />
                             <h6>Address : {
                                 shop?.address
                             }</h6>
+                            <BreakLine />
                             <p>City : {
                                 shop?.city
                             }</p>
+                            <BreakLine />
                             <p>State: {
                                 shop?.state
                             }</p>
+                            <BreakLine />
                             <DetailsPageBtn onClick={handleOpen}>Add Review</DetailsPageBtn>
                             <Modal open={open}
                                 onClose={handleClose}
