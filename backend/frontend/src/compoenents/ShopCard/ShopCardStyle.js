@@ -7,6 +7,18 @@ export const RatingComp = styled(Rating)`
     && {    
         font-size: 30px;
     }
+
+    @media (max-width: 386px) {
+        && {
+            font-size:1.3rem;
+        }
+    }
+
+    @media (max-width:320px){
+        &&{
+            font-size: 20px;
+        }
+    }
 `;
 
 export const ShopLink = styled(StyledLink)`
@@ -20,15 +32,31 @@ export const ShopLink = styled(StyledLink)`
         @media (max-width: 1100px) {
             width: 200px;
         }
+        
+        @media (max-width: 635px){
+            width:90%;
+            margin:10px;
+            height:auto;
+        }
 
-
-      
+        @media (max-width: 320px) {
+            width: 110px;
+            height:110px;
+        }
     }
 
     > h4 {
-        font-size: 30px;
+        font-size: 2rem;
         margin: 2px 3px;
         color: #5b5f97;
+
+        @media (max-width:600px) {
+            font-size:25px;
+        }
+
+        @media (max-width: 320px){
+            font-size:20px;
+        }
     }
     
     > h5 {
@@ -36,6 +64,18 @@ export const ShopLink = styled(StyledLink)`
         font-size: 20px;
         color: #000;
         margin:3px;
+
+        @media (max-width:600px) {
+            font-size:18px;
+            margin-left:0;
+            margin-right:0;
+        }
+
+        @media (max-width: 320px){
+            font-size:13px;
+            margin-left:0;
+            margin-right:0;
+        }
 
         >span {
             color : green;
@@ -45,6 +85,14 @@ export const ShopLink = styled(StyledLink)`
     > p {  
         color: #000;
         margin:5px;
+
+        @media (max-width:600px) {
+            font-size:15px;
+        }
+
+        @media (max-width: 320px){
+            font-size:12px;
+        }
     }
 `;
 
@@ -57,7 +105,7 @@ export const ShopTwoItems = styled.div`
 export const ShoppingCard = styled.div`
     background-color: #fff;
     margin-top: 20px;
-    min-height: 466px;
+    min-height: 456px;
     width:300px ;
     text-align: center;
     padding:5px;
@@ -85,7 +133,21 @@ export const ShoppingCard = styled.div`
         width: 250px;
     }
 
+    @media (max-width: 645px) {
+        min-height: auto;
+    }
+    @media (max-width: 635px){
+        width:40%;
+        margin-left:10px;
+        margin-right: 10px;
+    }
 
+    @media (max-width: 320px) {
+        min-height: 120px;
+        width: 140px;
+        margin-left: 7px;
+        margin-right:7px;
+    }
 `;
 
 export const ExploreShopBtn = styled(Button)`
@@ -93,12 +155,28 @@ export const ExploreShopBtn = styled(Button)`
         margin-top:5px;    
         color: #fff;
         width:200px;
+        text-transform: capitalize;
         margin-bottom: 10px;
         font-size: 15px;
         background-color: ${props => props.bgcolor || '#bd2377'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
+    @media (max-width: 635px){
+       && {
+        width:90%;
+        padding:2px 2px;
+        margin:5px auto 10px;
+        font-size: 0.8rem;
+       }
+    }
+
+    @media (max-width: 320px){
+        && { 
+            font-size:12px;
+            width:120px;
+        }
+    }
 
     &&:hover {
         background-color: ${props => props.bgColor  || '#c74981'};

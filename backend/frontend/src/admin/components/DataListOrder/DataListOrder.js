@@ -46,7 +46,7 @@ const DataListOrder = () => {
             orders && orders.map((order) => (
               <tr key={order?._id}>
                 <td>
-                  <AdvancedLink to={`/admin/order/${order?._id}`} >
+                  <AdvancedLink to={`/admin/user/${order?.user?._id}`} >
                     {order?.user?.firstName +  " " + order?.user?.lastName}
                   </AdvancedLink>
                 </td>

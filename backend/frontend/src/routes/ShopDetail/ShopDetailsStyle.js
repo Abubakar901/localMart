@@ -26,6 +26,9 @@ export const BreakLine = styled.hr`
 export const LowerContainer = styled.div`
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
+    overflow:auto;
+    padding:7px 30px;
     width: 100%;
     height: 400px;
     text-align: center;

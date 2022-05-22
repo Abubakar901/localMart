@@ -8,7 +8,7 @@ import Metadata from '../../Layout/Metadata';
 const Sellerboard = () => {
   return (
     <MainContainer innerspace='0'>
-    <Metadata title='localMart - Dashboard' />
+    <Metadata title='localMart - Dashboard(Seller)' />
       <TopContainer equally='center'>
           <h2>Seller Dashboard</h2>
       </TopContainer>

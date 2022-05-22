@@ -7,11 +7,16 @@ export const ProductLink = styled(StyledLink)`
     > img {
         text-align: center;
         border-radius: 10px;
-        min-height: 175px;
         height: 175px;
         width: 200px;
         margin:7px;
         background-color: #fff;
+
+        @media (max-width:660px) {
+            height:120px;
+            width:98%;
+            margin:5px auto;
+        }
 
     }
 
@@ -52,6 +57,18 @@ export const ProductCard = styled.div`
     @media (max-width:1530px) {
         width:260px ;
     }
+
+    @media (max-width:660px) {
+        width:45%;
+        margin-left:10px;
+        margin-right:10px;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 420px) {
+        margin-left:5px;
+        margin-right:5px;
+    }
 `;
 
 export const ShopTwoItems = styled.div`
@@ -90,6 +107,18 @@ export const RatingComp = styled(Rating)`
     && {    
         font-size: 30px;
     }
+
+    @media (max-width: 386px) {
+        && {
+            font-size:1.3rem;
+        }
+    }
+
+    @media (max-width:320px){
+        &&{
+            font-size: 20px;
+        }
+    }
 `;
 
 export const ExploreShopBtn = styled(Button)`
@@ -104,6 +133,14 @@ export const ExploreShopBtn = styled(Button)`
         font-size: 15px;
         background-color: ${props => props.bgcolor || '#cc0000'};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    @media (max-width:660px){
+        && {
+            width:90%;
+            padding:2px 2px;
+            margin:10px auto;
+        }
     }
 
     @media (max-width:1530px) {

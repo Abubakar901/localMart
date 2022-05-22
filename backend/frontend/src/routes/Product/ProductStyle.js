@@ -17,6 +17,7 @@ export const ProductMainContainer = styled.div `
 
     @media (max-width: 320px) {
         width:98%;
+        margin:20px auto;
     }
 
 `;
@@ -165,6 +166,11 @@ export const SideBarContainer = styled.div `
     @media (max-width: 700px) {
         top:200px;
         left:30px;
+    }
+
+    @media (max-width: 320px) {
+        top: 175px;
+        left: 37px;
     }
 
 `;

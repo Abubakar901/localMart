@@ -65,6 +65,11 @@ export const ShopTopContainer = styled.div `
         flex-direction: column;
     }
 
+    @media (max-width: 386px) {
+        width:100%;
+        padding:0;
+    }
+    
 
     h4 {
         font-size: 50px;
@@ -75,7 +80,11 @@ export const ShopTopContainer = styled.div `
 export const FormContainer = styled.form `
     display: flex;
     padding:10px;
-    padding: 10px;
+    
+    @media (max-width: 386px) {
+        width:100%;
+        padding:0;
+    }
     
     > input {
          width:350px;
@@ -85,10 +94,12 @@ export const FormContainer = styled.form `
         padding: 5px 20px;
         color: #5b5f97;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-        @media (max-width: 320px) {
-            width:300px;
+        
+        @media (max-width: 386px) {
+            width: 90%;
+            margin: 0 auto;
         }
+
          ::placeholder {
              color: #5b5f97;
         }

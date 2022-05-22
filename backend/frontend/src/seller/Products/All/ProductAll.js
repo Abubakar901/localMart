@@ -8,7 +8,7 @@ import Metadata from '../../../Layout/Metadata';
 const SellerProducts = () => {
   return (
     <MainContainer innerspace='0'>\
-    <Metadata title='Seller Al Products' />
+    <Metadata title='All Products(Seller)' />
       <TopContainer equally='center'>-
           <h2>All Products</h2>
       </TopContainer>

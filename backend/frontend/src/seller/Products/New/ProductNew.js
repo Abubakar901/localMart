@@ -80,7 +80,7 @@ const ProductNew = () => {
     
   return (
     <MainContainer innerspace='0'>
-    <Metadata title='localMart - Add Product' />
+    <Metadata title='localMart - Add Product(Seller)' />
       <TopContainer equally='center'>-
           <h2>Add New Product</h2>
       </TopContainer>
