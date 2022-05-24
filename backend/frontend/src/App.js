@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
 import Profile from './routes/Profile/Profile';
+import UpdateProfile from './routes/UpdateProfile/UpdateProfile';
 import Shipping from './routes/Shipping/Shipping';
 import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
 import Order from './routes/Orders/Order';
@@ -35,20 +36,23 @@ import AdminShops from './admin/Shops/AdminShop';
 import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 import AdminOrder from './admin/Orders/AdminOrder';
+import { Helmet } from 'react-helmet';
 
 function App() {
-
   
   const { user } = useSelector(state => state.user)
   
-
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter> 
+        <Helmet>
+          
+        <style>{"body { background-color: #cdc9c9; }"}</style>
+        </Helmet>
   
         <Header />
           <Routes>
@@ -81,6 +85,8 @@ function App() {
                 <Route path="/order/:id" element={<OrderDetail user={user} /> }/>
 
                 <Route path="/profile" element={<Profile /> }/>
+
+                <Route path="/profile/update" element={<UpdateProfile user={user} /> }/>
             
                 <Route path="/seller/dashboard" element={<Sellerboard /> }/>
             

@@ -5,7 +5,6 @@ const Metadata = ({title}) => {
   return (
     <Helmet>
         <title>{title}</title>
-        <style>{"body { background-color: #eeeeee; }"}</style>
     </Helmet>
   )
 }

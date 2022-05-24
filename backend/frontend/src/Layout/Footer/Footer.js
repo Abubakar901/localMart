@@ -7,8 +7,7 @@ const Footer = () => {
         
         <FooterLeft>
             <h6>Download our app</h6>
-            <p>Download App for Android and</p> 
-            <p>IOS Mobile Phone</p>   
+            <p>Download App for Android and IOS Mobile Phone</p>   
             <img src="./assests/app-store.png" alt="App-Stores Button" />
         </FooterLeft>
 

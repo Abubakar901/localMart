@@ -1,27 +1,38 @@
 import React from 'react';
-import { BottomContainer, MainContainer, TopContainer } from '../../GlobalStyle';
-import { LeftContainer, RightContainer } from './ProfileStyle'; 
+import {MainContainer, TopContainer, LeftContainer, RightContainer, EditProfileBtn, BottomContainer} from './ProfileStyle'; 
 import  { useSelector } from 'react-redux';
 import Metadata from '../../Layout/Metadata';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const navigate = useNavigate();
     const { user } = useSelector(state => state.user);
     
+    const redirectoOrders = () => {
+      navigate('/orders');
+    }
+
+    const redirectUpdateProfile = () => {
+      navigate('/profile/update');
+    }
+
   return (
-    <MainContainer bg='#87aeae' width='90%'>
+    <MainContainer>
       <Metadata title='localMart - Profile' />
-      <TopContainer width='100%' spacing='center'>
-        <h1>Profile</h1>
+      <TopContainer>
+        <h1>My Profile</h1>
       </TopContainer>
         <BottomContainer >
         <LeftContainer>
-            <img src={user.avatar.url} alt='./assests/Profile.png' />
+            <img src={user?.avatar?.url} alt='./assests/Profile.png' />
+            <EditProfileBtn onClick={redirectUpdateProfile}>Edit Profile</EditProfileBtn>
         </LeftContainer>
         <RightContainer>
-          <h3>Username : <span>{user.firstName + " "  + user.lastName}</span></h3>
-          <h4 color='#000'>Contact : {user.phone}</h4>
-          <h5>Email : {user.email}</h5>
-          <h6>Joined On: {String(user.createdAt).substr(0, 10)}</h6>
+          <h3>Username : <span>{user?.firstName + " "  + user?.lastName}</span></h3>
+          <h5>Email : {user?.email}</h5>
+          <h6>Joined On: {String(user?.createdAt).substr(0, 10)}</h6>
+          <EditProfileBtn onClick={redirectoOrders}>My Orders</EditProfileBtn>
+          <EditProfileBtn>Reset Password</EditProfileBtn>
         </RightContainer>
         </BottomContainer>
     </MainContainer>
