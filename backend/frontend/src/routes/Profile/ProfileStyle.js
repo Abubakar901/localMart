@@ -16,7 +16,6 @@ export const MainContainer = styled.div`
     }
 `;
 
-
 export const TopContainer = styled.div`
     display: flex;
     align-items: center;
@@ -96,14 +95,39 @@ export const RightContainer = styled.div`
         @media (max-width:670px){
             font-size: 25px;
         }
+
+        @media (max-width:320px) {
+            font-size:22px;
+            margin-top:10px;
+        }
     }
 
+    h4 {
+        font-size:25px;
+        text-align:center;
+        margin-top:20px;
+
+        @media (max-width:670px){
+            font-size: 22px;
+        }
+
+        @media (max-width:320px) {
+            font-size:18px;
+            margin-top:10px;
+        }
+    }
+    
     h5 {    
         font-size: 25px;
         margin-top:20px;
 
         @media (max-width:670px){
             font-size: 22px;
+        }
+
+        @media (max-width:320px){
+            font-size: 20px;
+            margin-top:10px;
         }
     }
 
@@ -113,6 +137,10 @@ export const RightContainer = styled.div`
 
         @media (max-width:670px){
             font-size: 18px;
+        }
+
+        @media (max-width:320px){
+            margin-top:10px;
         }
     }
 `;

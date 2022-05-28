@@ -15,6 +15,7 @@ const Register = ({ handleClose }) => {
   const [userdetails, setUserDetails] = useState({
     fname: "",
     lname: "",
+    phone: "",
     email: "",
     password: "",
     confirmPassword : ""
@@ -23,7 +24,7 @@ const Register = ({ handleClose }) => {
   const [avatarPreview, setAvatarPreview] = useState("./assests/Profile.png")
 
 
-  const { fname, lname, email, password, confirmPassword } = userdetails;
+  const { fname, lname, phone, email, password, confirmPassword } = userdetails;
 
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
@@ -49,7 +50,8 @@ const Register = ({ handleClose }) => {
       const myForm = new FormData();
 
       myForm.set("firstName", fname);    
-      myForm.set("lastName", lname);  
+      myForm.set("lastName", lname);    
+      myForm.set("phone", phone);  
       myForm.set("email", email);
       myForm.set("password", password);
       myForm.set("avatar", avatar);
@@ -85,6 +87,9 @@ const Register = ({ handleClose }) => {
           
           <LabelBox>Last Name:</LabelBox>
           <InputBox placeholder='Enter Your Last Name' type='text' name='lname' value={lname} onChange={registerDataChange} required /> 
+
+          <LabelBox>Phone Number:</LabelBox>
+        <InputBox placeholder='Enter Your Phone Number' type='text' name='phone' value={phone} onChange={registerDataChange} required/>
 
           <LabelBox>Email:</LabelBox>
         <InputBox placeholder='Enter Your Email Address' type='email' name='email' value={email} onChange={registerDataChange} required/>

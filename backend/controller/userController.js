@@ -164,18 +164,20 @@ exports.getUserDetails = catchAsyncError( async(req, res, next) => {
 // update user password
 exports.updatePassword = catchAsyncError( async(req, res, next) => {
     const user = await User.findById(req.user.id).select("+password");
+    
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+    
+    const isPasswordMatched = await bcrypt.compare(oldPassword, user.password);
 
-    const isPasswordMatched = await bcrypt.compare(req.body.oldPassword, user.password);
-
-    if(isPasswordMatched){
+    if(!isPasswordMatched){
         return next (new ErrorHandler("Old Password is Incorrect", 401));
-    }
-
-    if(req.body.newPassword !== req.body.confirmPassword){
+    } 
+    
+    if(newPassword !== confirmPassword){
         return next (new ErrorHandler("New Password Doesn't Match", 401));
     } 
     
-    user.password = req.body.newPassword;
+    user.password = newPassword;
 
     await  user.save();
 
@@ -198,24 +200,24 @@ exports.updateProfile = catachAsyncError (async (req, res, next) => {
       email: req.body.email,
     };
   
-    // if (req.body.avatar !== "") {
-    //   const user = await User.findById(req.user.id);
+    if (req.body.avatar !== "") {
+      const user = await User.findById(req.user.id);
   
-    //   const imageId = user.avatar.public_id;
+      const imageId = user.avatar.public_id;
   
-    //   await cloudinary.v2.uploader.destroy(imageId);
+      await cloudinary.v2.uploader.destroy(imageId);
   
-    //   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    //     folder: "avatars",
-    //     width: 150,
-    //     crop: "scale",
-    //   });
+      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+      });
   
-    //   newUserData.avatar = {
-    //     public_id: myCloud.public_id,
-    //     url: myCloud.secure_url,
-    //   };
-    // }
+      newUserData.avatar = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
+    }
   
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
       new: true,

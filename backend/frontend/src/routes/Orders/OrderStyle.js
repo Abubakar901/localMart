@@ -9,7 +9,6 @@ export const NoOrderContaiener = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 40px;
-    border:2px solid red;
     font-weight: 500;
     height: 500px;
     width:100%;

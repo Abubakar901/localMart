@@ -18,7 +18,6 @@ import { useEffect } from 'react';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
 import Profile from './routes/Profile/Profile';
-import UpdateProfile from './routes/UpdateProfile/UpdateProfile';
 import Shipping from './routes/Shipping/Shipping';
 import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
 import Order from './routes/Orders/Order';
@@ -51,7 +50,7 @@ function App() {
       <BrowserRouter> 
         <Helmet>
           
-        <style>{"body { background-color: #cdc9c9; }"}</style>
+        <style>{"body { background-color: #e7e3e3; }"}</style>
         </Helmet>
   
         <Header />
@@ -85,8 +84,6 @@ function App() {
                 <Route path="/order/:id" element={<OrderDetail user={user} /> }/>
 
                 <Route path="/profile" element={<Profile /> }/>
-
-                <Route path="/profile/update" element={<UpdateProfile user={user} /> }/>
             
                 <Route path="/seller/dashboard" element={<Sellerboard /> }/>
             
