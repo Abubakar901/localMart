@@ -23,6 +23,10 @@ import {
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAIL,
 
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAIL,
+
     ADMIN_USER_REQUEST,
     ADMIN_USER_SUCCESS,
     ADMIN_USER_FAIL,
@@ -156,6 +160,19 @@ export const getAdminUsers = () => async(dispatch) => {
       })
   }
 }
+
+// get  User Details
+export const getUserDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_DETAILS_REQUEST });
+    const { data } = await axios.get(`/api/v1/admin/user/${id}`);
+
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data.message });
+  }
+};
+
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({

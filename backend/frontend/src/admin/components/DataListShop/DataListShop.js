@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
-import {  getAdminShops,  deleteShop } from '../../../actions/shopActions';
+import {  getAdminShops,  deleteShop} from '../../../actions/shopActions';
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
+import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_SHOP_RESET } from '../../../constant/keys';
 
@@ -53,11 +53,31 @@ const DataListShop = () => {
             {
               shops && shops.map((shop) => (
                 <tr key={shop?._id}>
-                  <td>{shop?.name}</td>
-                  <td>{shop?.category}</td>
-                  <td>{shop?.city}</td>
-                  <td>{shop?.state}</td>
-                  <td>{shop?.contact}</td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.name}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.category}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.city}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.state}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.contact}
+                    </AdvancedLink>
+                  </td>
                   <td>
                     <EditBtn />
                     <DeleteBtn onClick={() => deleteShopHandler(shop?._id)} />

@@ -15,8 +15,8 @@ import ShopDetails from './routes/ShopDetail/ShopDetails';
 import ProductDetails from './routes/ProductDetail/ProductDetails';
 import store from './redux/store';
 import { useEffect } from 'react';
-import { loadUser } from './actions/userAction';
-import { useSelector } from 'react-redux';
+import { loadUser, clearErrors } from './actions/userAction';
+import { useSelector, useDispatch} from 'react-redux';
 import Profile from './routes/Profile/Profile';
 import Shipping from './routes/Shipping/Shipping';
 import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
@@ -36,12 +36,19 @@ import AdminProducts from './admin/Products/AdminProduct';
 import AdminUsers from './admin/Users/AdminUser';
 import AdminOrder from './admin/Orders/AdminOrder';
 import { Helmet } from 'react-helmet';
+import UserDetails from './admin/UserDetails/UserDetails';
+import AdminOrderDetails from './admin/AdminOrderDetails/AdminOrderDetails';
 
 function App() {
   
-  const { user } = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  const { user, error } = useSelector(state => state.user)
   
   useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
     store.dispatch(loadUser());
   }, [])
 
@@ -104,8 +111,11 @@ function App() {
 
                 <Route path="/admin/orders" element={<AdminOrder /> }/>
 
+                <Route path="/admin/order/:id" element={<AdminOrderDetails /> }/>
 
                 <Route path="/admin/users" element={<AdminUsers /> }/>
+
+                <Route path="/admin/user/:id" element={<UserDetails /> }/>
             </> 
             ) : (
               <>

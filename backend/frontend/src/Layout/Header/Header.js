@@ -1,17 +1,19 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect}  from 'react';
 import { StyledLink } from '../../GlobalStyle';
 import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu,SearchBtn, ResponsiveBtn } from './HeaderStyle';
 import Login from '../../routes/PopupLogin/PopupLogin';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../actions/userAction';
+import { logout, clearErrors } from '../../actions/userAction';
 import { useSearchParams } from 'react-router-dom';
+import { useAlert } from "react-alert";
 
 
 const Header = () => {
   
   const dispatch = useDispatch();
+  const alert = useAlert();
 
-  const { user } = useSelector(state => state.user);
+  const { user, error, isAuthenticated } = useSelector(state => state.user);
 
   const [open, setOpen] = useState(false);
 
@@ -24,6 +26,17 @@ const Header = () => {
   const handleOpen = () => setOpen(true);
   
   let openPanel = false;
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      alert.success("Login Successfull.");
+    }
+  }, [dispatch, error, alert, isAuthenticated])
 
   // useEffect(() => {
   //   if(isAuthenticated) {

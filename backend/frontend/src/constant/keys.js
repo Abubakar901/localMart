@@ -172,6 +172,10 @@ export const ADMIN_USER_REQUEST = "ADMIN_USER_REQUEST";
 export const ADMIN_USER_SUCCESS =  "ADMIN_USER_SUCCESS";
 export const ADMIN_USER_FAIL =  "ADMIN_USER_FAIL";
 
+// user details --- admin
+export const USER_DETAILS_REQUEST = "USER_DETAILS_REQUEST";
+export const USER_DETAILS_SUCCESS = "USER_DETAILS_SUCCESS";
+export const USER_DETAILS_FAIL = "USER_DETAILS_FAIL";
 
 // clear errors
 export const CLEAR_ERRORS = "CLEAR_ERRORS";

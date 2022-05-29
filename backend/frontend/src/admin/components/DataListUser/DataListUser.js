@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
-import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
+import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import { getAdminUsers, clearErrors } from '../../../actions/userAction';
 import { useAlert } from "react-alert";
 import Loader from '../../../Layout/Loader/Loader';
@@ -27,8 +27,7 @@ const DataListUser = () => {
         <TableContainer>
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Name</th>
               <th>Email</th>
               <th>Role</th>
               <th>Action</th>
@@ -38,10 +37,21 @@ const DataListUser = () => {
           {
             users && users.map((user) => (
               <tr key={user?._id}>
-                <td>{user?.firstName}</td>
-                <td>{user?.lastName}</td>
-                <td>{user?.email}</td>
-                <td>{user?.role}</td>
+                <td>
+                  <AdvancedLink to={`/admin/user/${user?._id}`}>
+                    {user?.firstName}  {user?.lastName}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/admin/user/${user?._id}`}>
+                    {user?.email}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/admin/user/${user?._id}`}>
+                    {user?.role}
+                  </AdvancedLink>
+                </td>
                 <td>
                   <EditBtn />
                   <DeleteBtn />

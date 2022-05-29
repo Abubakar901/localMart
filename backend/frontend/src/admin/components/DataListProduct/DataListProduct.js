@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
+import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import { getAdminProducts, deleteProduct} from '../../../actions/productAction';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_PRODUCT_RESET } from '../../../constant/keys';
@@ -39,7 +39,7 @@ const DataListProduct = () => {
   
 
     const handleEditBtn = (id)  => {
-      navigate(`/admin/user/${id}`)
+      navigate(`/admin/product/${id}`)
     }
 
   return (
@@ -61,11 +61,31 @@ const DataListProduct = () => {
           {
             products && products.map((product) => (
               <tr key={product?._id}>
-                <td>{product?.name}</td>
-                <td>{product?.Stock}</td>
-                <td><strong>₹</strong>{product?.price}</td>
-                <td>{product?.shopName?.name}</td>
-                <td>{product?.shopName?.city}</td>
+                <td>
+                  <AdvancedLink to={`/product/${product?._id}`} >
+                    {product?.name}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/product/${product?._id}`} >
+                    {product?.Stock}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/product/${product?._id}`} >
+                    <strong>₹</strong>{product?.price}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/product/${product?._id}`} >
+                    {product?.shopName?.name}
+                  </AdvancedLink>
+                </td>
+                <td>
+                  <AdvancedLink to={`/product/${product?._id}`} >
+                    {product?.shopName?.city}
+                  </AdvancedLink>
+                </td>
                 <td>
                   <EditBtn onClick={() => handleEditBtn(product?._id)}/>
                   <DeleteBtn onClick={() => deleteProductHandler(product?._id)} />
