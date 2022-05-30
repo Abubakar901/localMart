@@ -21,7 +21,6 @@ import Profile from './routes/Profile/Profile';
 import Shipping from './routes/Shipping/Shipping';
 import ConfirmOrder from './routes/ConfirmOrder/ConfirmOrder';
 import Order from './routes/Orders/Order';
-import OrderDetail from './routes/OrderDetail/OrderDetail';
 import Payment from './routes/Payment/Payment';
 
 import Sellerboard from './seller/Dashboard/Sellerboard';
@@ -87,8 +86,6 @@ function App() {
                 <Route path="/process/payment" element={<Payment />} />
               
                 <Route path="/orders" element={<Order user={user} /> }/>
-
-                <Route path="/order/:id" element={<OrderDetail user={user} /> }/>
 
                 <Route path="/profile" element={<Profile /> }/>
             

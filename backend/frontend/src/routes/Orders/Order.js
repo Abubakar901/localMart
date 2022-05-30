@@ -1,165 +1,130 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import {
-    OrderMainContainer,
-    OrderTopContainer,
-    TableContainer,
-    OrderLink,
-    DeleteBtn,
-    NoOrderContaiener,
-    ExploreProductsBtn
-} from './OrderStyle';
-import {useDispatch, useSelector} from 'react-redux';
-import {useAlert} from 'react-alert';
-import {getUserOrders, deleteOrder} from '../../actions/orderAction';
-import Loader from '../../Layout/Loader/Loader';
-import Metadata from '../../Layout/Metadata';
-import {DELETE_ORDER_RESET} from '../../constant/keys';
-import { useNavigate } from 'react-router-dom';
+  OrderMainContainer,
+  OrderCard,
+  OrderTopContainer,
+  CardTopContainer,
+  OrderProductDetails,
+  CardMidContainer,
+  CardBottomContainer,
+  DeleteBtn,
+  OrderLine,
+  NoOrderContaiener,
+  ExploreProductsBtn,
+  OrderProductContainer,
+  OrderBottomContainer,
+} from "./OrderStyle";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { getUserOrders, deleteOrder } from "../../actions/orderAction";
+import Loader from "../../Layout/Loader/Loader";
+import Metadata from "../../Layout/Metadata";
+import { DELETE_ORDER_RESET } from "../../constant/keys";
+import { useNavigate } from "react-router-dom";
 
-const Order = ({user}) => {
+const Order = ({ user }) => {
+  const dispatch = useDispatch();
+  const { error, orders, loading } = useSelector((state) => state.orders);
+  const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-    const {error, orders, loading} = useSelector((state) => state.orders);
-    const navigate = useNavigate();
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.editAndDeleteOrder
+  );
 
-    const {error: deleteError, isDeleted} = useSelector((state) => state.editAndDeleteOrder);
 
-    const alert = useAlert();
+  const alert = useAlert();
 
-    useEffect(() => {
-        if (error) {
-            return alert.error(error);
-        }
-
-        if (isDeleted) {
-            alert.success('Order Deleted Successfully');
-            dispatch({type: DELETE_ORDER_RESET});
-        }
-
-        dispatch(getUserOrders());
-    }, [
-        dispatch,
-        alert,
-        error,
-        isDeleted,
-        deleteError
-    ])
-
-    const deleteOrderHandler = (id) => {
-        dispatch(deleteOrder(id))
-    };
-
-    const redirectToProducts = () => {
-        navigate('/products')
+  useEffect(() => {
+    if (error) {
+      return alert.error(error);
     }
 
-    return (<> {
-        loading ? <Loader/>: (
-                                <OrderMainContainer>
-                                    <Metadata title='localMart - Orders'/>
-                                    {
-                                        orders && orders?.length === 0 ? (
-                                            <NoOrderContaiener>
-                                                No Orders Yet
-                                                <ExploreProductsBtn onClick={redirectToProducts}>Buy Products</ExploreProductsBtn>
-                                            </NoOrderContaiener> ) : (
-                                                <>
-                                                <OrderTopContainer>
-                                        <h4>{user?.firstName}'s Orders</h4>
-                                    </OrderTopContainer>
-                                    <TableContainer>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Shop Name</th>
-                                                <th>Shop City</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody> {
-                                            orders && orders.map((order) => (
-                                                <tr key={
-                                                    order?._id
-                                                }>
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order?._id
-                                                            }`
-                                                        }>
-                                                            {
-                                                            order?.orderItems[0]?.name
-                                                        } </OrderLink>
-                                                    </td>
-                
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order?._id
-                                                            }`
-                                                        }>
-                                                            {
-                                                            order?.orderItems[0]?.quantity
-                                                        } </OrderLink>
-                                                    </td>
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order._id
-                                                            }`
-                                                        }>
-                                                            <strong>₹</strong>
-                                                            {
-                                                            order?.orderItems[0]?.price
-                                                        } </OrderLink>
-                                                    </td>
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order._id
-                                                            }`
-                                                        }>
-                                                            {
-                                                            order?.orderItems[0]?.shopName
-                                                        } </OrderLink>
-                                                    </td>
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order?._id
-                                                            }`
-                                                        }>
-                                                            {
-                                                            order?.orderItems[0]?.shopCity
-                                                        } </OrderLink>
-                                                    </td>
-                                                    <td>
-                                                        <OrderLink to={
-                                                            `/order/${
-                                                                order?._id
-                                                            }`
-                                                        }>
-                                                            {
-                                                            order?.orderstatus
-                                                        } </OrderLink>
-                                                    </td>
-                                                    <td>
-                                                        <DeleteBtn onClick={() => deleteOrderHandler(order?._id)} />
-                                                    </td>
-                                                </tr>
-                                            ))
-                                        } </tbody>
-                                    </TableContainer>
-                                    </>
-                                        )
-                                    }
-                                </OrderMainContainer>
-                            )
-                        } </>
-        )
+    if (isDeleted) {
+      alert.success("Order Deleted Successfully");
+      dispatch({ type: DELETE_ORDER_RESET });
     }
 
-    export default Order
+    dispatch(getUserOrders());
+  }, [dispatch, alert, error, isDeleted, deleteError]);
+
+  const deleteOrderHandler = (id) => {
+    dispatch(deleteOrder(id));
+  };
+
+  const redirectToProducts = () => {
+    navigate("/products");
+  };
+
+  console.log(orders);
+
+  return (
+    <>
+      {" "}
+      {loading ? (
+        <Loader />
+      ) : (
+        <OrderMainContainer>
+          <Metadata title="localMart - Orders" />
+          {orders && orders?.length === 0 ? (
+            <NoOrderContaiener>
+              No Orders Yet
+              <ExploreProductsBtn onClick={redirectToProducts}>
+                Buy Products
+              </ExploreProductsBtn>
+            </NoOrderContaiener>
+          ) : (
+            <>
+              <OrderTopContainer>
+                <h4>Your Orders</h4>
+              </OrderTopContainer>
+              <OrderLine />
+              <OrderBottomContainer>
+                {
+                    orders && orders.map((order) => (
+                        <OrderCard key={order?._id}>
+                            <CardTopContainer>
+                                <h6>Shipping Details</h6>
+                                <p>{order?.shippingInfo?.address}</p>
+                                <p>{order?.shippingInfo?.city + " "  + order?.shippingInfo?.pinCode}</p>
+                                <p>{order?.shippingInfo?.state}</p>
+                                <p>{order?.shippingInfo?.phoneNo}</p>
+                                <h6 orderStatus={ order?.orderstatus === 'Processing' ? '#ff0000' : '#25ff22' }>Order Status : {order?.orderstatus}</h6>
+                            </CardTopContainer>
+                            <OrderLine />
+                            <CardMidContainer>
+                                <p>Tax : ₹{order?.taxPrice}</p>
+                                <p>Shipping Price : ₹{order?.shippingPrice}</p>
+                                <p>Payment Status : {order?.paymentInfo?.status}</p>
+                                <h6>Total Price : ₹{order?.totalPrice}</h6>
+                            </CardMidContainer>
+                            <CardBottomContainer>
+                              <h6>Items: </h6>
+                              {
+                                order?.orderItems.map((items, value) => (
+                                  <OrderProductContainer key={value}>
+                                    <img src={items?.image} />
+                                    <OrderProductDetails>
+                                      <h6>Name : {items?.name}</h6>
+                                      <h6>Price : ₹{items?.price}</h6>
+                                      <h6>Quantity : {items?.quantity}</h6>
+                                      <h6>Shop : {items?.shopName}</h6>
+                                      <h6>City : {items?.shopCity}</h6>
+                                    </OrderProductDetails>
+                                  </OrderProductContainer>
+                                ))
+                              }
+                              
+                            </CardBottomContainer>
+                        </OrderCard>
+                    ))
+                }
+              </OrderBottomContainer>
+            </>
+          )}
+        </OrderMainContainer>
+      )}{" "}
+    </>
+  );
+};
+
+export default Order;

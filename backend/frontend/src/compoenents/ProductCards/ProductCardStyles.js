@@ -105,7 +105,7 @@ export const ShopTwoItems = styled.div`
 
 export const RatingComp = styled(Rating)`
     && {    
-        font-size: 30px;
+        font-size: 25px;
     }
 
     @media (max-width: 386px) {
@@ -140,12 +140,6 @@ export const ExploreShopBtn = styled(Button)`
             width:90%;
             padding:2px 2px;
             margin:10px auto;
-        }
-    }
-
-    @media (max-width:1530px) {
-        && {
-            width:100px;
         }
     }
 

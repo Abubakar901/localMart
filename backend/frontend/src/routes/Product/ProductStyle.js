@@ -177,6 +177,7 @@ export const SideBarContainer = styled.div `
 
 export const InnerContainer = styled.div `
     > p {
+        cursor: pointer;
         font-size: 20px;
         font-weight: 600;
         margin-left:10px;
