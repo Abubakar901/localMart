@@ -84,21 +84,22 @@ const Order = ({ user }) => {
                         <OrderCard key={order?._id}>
                             <CardTopContainer>
                                 <h6>Shipping Details</h6>
-                                <p>{order?.shippingInfo?.address}</p>
-                                <p>{order?.shippingInfo?.city + " "  + order?.shippingInfo?.pinCode}</p>
-                                <p>{order?.shippingInfo?.state}</p>
-                                <p>{order?.shippingInfo?.phoneNo}</p>
-                                <h6 orderStatus={ order?.orderstatus === 'Processing' ? '#ff0000' : '#25ff22' }>Order Status : {order?.orderstatus}</h6>
+                                <p>Address : {order?.shippingInfo?.address}</p>
+                                <p>Pincode : {order?.shippingInfo?.city + " "  + order?.shippingInfo?.pinCode}</p>
+                                <p>State : {order?.shippingInfo?.state}</p>
+                                <p>Phone Number : {order?.shippingInfo?.phoneNo}</p>
+                                <h5 orderStatus={ order?.orderstatus === 'Processing' ? '#ff0000' : '#25ff22' }>Order Status : <span>{order?.orderstatus}</span></h5>
                             </CardTopContainer>
                             <OrderLine />
                             <CardMidContainer>
                                 <p>Tax : ₹{order?.taxPrice}</p>
                                 <p>Shipping Price : ₹{order?.shippingPrice}</p>
                                 <p>Payment Status : {order?.paymentInfo?.status}</p>
-                                <h6>Total Price : ₹{order?.totalPrice}</h6>
+                                <h6>Total Price : <span>₹{order?.totalPrice}</span></h6>
                             </CardMidContainer>
-                            <CardBottomContainer>
+                            <OrderLine />
                               <h6>Items: </h6>
+                            <CardBottomContainer>
                               {
                                 order?.orderItems.map((items, value) => (
                                   <OrderProductContainer key={value}>

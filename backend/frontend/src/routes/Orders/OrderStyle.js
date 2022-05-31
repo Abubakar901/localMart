@@ -33,18 +33,24 @@ export const OrderCard = styled.div`
 `;
 
 export const CardMidContainer = styled.div`
-    > p {
-        font-size: 15px;
-        font-weight:500;
-        margin: 2px;
-        text-transform: capitalize;
+
+    > h6 {
+      margin: 3px;
+      font-size: 25px;
+      margin-bottom:20px;
+      color:#5b5f97;
+      > span {
+        font-weight:700;
+      }
     }
 
-  > h6 {
-    margin: 3px;
-    font-size: 18px;
-    color: ${props => props.orderStatus || '#000'};
-  }     
+ 
+    > p {
+      font-size: 20px;
+      font-weight:500;
+      margin: 2px;
+      text-transform: capitalize;
+    }   
 `;
 
 export const OrderProductDetails = styled.div`
@@ -59,43 +65,61 @@ export const OrderProductDetails = styled.div`
 
 export const OrderProductContainer = styled.div`
   height:auto;
-  width:100%;
-  padding:20px;
-  display:flex;
+  border:2px solid red;
+  width:20%;
+  padding:10px;
 
   @media(max-width:440px) {
     flex-direction:column;
   }
 
   > img {
-      width: 150px;
-      margin-right:20px;
+      width: 100%;
       height:150px;
-
-      @media(max-width:440px) {
-        margin-right:0;
-        width:100%;
-        height:200px;
-        margin-bottom:20px;
-      }
   }
 `;
 
 export const CardTopContainer = styled.div`
+  padding-left:20x;
+  padding-top:10px;
+
   > h6 {
     margin: 3px;
-    font-size: 20px;
+    font-size: 28px;
+    color:#5b5f97;
+    font-weight:500;
+  }
+
+  > h5 {
+    font-size:25px;
+    margin-bottom:20px;
+
+    > span {
+      font-weight:700;
+    }
+
   }
 
   > p {
-    font-size: 15px;
+    font-size: 20px;
     font-weight:500;
     margin: 2px;
     text-transform: capitalize;
   }
 `;
 
-export const CardBottomContainer = styled.div``;
+export const CardBottomContainer = styled.div`
+  > h6 {
+    font-size: 25px;
+    color:#5b5f97;
+    font-weight:700;
+  }
+
+  > h6 {
+    font-size:25px;
+    font-weight:600;
+  }
+`;
 
 export const ExploreProductsBtn = styled(CommonBtn)`
   && {
