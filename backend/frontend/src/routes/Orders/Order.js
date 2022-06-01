@@ -13,6 +13,7 @@ import {
   ExploreProductsBtn,
   OrderProductContainer,
   OrderBottomContainer,
+  DeleteLogo,
 } from "./OrderStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -83,12 +84,12 @@ const Order = ({ user }) => {
                     orders && orders.map((order) => (
                         <OrderCard key={order?._id}>
                             <CardTopContainer>
-                                <h6>Shipping Details</h6>
+                                <h6>Shipping Details  {order?.orderstatus === 'Processing' ? <DeleteBtn onClick={() =>  deleteOrderHandler(order?._id)}>Cancel Order <DeleteLogo /></DeleteBtn> : <></>} </h6>
                                 <p>Address : {order?.shippingInfo?.address}</p>
                                 <p>Pincode : {order?.shippingInfo?.city + " "  + order?.shippingInfo?.pinCode}</p>
                                 <p>State : {order?.shippingInfo?.state}</p>
                                 <p>Phone Number : {order?.shippingInfo?.phoneNo}</p>
-                                <h5 orderStatus={ order?.orderstatus === 'Processing' ? '#ff0000' : '#25ff22' }>Order Status : <span>{order?.orderstatus}</span></h5>
+                                <h5>Order Status : <span statusColor="#25ff22">{order?.orderstatus}</span></h5>
                             </CardTopContainer>
                             <OrderLine />
                             <CardMidContainer>
@@ -98,7 +99,7 @@ const Order = ({ user }) => {
                                 <h6>Total Price : <span>₹{order?.totalPrice}</span></h6>
                             </CardMidContainer>
                             <OrderLine />
-                              <h6>Items: </h6>
+                            <h6>Items: </h6>
                             <CardBottomContainer>
                               {
                                 order?.orderItems.map((items, value) => (
