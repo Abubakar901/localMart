@@ -17,13 +17,13 @@ import {
 } from "./OrderStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { getUserOrders, deleteOrder } from "../../actions/orderAction";
+import { getUserOrders, deleteOrder, clearErrors} from "../../actions/orderAction";
 import Loader from "../../Layout/Loader/Loader";
 import Metadata from "../../Layout/Metadata";
 import { DELETE_ORDER_RESET } from "../../constant/keys";
 import { useNavigate } from "react-router-dom";
 
-const Order = ({ user }) => {
+const Order = () => {
   const dispatch = useDispatch();
   const { error, orders, loading } = useSelector((state) => state.orders);
   const navigate = useNavigate();
@@ -40,6 +40,10 @@ const Order = ({ user }) => {
       return alert.error(error);
     }
 
+    if(deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
     if (isDeleted) {
       alert.success("Order Deleted Successfully");
       dispatch({ type: DELETE_ORDER_RESET });
@@ -104,7 +108,7 @@ const Order = ({ user }) => {
                               {
                                 order?.orderItems.map((items, value) => (
                                   <OrderProductContainer key={value}>
-                                    <img src={items?.image} />
+                                    <img src={items?.image} alt={items?.name} />
                                     <OrderProductDetails>
                                       <h6>Name : {items?.name}</h6>
                                       <h6>Price : ₹{items?.price}</h6>

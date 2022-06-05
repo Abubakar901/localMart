@@ -44,7 +44,7 @@ const style = {
     boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 };
 
-const ShopDetails = () => {
+const ShopDetails = ({ user }) => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
@@ -59,7 +59,13 @@ const ShopDetails = () => {
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        if(!user) { 
+            alert.error("Please Login to Access this resource")
+        } else {
+            setOpen(true)
+        }
+    };
     const handleClose = () => setOpen(false);
 
     useEffect(() => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { SidebarContainer, Heading, SideLink } from './SidebarStyle';
 
-const Sidebar = () => {
+const Sidebar = ({ responsive }) => {
   return (
-    <SidebarContainer>  
+    <SidebarContainer responsive={responsive} >  
         <Heading>LocalMart</Heading>
         
         <SideLink to='/admin/dashboard'>
@@ -25,10 +25,6 @@ const Sidebar = () => {
 
         <SideLink to='/admin/users'>
             Users
-        </SideLink>
-
-        <SideLink to='/admin/reviews'>
-            Reviews
         </SideLink>
 
     </SidebarContainer>

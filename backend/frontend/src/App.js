@@ -65,11 +65,11 @@ function App() {
             
             <Route path="/shops" element={<Shop /> }/>
 
-            <Route path="/shop/:id" element={<ShopDetails /> }/>
+            <Route path="/shop/:id" element={<ShopDetails user={user} /> }/>
 
             <Route path="/products" element={<Product /> }/>
    
-            <Route path="/product/:id" element={<ProductDetails /> }/>
+            <Route path="/product/:id" element={<ProductDetails user={user} /> }/>
             
             <Route path="/cart" element={<Cart user={user}/> }/>
 
@@ -89,30 +89,46 @@ function App() {
 
                 <Route path="/profile" element={<Profile /> }/>
             
-                <Route path="/seller/dashboard" element={<Sellerboard /> }/>
+                {
+                  user.role === 'seller' ? (
+                    <>
+                      <Route path="/seller/dashboard" element={<Sellerboard /> }/>
             
-                <Route path="/seller/shop/new" element={<ShopNew /> }/>
+                      <Route path="/seller/shop/new" element={<ShopNew /> }/>
 
-                <Route path="seller/shops" element={<ShopAll />} />
+                      <Route path="seller/shops" element={<ShopAll />} />
 
-                <Route path="seller/product/new" element={<ProductNew />} />
+                      <Route path="seller/product/new" element={<ProductNew />} />
 
-                <Route path="seller/products" element={<ProductAll />} />
+                      <Route path="seller/products" element={<ProductAll />} />
+                </>
+                  ) : (
+                    <Route path="*" element={<ErrorPage /> }/>
+                  )
+                }
 
-            
-                <Route path="/admin/dashboard" element={<Adminboard /> }/>
-            
-                <Route path='/admin/shops' element={<AdminShops /> } />
-
-                <Route path="/admin/products" element={<AdminProducts /> }/>
-
-                <Route path="/admin/orders" element={<AdminOrder /> }/>
-
-                <Route path="/admin/order/:id" element={<AdminOrderDetails /> }/>
-
-                <Route path="/admin/users" element={<AdminUsers /> }/>
-
-                <Route path="/admin/user/:id" element={<UserDetails /> }/>
+                {
+                  user.role === 'admin' ?  (
+                    <>
+                  <Route path="/admin/dashboard" element={<Adminboard /> }/>
+              
+                  <Route path='/admin/shops' element={<AdminShops /> } />
+  
+                  <Route path="/admin/products" element={<AdminProducts /> }/>
+  
+                  <Route path="/admin/orders" element={<AdminOrder /> }/>
+  
+                  <Route path="/admin/order/:id" element={<AdminOrderDetails /> }/>
+  
+                  <Route path="/admin/users" element={<AdminUsers /> }/>
+  
+                  <Route path="/admin/user/:id" element={<UserDetails /> }/>
+                    </>
+                  )
+                  :(
+                    <Route path="*" element={<ErrorPage /> }/>
+                  )
+                }
             </> 
             ) : (
               <>

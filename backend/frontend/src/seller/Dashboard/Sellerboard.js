@@ -13,8 +13,8 @@ const Sellerboard = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { error:productError, products, loading:productLoading } = useSelector((state) => state.products);
-  const { error:shopError, shops, loading:shopLoading } = useSelector((state) => state.shops);
+  const { error:productError, totalProducts } = useSelector((state) => state.products);
+  const { error:shopError, totalShops } = useSelector((state) => state.shops);
 
   useEffect(() => {
     if(productError) {
@@ -44,12 +44,12 @@ const Sellerboard = () => {
           <CircleContainer>
             <CircleLinked to='/seller/shops'>
               <h6>Shops</h6>
-              <p>{shops.length}</p>
+              <p>{totalShops}</p>
             </CircleLinked>
 
             <CircleLinked to='/seller/products'>
               <h6>Products</h6>
-              <p>{products.length}</p>
+              <p>{totalProducts}</p>
             </CircleLinked>
 
             <CircleLinked to='/seller/orders'>

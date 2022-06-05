@@ -29,9 +29,16 @@ import {
 
     ADMIN_USER_REQUEST,
     ADMIN_USER_SUCCESS,
-    ADMIN_USER_FAIL,
+    ADMIN_USER_FAIL,  
+    
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAIL,
 
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    UPDATE_USER_ROLE_REQUEST,
+    UPDATE_USER_ROLE_SUCCESS,
+    UPDATE_USER_ROLE_FAIL
 } from '../constant/keys';
 
 export const postLogin = (email, password) => async (dispatch) => {
@@ -172,6 +179,45 @@ export const getUserDetails = (id) => async (dispatch) => {
     dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data.message });
   }
 };
+
+// Update User
+export const updateUserRole = (id, userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_USER_ROLE_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `/api/v1/admin/user/${id}`,
+      userData,
+      config
+    );
+
+    dispatch({ type: UPDATE_USER_ROLE_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_ROLE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Delete User
+export const deleteUser = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_USER_REQUEST });
+
+    const { data } = await axios.delete(`/api/v1/admin/user/${id}`);
+
+    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: DELETE_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 
 
 export const clearErrors = () => async (dispatch) => {

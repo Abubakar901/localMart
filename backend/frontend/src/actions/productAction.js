@@ -83,7 +83,7 @@ export const getSellerProducts = () => async(dispatch) => {
 
       dispatch({
           type: SELLER_PRODUCT_SUCCESS,
-          payload: data.products
+          payload: data
       })
   }catch(error) {
       dispatch({

@@ -31,8 +31,17 @@ import {
     ADMIN_USER_REQUEST,
     ADMIN_USER_SUCCESS,
     ADMIN_USER_FAIL,
+
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAIL,
+    DELETE_USER_RESET,
     
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    UPDATE_USER_ROLE_REQUEST,
+    UPDATE_USER_ROLE_SUCCESS,
+    UPDATE_USER_ROLE_FAIL,
+    UPDATE_USER_ROLE_RESET
 } from '../constant/keys';
 
 export const userReducer = (state = { user : {} }, action) => {
@@ -129,19 +138,31 @@ export const allUsersReducer = (state = { users: [] }, action) => {
     switch (action.type) {
       case UPDATE_PROFILE_REQUEST:
       case UPDATE_PASSWORD_REQUEST:
+      case UPDATE_USER_ROLE_REQUEST:
+      case DELETE_USER_REQUEST:
         return {
           ...state,
           loading: true,
         };
       case UPDATE_PROFILE_SUCCESS:
+      case UPDATE_USER_ROLE_SUCCESS:
       case UPDATE_PASSWORD_SUCCESS:
         return {
           ...state,
           loading: false,
           isUpdated: action.payload,
         };
+      case DELETE_USER_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            isDeleted: action.payload.success,
+            message: action.payload.message,
+        };    
       case UPDATE_PROFILE_FAIL:
       case UPDATE_PASSWORD_FAIL:
+      case UPDATE_USER_ROLE_FAIL:
+      case DELETE_USER_FAIL:
         return {
           ...state,
           loading: false,
@@ -149,9 +170,15 @@ export const allUsersReducer = (state = { users: [] }, action) => {
         };
       case UPDATE_PROFILE_RESET:
       case UPDATE_PASSWORD_RESET:
+      case UPDATE_USER_ROLE_RESET:
         return {
           ...state,
           isUpdated: false,
+        };
+      case DELETE_USER_RESET:
+        return {
+          ...state,
+          isDeleted: false,
         };
       case CLEAR_ERRORS:
         return {

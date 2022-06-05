@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
 import {  getAdminShops,  deleteShop} from '../../../actions/shopActions';
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
+import { TableContainer, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_SHOP_RESET } from '../../../constant/keys';
 
@@ -79,7 +79,6 @@ const DataListShop = () => {
                     </AdvancedLink>
                   </td>
                   <td>
-                    <EditBtn />
                     <DeleteBtn onClick={() => deleteShopHandler(shop?._id)} />
                   </td>
                 </tr>

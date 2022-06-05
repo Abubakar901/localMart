@@ -5,6 +5,12 @@ import styled
  import { StyledLink } from "../../GlobalStyle";
 
  export const TableContainer = styled.table`
+  @media(max-width:810px) {
+    width:100%;
+  }
+  @media(max-width:565px){
+    overflow:auto;
+  }
 
     th{
        margin-bottom: 10px;
@@ -12,6 +18,14 @@ import styled
        background-color: #5b5f97;
        color:#fff;
        border-right: 2px solid #fff;
+
+       @media (max-width: 1060px) {
+         font-size:22px;
+       }
+
+       @media (max-width:625px) {
+         font-weight:500;
+       }
     }
 
 
@@ -33,11 +47,21 @@ export const AdvancedLink = styled(StyledLink)`
    font-size: 20px;
    font-weight: 600;
     color:#000;
-`;
+
+    @media (max-width: 1060px) {
+      font-size:18px;
+    }
+    
+    @media(max-width:650px) {
+      font-size:15px;
+      font-weight:normal;
+    }
+`;  
 
 
  export const EditBtn = styled(EditIcon)`
    margin-right:10px;
+
    :hover{
      cursor: pointer;
    }

@@ -1,31 +1,42 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
+import { TableContainer, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import Loader from '../../../Layout/Loader/Loader';
-import { getAdminOrders } from '../../../actions/orderAction';
-import { useNavigate } from 'react-router-dom';
+import { getAdminOrders,deleteOrder, clearErrors } from '../../../actions/orderAction';
+import { DELETE_ORDER_RESET } from "../../../constant/keys";
 
 const DataListOrder = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const navigate = useNavigate();
 
-    const  { error, orders, loading  } = useSelector((state) => state.orders)
+    const  { error, orders, loading  } = useSelector((state) => state.orders);
+
+    const { error: deleteError, isDeleted } = useSelector(
+      (state) => state.editAndDeleteOrder
+    );
+  
 
     useEffect(() => {
       if(error) {
         return alert.error(error);
       }
+
+      if(deleteError) {
+        alert.error(deleteError);
+        dispatch(clearErrors());
+      }
+      if (isDeleted) {
+        alert.success("Order Deleted Successfully");
+        dispatch({ type: DELETE_ORDER_RESET });
+      }
   
         dispatch(getAdminOrders());
-    }, [dispatch, error, alert])
+    }, [dispatch, error, alert, isDeleted, deleteError]);
 
-  
-
-    const handleEditBtn = (id)  => {
-      navigate(`/admin/user/${id}`)
-    }
+    const deleteOrderHandler = (id) => {
+      dispatch(deleteOrder(id));
+    };
 
   return (
     <>
@@ -46,7 +57,7 @@ const DataListOrder = () => {
             orders && orders.map((order) => (
               <tr key={order?._id}>
                 <td>
-                  <AdvancedLink to={`/admin/order/${order?.user?._id}`} >
+                  <AdvancedLink to={`/admin/order/${order?._id}`} >
                     {order?.user?.firstName +  " " + order?.user?.lastName}
                   </AdvancedLink>
                 </td>
@@ -66,8 +77,7 @@ const DataListOrder = () => {
                   </AdvancedLink>
                 </td>
                 <td>
-                  <EditBtn onClick={() => handleEditBtn(order?._id)}/>
-                  <DeleteBtn />
+                  <DeleteBtn onClick={() => deleteOrderHandler(order?._id)}/>
                 </td>
               </tr>
             ))

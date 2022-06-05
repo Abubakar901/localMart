@@ -2,6 +2,7 @@ const Product = require('../models/ProductModel');
 const ErrorHandler = require('../utils/errorhandler');
 const catchAsyncErros = require('../middleware/catachAsyncError');
 const Apifeatures = require('../utils/apifeatures');
+const cloudinary = require('cloudinary');
 
 // create product -- seller
 exports.createProduct = catchAsyncErros(async(req,res,next) => {
@@ -147,7 +148,7 @@ exports.deleteProducts = catchAsyncErros(async(req,res,next) => {
     }
     // deleteing images from cloudinary
     for(let i=0; i < product.images.length; i++) {
-        await cloudinary.v2.uploader.destroy([product].images[i].public_id)
+        await cloudinary.v2.uploader.destroy(product.images[i].public_id)
     }
     
     await product.remove();
@@ -288,13 +289,11 @@ exports.deleteProductReviewByUser = catchAsyncErros( async(req, res, next) =>{
 
 exports.getProductsByShop = catchAsyncErros( async(req, res, next) => {
     
-    const shop = req.body.id;
-
-    const products = await Product.findById({ shop });
-    
+    let products = await Product.find({ 'shopName._id' : req.params.id })
+  
     res.status(200).json({
-        message: success,
-        products
+        success: true,
+        products,
     })
 
 });

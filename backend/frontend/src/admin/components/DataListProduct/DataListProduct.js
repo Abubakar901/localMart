@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
+import { TableContainer, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import { getAdminProducts, deleteProduct} from '../../../actions/productAction';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_PRODUCT_RESET } from '../../../constant/keys';
-import { useNavigate } from 'react-router-dom';
 
 const DataListProduct = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
-    const navigate = useNavigate();
 
     const  { error, products, loading } = useSelector((state) => state.products)
 
@@ -37,11 +35,6 @@ const DataListProduct = () => {
         dispatch(deleteProduct(id))
       };
   
-
-    const handleEditBtn = (id)  => {
-      navigate(`/admin/product/${id}`)
-    }
-
   return (
     <>
       { loading ? <Loader /> : 
@@ -87,7 +80,6 @@ const DataListProduct = () => {
                   </AdvancedLink>
                 </td>
                 <td>
-                  <EditBtn onClick={() => handleEditBtn(product?._id)}/>
                   <DeleteBtn onClick={() => deleteProductHandler(product?._id)} />
                 </td>
               </tr>

@@ -110,7 +110,7 @@ export const getSellerShops = () => async(dispatch) => {
 
         dispatch({
             type: SELLER_SHOP_SUCCESS,
-            payload: data.shops
+            payload: data
         })
     }catch(error) {
         dispatch({

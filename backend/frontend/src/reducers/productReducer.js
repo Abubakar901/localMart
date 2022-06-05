@@ -55,16 +55,12 @@ export const productReducer = (state = { product:[] }, action) =>{
                  city: action.payload.city
              };
         case ADMIN_PRODUCT_SUCCESS:
+        case SELLER_PRODUCT_SUCCESS:
             return {
                 loading:false,
                 products:action.payload.products,
                 totalProducts: action.payload.totalProduct
             }
-        case SELLER_PRODUCT_SUCCESS:
-          return {
-              loading:false,
-              products:action.payload
-          }
         case ALL_PRODUCT_FAIL:
         case ADMIN_PRODUCT_FAIL:
         case SELLER_PRODUCT_FAIL:

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
-import { MainContainer, TopContainer, BottomContainer } from '../../GlobalStyle';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
-import { AdminInnerContainer , AmountContainer, CircleContainer, CircleLinked} from './AdminboardStyle.js';
+import {MainContainer, TopContainer, BottomContainer, AdminInnerContainer,ResponsiveSide, AmountContainer, CircleContainer, CircleLinked} from './AdminboardStyle.js';
 import { useSelector, useDispatch } from 'react-redux';
 import {  getAdminShops } from '../../actions/shopActions';
 import { getAdminProducts } from '../../actions/productAction';
@@ -16,6 +15,8 @@ const Adminboard = () => {
   const { usersCount } = useSelector((state) => state.users)
   const  { totalAmount, totalOrders } = useSelector((state) => state.orders)
   const dispatch = useDispatch();
+  const [responsive, setResponsive] = useState('none');
+  let openPanel = false;
 
   useEffect(() => {
     dispatch(getAdminShops());
@@ -23,6 +24,15 @@ const Adminboard = () => {
     dispatch(getAdminUsers());
     dispatch(getAdminOrders());
   }, [dispatch])
+
+  const handleResponsive = () => {
+    openPanel = !openPanel;
+    if(openPanel) {
+      setResponsive('flex')
+    } else {
+      setResponsive('none')
+    }
+  }
   
   return (
     <MainContainer innerspace='0'>
@@ -31,7 +41,8 @@ const Adminboard = () => {
           <h2>Admin Dashboard</h2>
       </TopContainer>
       <BottomContainer outerspace='0'>
-        <Sidebar />
+        <Sidebar responsive={responsive} />
+        <ResponsiveSide onClick={handleResponsive}/>
         <AdminInnerContainer>
           <AmountContainer>
             <p>Total Amount: {totalAmount}</p>

@@ -18,9 +18,9 @@ exports.newOrder = catachAsyncError( async(req, res, next ) => {
 })
 
 exports.getOrderDetails = catachAsyncError( async (req, res, next) => {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate("user", "firstName lastName phone email");
 
-    if(!order) {
+    if(!order) { 
         return next(new ErrorHandler("Order Not Found!", 404));
     }
 
@@ -66,20 +66,20 @@ exports.getSellerOrders = catachAsyncError( async (req, res, next) => {
     
     const user = req.user.id;
     
-    const shops = await Shop.find({ user });
-    
-    // let shopId = []; 
-    shops.map( async (shop) => {
-        const shopId = JSON.stringify(shop._id);
-        const orders = await Order.findById({ shopId })
-        console.log(orders)
+    const shopsExist = await Shop.find({ user });
+
+    const shopId = [];
+    shopsExist.map((shop) => {
+        shopId.push(shop._id);
     })
-        // console.log(shopId)
-        // const orders =  await Order.findById({ shopId })
+    
+
+    const orders = await Order.find({ "orderItems.shop" : shopId });    
+
 
     res.status(200).json({
         success: true,
-        // orders
+        orders
     })
 
 });

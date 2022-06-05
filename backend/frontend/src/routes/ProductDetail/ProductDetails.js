@@ -48,7 +48,7 @@ const style = {
 };
 
 
-const ProductDetails = () => {
+const ProductDetails = ({ user }) => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
@@ -56,7 +56,13 @@ const ProductDetails = () => {
     const [open, setOpen] = useState(false);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        if(!user) { 
+            alert.error("Please Login to Access this resource")
+        } else {
+            setOpen(true)
+        }
+    };
     const handleClose = () => setOpen(false);
     const {product, error, loading} = useSelector((state) => state.productDetails);
 
