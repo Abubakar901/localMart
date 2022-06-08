@@ -42,6 +42,6 @@ router.route("/product/reviews").get(getProductReviews).delete(isAuthenticatedUs
 
 router.route("/product/delete/review").delete(isAuthenticatedUser, deleteProductReviewByUser);
 
-router.route("/products/shops").get(getProductsByShop);
+router.route("/shop/products/:id").get(getProductsByShop);
 
 module.exports = router;

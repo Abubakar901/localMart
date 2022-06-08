@@ -14,6 +14,7 @@ import {
   OrderProductContainer,
   OrderBottomContainer,
   DeleteLogo,
+  LineBreak
 } from "./OrderStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -86,6 +87,7 @@ const Order = () => {
               <OrderBottomContainer>
                 {
                     orders && orders.map((order) => (
+                      <>
                         <OrderCard key={order?._id}>
                             <CardTopContainer>
                                 <h6>Shipping Details  {order?.orderstatus === 'Processing' ? <DeleteBtn onClick={() =>  deleteOrderHandler(order?._id)}>Cancel Order <DeleteLogo /></DeleteBtn> : <></>} </h6>
@@ -97,9 +99,8 @@ const Order = () => {
                             </CardTopContainer>
                             <OrderLine />
                             <CardMidContainer>
-                                <p>Tax : ₹{order?.taxPrice}</p>
                                 <p>Shipping Price : ₹{order?.shippingPrice}</p>
-                                <p>Payment Status : {order?.paymentInfo?.status}</p>
+                                <p>Payment Status : Cash on Delivery</p>
                                 <h6>Total Price : <span>₹{order?.totalPrice}</span></h6>
                             </CardMidContainer>
                             <OrderLine />
@@ -122,6 +123,8 @@ const Order = () => {
                               
                             </CardBottomContainer>
                         </OrderCard>
+                        <LineBreak/>
+                        </>
                     ))
                 }
               </OrderBottomContainer>

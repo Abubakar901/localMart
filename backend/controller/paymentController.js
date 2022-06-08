@@ -1,20 +1,20 @@
 const catchAsyncError = require("../middleware/catachAsyncError");
-const stripe = require('stripe')(process.env.STRIPE_API_KEY);
+const stripe = require('stripe')('sk_test_51KyxW6SFpyHW5a0c8p4eihBh0bPpPa4G66iZbIbAFDy1pCVy5gJ7tZjcL4oMqSX49IkcrScTi9XPp2OmMOoZe86z007mN9xo2L');
 
-exports.processPayment = catchAsyncError(async (req, res, next) => {
-  const myPayment = await stripe.paymentIntents.create({
-    amount: req.body.amount,
-    currency: "inr",
-    metadata: {
-      company: "Ecommerce",
-    },
+exports.createPayment = catchAsyncError(async (req, res, next) => {
+  const total = req.body.amount;
+  console.log("Payment Rquest recived for this rupess : ", total);
+  const session = await stripe.checkout.sessions.create({
+    total: req.body.price,
+    mode: 'payment',
+    success_url: `${process.env.PORT}?success=true`,
+    cancel_url: `${process.env.PORT}?canceled=true`,
   });
 
-  res
-    .status(200)
-    .json({ success: true, client_secret: myPayment.client_secret });
+  res.redirect(303, session.url);
+
 });
 
-exports.sendStripeApiKey = catchAsyncError(async (req, res, next) => {
+exports.sendStripeApiKey = catchAsyncError (async (req, res, next) => {
   res.status(200).json({ stripeApiKey: process.env.STRIPE_API_KEY });
 });

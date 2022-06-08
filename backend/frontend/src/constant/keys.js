@@ -41,6 +41,11 @@ export const ALL_PRODUCT_REQUEST = "ALL_PRODUCT_REQUEST";
 export const ALL_PRODUCT_SUCCESS = "ALL_PRODUCT_SUCCESS";
 export const ALL_PRODUCT_FAIL = "ALL_PRODUCT_FAIL";
 
+// shop by products 
+export const SHOP_PRODUCT_REQUEST = "SHOP_PRODUCT_REQUEST";
+export const SHOP_PRODUCT_SUCCESS = "SHOP_PRODUCT_SUCCESS";
+export const SHOP_PRODUCT_FAIL = "SHOP_PRODUCT_FAIL";
+
 // product details request for customer, admin, seller
 export const PRODUCT_DETAILS_REQUEST = "PRODUCT_DETAILS_REQUEST";
 export const PRODUCT_DETAILS_SUCCESS =  "PRODUCT_DETAILS_SUCCESS";
@@ -114,6 +119,11 @@ export const LOAD_USER_FAIL = "LOAD_USER_FAIL";
 // logout user common
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
 export const LOGOUT_USER_FAIL = "LOGOUT_USER_FAIL";
+
+// order --- user, admin, seller
+export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
+export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS";
+export const CREATE_ORDER_FAIL = "CREATE_ORDER_FAIL";
 
 // delete user --- admin
 export const DELETE_USER_REQUEST = "DELETE_USER_REQUEST";

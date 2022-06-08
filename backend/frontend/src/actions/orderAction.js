@@ -1,19 +1,50 @@
 import {
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_SUCCESS,
+  CREATE_ORDER_FAIL,
+
     USER_ORDER_REQUSET,
     USER_ORDER_SUCCESS,
     USER_ORDER_FAIL,
+
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
     ORDER_DETAILS_FAIL,
+
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_FAIL,
+
     ADMIN_ORDER_REQUEST,
     ADMIN_ORDER_SUCCESS,
     ADMIN_ORDER_FAIL,
+
     CLEAR_ERRORS
 } from "../constant/keys";
 import axios from 'axios';
+
+// Create Order
+export const createOrder = (order) => async (dispatch) => {
+    try {
+      dispatch({ type: CREATE_ORDER_REQUEST });
+  
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post("/api/v1/order/new", order, config);
+  
+      dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: CREATE_ORDER_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+  
 
 export const getUserOrders = () => async (dispatch) => {
     try {

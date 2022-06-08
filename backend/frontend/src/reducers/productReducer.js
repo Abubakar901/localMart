@@ -35,7 +35,10 @@ import {
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_RESET,
 
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    SHOP_PRODUCT_REQUEST,
+    SHOP_PRODUCT_SUCCESS,
+    SHOP_PRODUCT_FAIL
 } from "../constant/keys";
 
 export const productReducer = (state = { product:[] }, action) =>{
@@ -43,17 +46,23 @@ export const productReducer = (state = { product:[] }, action) =>{
         case ALL_PRODUCT_REQUEST:
         case SELLER_PRODUCT_REQUEST:
         case ADMIN_PRODUCT_REQUEST:
+        case SHOP_PRODUCT_REQUEST:
             return{
                  loading:true,
                  product:[]
              };
         case ALL_PRODUCT_SUCCESS:
-            return{
-                 loading:false,
-                 products:action.payload.products,
-                 category: action.payload.category,
-                 city: action.payload.city
-             };
+          return{
+            loading:false,
+            products:action.payload.products,
+            category: action.payload.category,
+            city: action.payload.city
+                };
+        case SHOP_PRODUCT_SUCCESS:
+          return {
+            loading: false,
+            products: action.payload
+          }
         case ADMIN_PRODUCT_SUCCESS:
         case SELLER_PRODUCT_SUCCESS:
             return {
@@ -63,6 +72,7 @@ export const productReducer = (state = { product:[] }, action) =>{
             }
         case ALL_PRODUCT_FAIL:
         case ADMIN_PRODUCT_FAIL:
+        case SHOP_PRODUCT_FAIL:
         case SELLER_PRODUCT_FAIL:
             return{
                 loading:false,

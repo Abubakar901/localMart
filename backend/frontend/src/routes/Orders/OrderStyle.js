@@ -234,6 +234,13 @@ export const CardTopContainer = styled.div`
   }
 `;
 
+export const LineBreak = styled.hr`
+  width:100%;
+  margin:10px auto;
+  font-weight:800;
+  border:2px solid #000;
+`;
+
 export const CardBottomContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

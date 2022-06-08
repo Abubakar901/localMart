@@ -288,8 +288,9 @@ exports.deleteProductReviewByUser = catchAsyncErros( async(req, res, next) =>{
 
 
 exports.getProductsByShop = catchAsyncErros( async(req, res, next) => {
+    const id = req.params.id;
     
-    let products = await Product.find({ 'shopName._id' : req.params.id })
+    let products = await Product.find({ shopName : id }).populate("shopName","name");
   
     res.status(200).json({
         success: true,

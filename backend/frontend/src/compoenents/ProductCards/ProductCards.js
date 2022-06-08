@@ -15,6 +15,8 @@ const ProductCards = ({product}) => {
     alert.success("Item Added To Cart");
   }
 
+  console.log(product)
+  
   return (
     <ProductCard>  
       <ProductLink to={`/product/${product?._id}`}>

@@ -68,14 +68,7 @@ exports.getSellerOrders = catachAsyncError( async (req, res, next) => {
     
     const shopsExist = await Shop.find({ user });
 
-    const shopId = [];
-    shopsExist.map((shop) => {
-        shopId.push(shop._id);
-    })
-    
-
-    const orders = await Order.find({ "orderItems.shop" : shopId });    
-
+    const orders = await Order.find({ 'orderItems.shop'  : '626a81061acf154e0da87f40'})
 
     res.status(200).json({
         success: true,

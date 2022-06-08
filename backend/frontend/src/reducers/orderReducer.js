@@ -1,19 +1,57 @@
-import {
+import {  
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_SUCCESS,
+    CREATE_ORDER_FAIL,
+
     USER_ORDER_REQUSET,
     USER_ORDER_SUCCESS,
     USER_ORDER_FAIL,
+
     ADMIN_ORDER_REQUEST,
     ADMIN_ORDER_SUCCESS,
     ADMIN_ORDER_FAIL,
+
     DELETE_ORDER_REQUEST,
     DELETE_ORDER_SUCCESS,
     DELETE_ORDER_FAIL,
     DELETE_ORDER_RESET,
+
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
     ORDER_DETAILS_FAIL,
+
     CLEAR_ERRORS
 } from "../constant/keys";
+
+export const newOrderReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_ORDER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case CREATE_ORDER_SUCCESS:
+      return {
+        loading: false,
+        order: action.payload,
+      };
+
+    case CREATE_ORDER_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export const userOrderReducer = (state = {
     orders: []

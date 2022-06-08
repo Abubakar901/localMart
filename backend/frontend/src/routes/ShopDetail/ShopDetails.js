@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate } from 'react-router-dom';
 import { useAlert } from "react-alert";
 import {useSelector, useDispatch} from 'react-redux';
 import {getShopDetails, newShopReview} from '../../actions/shopActions';
@@ -49,6 +49,7 @@ const ShopDetails = ({ user }) => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const alert = useAlert();
+    const navigate = useNavigate();
     const { shop, loading, error} = useSelector((state) => state.shopDetails);
     
     const { error:newreviewError, success } = useSelector((state) => state.newShopReview);
@@ -95,6 +96,10 @@ const ShopDetails = ({ user }) => {
 
         setOpen(false);
     };
+
+    const redirectToShopByProduct = () => {
+        navigate(`/shop/products/${id}`)
+    }
 
     return (
         <MainContainer innerspace='0'>
@@ -161,7 +166,7 @@ const ShopDetails = ({ user }) => {
                                     </ReviewSingleContainer>
                                 </Box>
                             </Modal>
-                            <DetailsPageBtn>Explore Products</DetailsPageBtn>
+                            <DetailsPageBtn onClick={redirectToShopByProduct}>Explore Products</DetailsPageBtn>
                         </DetailsContainer>
                     </UpperContainer>
                     <LowerContainer>

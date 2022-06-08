@@ -5,7 +5,7 @@ import { shopReducer, shopDetailsReducer, newShopReducer, deleteShopReducer,newS
 import { userReducer, allUsersReducer, profileReducer, userDetailsReducer} from '../reducers/userReducer';
 import { productReducer, productDetailsReducer, newProductReducer, deleteProductReducer, newProductReviewReducer, deleteProductReviewReducer} from '../reducers/productReducer';
 import { cartReducer } from '../reducers/cartReducer';
-import { userOrderReducer, orderDetailsReducer, editDeleteOrderReducer } from '../reducers/orderReducer';
+import { userOrderReducer, orderDetailsReducer, editDeleteOrderReducer, newOrderReducer } from '../reducers/orderReducer';
 
 const reducer=combineReducers({
     user: userReducer,
@@ -27,7 +27,8 @@ const reducer=combineReducers({
     newProductReview: newProductReviewReducer,
     deleteProductReview: deleteProductReviewReducer,
     updateProfile:profileReducer,
-    userDetails : userDetailsReducer
+    userDetails : userDetailsReducer,
+    newOrder: newOrderReducer
 });
 
 let initialState = {

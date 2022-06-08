@@ -152,7 +152,7 @@ const Product = () => {
                 <FormContainer>
                     <input type='text' placeholder='Search Product'
                         onChange={
-                            (e) => setQuery(e.target.value)
+                            (e) => setQuery(e.target.value.toLowerCase())
                         }/>
                 </FormContainer>
             </ProductTopContainer>
@@ -230,7 +230,7 @@ const Product = () => {
                     </Box>
                 </SideBarContainer>
                 <ProductCardsContainer> {
-                    products && products.filter((product) => product.name.toLowerCase().includes(query) && product.category.includes(typeCategory) && product.shopName.city.includes(filterCity)).map(product => (<ProductCards product={product}
+                    products && products.filter((product) => product?.name?.includes(query) && product?.category?.includes(typeCategory) && product?.shopName?.city?.includes(filterCity)).map(product => (<ProductCards product={product}
                         key={
                             product?._id
                         }/>))

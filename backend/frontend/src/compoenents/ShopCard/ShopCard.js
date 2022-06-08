@@ -8,7 +8,10 @@ const ShopCard = ({ shop }) => {
 
 const redirectShop = (id) => {
   navigate(`/shop/${id}`)
-// console.log(id)
+}
+
+const redirctToShopByProduct = (id) => {
+  navigate(`/shop/products/${id}`)
 }
 
   return (
@@ -30,11 +33,11 @@ const redirectShop = (id) => {
       <ShopLink to={`/shop/${shop?._id}`}>
         <p>City: {shop?.city}</p>
       </ShopLink>
-      <ShopLink to={`/shop/${shop?._id}`}>
+      <ShopLink to={`/shop/${shop?._id}`}>  
         <p>State: {shop?.state}</p>
       </ShopLink>
         <ExploreShopBtn bgcolor='#01796f' onClick={() => redirectShop(shop?._id)}>Shop Details</ExploreShopBtn>
-        <ExploreShopBtn>Explore Products</ExploreShopBtn>
+        <ExploreShopBtn onClick={() => redirctToShopByProduct(shop?._id)}>Explore Products</ExploreShopBtn>
     </ShoppingCard>
   )
 }

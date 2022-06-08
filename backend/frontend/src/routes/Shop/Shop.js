@@ -76,7 +76,7 @@ const Shop = () => {
                         <FormContainer onSubmit={searchSubmitHandler}>
                             <input type='text' placeholder='Search Shop Name or City'
                                 onChange={
-                                    (e) => setQuery(e.target.value)
+                                    (e) => setQuery(e.target.value.toLowerCase())
                                 }/>
                         </FormContainer>
                     </ShopTopContainer>
@@ -109,7 +109,7 @@ const Shop = () => {
 
 
                         <ShopCardsContainer> {
-                            shops && shops.filter((shop) => (shop.city.toLowerCase().includes(query) || shop.name.toLowerCase().includes(query)) && shop.category.toLowerCase().includes(genres)).map(shop => (
+                            shops && shops.filter((shop) => (shop?.city?.includes(query) || shop?.name?.includes(query)) && shop?.category?.toLowerCase().includes(genres)).map(shop => (
                                 <ShopCard key={
                                         shop?._id
                                     }

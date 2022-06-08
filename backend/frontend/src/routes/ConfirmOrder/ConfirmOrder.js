@@ -1,39 +1,52 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Metadata from '../../Layout/Metadata';
+import { useAlert } from "react-alert";
 import { MainContainer, ConfirmOrderLeft, ConfirmOrderRight, ConfirmOrderTop, ConfirmOrderSingleContainer, ConfirmOrderBreakLine, ConfirmOrderBottom, SideOtherEachContainer, ConfirmOrderProducts, ProceedToPaymentBtn, SideOtherContainer, EachProducts, ConfirmOrderLink, OtherContainer } from './ConfirmOrderStyle';
 import { useNavigate } from 'react-router-dom';
+import { createOrder, clearErrors } from "../../actions/orderAction";
 
-const ConfirmOrder = () => {
+
+const ConfirmOrder = ({ user }) => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.newOrder);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const alert = useAlert();
 
   const subtotal = cartItems.reduce(
     (acc, item ) => acc + item?.quantity * item?.price,
     0
   )
 
-  const shippingCharges = subtotal > 1000 ? 0 : 200;
+  const shippingCharges = subtotal < 100 ? 30 : 0;
 
-  const tax = subtotal * 0.18;
-
-  const totalPrice = subtotal + tax + shippingCharges;
+  const totalPrice = subtotal + shippingCharges;
 
   const address = `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.pinCode}, ${shippingInfo?.country}`;
 
+  
   const proceedToPaymentHandler = () => { 
-    const data = {
-      subtotal,
-      shippingCharges,
-      tax,
-      totalPrice
+    const order = {
+      shippingInfo,
+      orderItems: cartItems,
+      itemsPrice: subtotal,
+      shippingPrice: shippingCharges,
+      totalPrice: totalPrice,
     };
+    
 
-    sessionStorage.setItem("orderInfo", JSON.stringify(data));
-
-    navigate('/process/payment');
+    dispatch(createOrder(order));
+    alert.success("Order Placed Successfully!")
+    navigate('/');
   }
+  
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, alert]);
 
   return (
     <MainContainer>
@@ -96,15 +109,10 @@ const ConfirmOrder = () => {
               <h6> ₹{shippingCharges}</h6>
 
             </SideOtherEachContainer>
-
-            <SideOtherEachContainer>
-              <h6>GST </h6>
-              <h6>₹{tax}</h6>
-            </SideOtherEachContainer>
         </SideOtherContainer>
         <ConfirmOrderBreakLine  width='80%' />
         <h6>Total : {totalPrice}</h6>
-        <ProceedToPaymentBtn onClick={proceedToPaymentHandler}>Proceed to Payment</ProceedToPaymentBtn>
+          <ProceedToPaymentBtn onClick={proceedToPaymentHandler} >Place Order</ProceedToPaymentBtn>
       </ConfirmOrderRight>  
     </MainContainer>
   )
