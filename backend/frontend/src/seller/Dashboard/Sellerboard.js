@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../GlobalStyle';
 import { AdminInnerContainer , AmountContainer, CircleContainer, CircleLinked } from './SellerboardStyle';
-import Sidebar from '../components/Sidebar/Siderbar';
+import Sidebar from '../components/Sidebar/Sidebar';
 import Metadata from '../../Layout/Metadata';
 import { getSellerProducts } from '../../actions/productAction';
 import { getSellerShops } from '../../actions/shopActions';

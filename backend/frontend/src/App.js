@@ -21,13 +21,17 @@ import { useSelector, useDispatch } from "react-redux";
 import Profile from "./routes/Profile/Profile";
 import Shipping from "./routes/Shipping/Shipping";
 import ConfirmOrder from "./routes/ConfirmOrder/ConfirmOrder";
+import Login from "./routes/Login/Login";
 import Order from "./routes/Orders/Order";
 
 import Sellerboard from "./seller/Dashboard/Sellerboard";
 import ShopNew from "./seller/Shops/New/ShopNew";
 import ShopAll from "./seller/Shops/All/ShopAll";
+import ShopEdit from "./seller/Shops/Edit/ShopEdit";
 import ProductAll from "./seller/Products/All/ProductAll";
+import ProductEdit from "./seller/Products/Edit/ProductEdit";
 import ProductNew from "./seller/Products/New/ProductNew";
+import SellerOrder from "./seller/Orders/SellerOrder";
 
 import Adminboard from "./admin/Dashboard/Adminboard";
 import AdminShops from "./admin/Shops/AdminShop";
@@ -56,9 +60,11 @@ function App() {
         <Helmet>
           <style>{"body { background-color: #e7e3e3; }"}</style>
         </Helmet>
+        
 
         <Header />
         <Routes>
+
           <Route path="/" element={<Home />} />
 
           <Route path="/shops" element={<Shop />} />
@@ -74,6 +80,11 @@ function App() {
           <Route path="/cart" element={<Cart user={user} />} />
 
           <Route path="*" element={<ErrorPage />} />
+
+          { user ? 
+            <Route path="/login" element={< ErrorPage /> } /> : 
+            <Route path="/login" element={<Login /> } />
+          }
 
           {user ? (
             <>
@@ -91,11 +102,17 @@ function App() {
 
                   <Route path="/seller/shop/new" element={<ShopNew />} />
 
+                  <Route path="/seller/shop/:id" element={<ShopEdit />} />
+
                   <Route path="seller/shops" element={<ShopAll />} />
 
                   <Route path="seller/product/new" element={<ProductNew />} />
 
+                  <Route path="/seller/product/:id" element={<ProductEdit />} />
+
                   <Route path="seller/products" element={<ProductAll />} />
+
+		  <Route path="/seller/orders" element={<SellerOrder />} />
                 </>
               ) : (
                 <Route path="*" element={<ErrorPage />} />

@@ -1,60 +1,37 @@
 import React, { useState, useEffect}  from 'react';
 import { StyledLink } from '../../GlobalStyle';
-import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, PopUpLogin , DropdownLink, LogoutBtn, DropdownMenu,SearchBtn, ResponsiveBtn } from './HeaderStyle';
-import Login from '../../routes/PopupLogin/PopupLogin';
+import { NavbarContainer, FirstLink, NavTitle, SearchContainer, SearchBar, Search, NavLinks, Navtags, LoginBtn, DropdownLink, LogoutBtn, DropdownMenu,SearchBtn, ResponsiveBtn } from './HeaderStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, clearErrors } from '../../actions/userAction';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAlert } from "react-alert";
-
 
 const Header = () => {
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const alert = useAlert();
 
   const { user, error, isAuthenticated } = useSelector(state => state.user);
 
-  const [open, setOpen] = useState(false);
-
   let [openBar, setOpenBar] = useState('none')
 
   const [keyword, setKeyword] = useState();
-
-  let [searchParams, setSearchParams] = useSearchParams();
-
-  const handleOpen = () => setOpen(true);
   
   let openPanel = false;
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      return alert.error(error);
       dispatch(clearErrors());
     }
 
     if (isAuthenticated) {
       alert.success("Login Successfull.");
+      navigate('/');
     }
   }, [dispatch, error, alert, isAuthenticated])
 
-  // useEffect(() => {
-  //   if(isAuthenticated) {
-  //     switch(user.role) {
-  //       case 'admin':
-  //         navigate('/admin/dashboard')
-  //           break;
-  //       case 'seller':
-  //         navigate('/seller/dashboard')
-  //           break;
-  //       case 'customer':
-  //         navigate('') 
-  //           break;  
-  //       default:
-  //          alert("error")
-  //     }
-  //   }
-  // }, [isAuthenticated, user, navigate])
 
   const handlePanel = () => {
     openPanel = !openPanel;
@@ -64,12 +41,16 @@ const Header = () => {
       setOpenBar('none')
     }
   }
+
+  const redirectToLogin = () => {
+    navigate('/login');
+  }
   
   
 const searchHandler = (e) =>{
   e.preventDefault();
   console.log(keyword)
-  setSearchParams({   })
+  // setSearchParams({   })
 }
 
   const logoutUser = () => {
@@ -175,10 +156,9 @@ const Roles = () => {
             ) : (
               <>
                 {/* Link from React Router Dom */}
-                <PopUpLogin onClick={handleOpen}>
+                <LoginBtn onClick={redirectToLogin}>
                   Login
-                </PopUpLogin>
-                <Login open={open} setOpen={setOpen} />
+                </LoginBtn>
               </>
             )
           }

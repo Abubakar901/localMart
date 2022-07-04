@@ -1,7 +1,7 @@
 import React from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../../GlobalStyle';
 import { SellerMainContainer } from '../../SellerStyle';
-import Sidebar from '../../components/Sidebar/Siderbar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import DataListShop from '../../components/DataListShop/DataListShop';
 import Metadata from '../../../Layout/Metadata';
 

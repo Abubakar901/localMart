@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Title, InputBox, LabelBox, Line, LoginContainer, DullText, LoginForm, ForgotPassLink, Button } from './LoginStyle';
+import React, { useState } from 'react';
+import { Title, InputBox, LabelBox, Line, LoginContainer, DullText, LoginForm, ForgotPassLink, Button } from './LoginCompStyle';
 import Metadata from '../../Layout/Metadata';
 import { useDispatch } from 'react-redux';
 import { postLogin } from '../../actions/userAction';
-import { useAlert } from "react-alert";
 
-const Login = ({ handleChange }) => {
+const LoginComp = ({ handleChange }) => {
 
   const dispatch = useDispatch();
 
@@ -41,4 +40,4 @@ const Login = ({ handleChange }) => {
   )
 }
 
-export default Login
+export default LoginComp

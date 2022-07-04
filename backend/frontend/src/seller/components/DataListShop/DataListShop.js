@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import {useSelector, useDispatch } from "react-redux";
 import { getSellerShops, deleteShop } from '../../../actions/shopActions';
 import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
+import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from '../DataListStyle';
 import Loader from '../../../Layout/Loader/Loader';
 import { DELETE_SHOP_RESET } from '../../../constant/keys';
+import { useNavigate } from 'react-router-dom';
 
 
 const DataListShop = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const alert = useAlert();
 
     const { error, shops, loading } = useSelector((state) => state.shops);
@@ -36,6 +38,10 @@ const DataListShop = () => {
       dispatch(deleteShop(id))
     };
 
+    const redirectToShopEdit = (id) => {
+      navigate(`/seller/shop/${id}`);
+    };
+
   return (
     <>
       {
@@ -56,13 +62,33 @@ const DataListShop = () => {
             {
               shops && shops.map((shop) => (
                 <tr key={shop?._id}>
-                  <td>{shop?.name}</td>
-                  <td>{shop?.category}</td>
-                  <td>{shop?.city}</td>
-                  <td>{shop?.state}</td>
-                  <td>{shop?.contact}</td>
+                  <td> 
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.name}
+                    </AdvancedLink>
+                  </td>
                   <td>
-                    <EditBtn />
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                        {shop?.category}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.city}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.state}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/shop/${shop?._id}`}>
+                      {shop?.contact}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <EditBtn onClick={() => redirectToShopEdit(shop?._id)}/>
                     <DeleteBtn onClick={() => deleteShopHandler(shop?._id)} />
                   </td>
                 </tr>

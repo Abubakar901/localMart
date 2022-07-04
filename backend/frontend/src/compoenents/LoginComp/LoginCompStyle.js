@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { CommonBtn } from '../../GlobalStyle';
 import { StyledLink } from '../../GlobalStyle';
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.div `
     background-color: #5b5f97;
     padding:14px;
     height: 605px;
@@ -13,33 +13,33 @@ export const LoginContainer = styled.div`
     padding-bottom: 30px;
 `;
 
-export const DullText = styled.div`
+export const DullText = styled.div `
     font-size: 18px;
     color:#e1dede;
      margin-bottom: 10px;
 `;
 
-export const LoginForm = styled.form`
+export const LoginForm = styled.form `
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
 
-export const Title = styled.h6`
+export const Title = styled.h6 `
     font-size: 40px;
     color: #b8b8d1;
     margin-top:10px;
     font-weight: bold;
 `;
 
-export const LabelBox = styled.label`
+export const LabelBox = styled.label `
     font-size: 20px;
     color:#e1dede;
     margin-top:10px;
 `;
 
-export const InputBox = styled.input`
+export const InputBox = styled.input `
     border-radius:10px;
     outline: none;
     border:none;
@@ -48,7 +48,8 @@ export const InputBox = styled.input`
     padding:3px 20px;
 `;
 
-export const ForgotPassLink = styled(StyledLink)`
+export const ForgotPassLink = styled(StyledLink)
+`
     color:#e1dede;
     margin-top: 5px;
     margin-bottom:25px;
@@ -56,7 +57,8 @@ export const ForgotPassLink = styled(StyledLink)`
     align-items: flex-end;
 `;
 
-export const Button = styled(CommonBtn)`
+export const Button = styled(CommonBtn)
+`
     && {
         background-color: ${props => props.bg || '#9fc5e8'};
         margin-left: 0;
@@ -75,12 +77,9 @@ export const Button = styled(CommonBtn)`
     }
 `;
 
-export const Line = styled.hr`
+export const Line = styled.hr `
     color: #fff;
     margin:10px 3px 10px;
     border:2px solid #fff;
     width: 300px;
 `;
-
-
-

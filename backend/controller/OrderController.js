@@ -4,11 +4,19 @@ const Shop = require("../models/ShopModel");
 const catachAsyncError = require("../middleware/catachAsyncError");
 const ErrorHandler = require("../utils/errorhandler");
 
-exports.newOrder = catachAsyncError( async(req, res, next ) => {
+exports.newOrder = catachAsyncError(async(req, res, next) => {
     const { shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
 
     const order = await Order.create({
-        shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice, shippingPrice, totalPrice, paidAt:Date.now(), user: req.user._id,
+        shippingInfo,
+        orderItems,
+        paymentInfo,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+        paidAt: Date.now(),
+        user: req.user._id,
     })
 
     res.status(201).json({
@@ -17,10 +25,10 @@ exports.newOrder = catachAsyncError( async(req, res, next ) => {
     })
 })
 
-exports.getOrderDetails = catachAsyncError( async (req, res, next) => {
+exports.getOrderDetails = catachAsyncError(async(req, res, next) => {
     const order = await Order.findById(req.params.id).populate("user", "firstName lastName phone email");
 
-    if(!order) { 
+    if (!order) {
         return next(new ErrorHandler("Order Not Found!", 404));
     }
 
@@ -31,7 +39,7 @@ exports.getOrderDetails = catachAsyncError( async (req, res, next) => {
 });
 
 
-exports.myOrders = catachAsyncError( async (req, res, next) => {
+exports.myOrders = catachAsyncError(async(req, res, next) => {
     const orders = await Order.find({ user: req.user._id });
 
     res.status(200).json({
@@ -42,7 +50,7 @@ exports.myOrders = catachAsyncError( async (req, res, next) => {
 
 
 
-exports.getAllOrderAdmin = catachAsyncError( async (req, res, next) => {
+exports.getAllOrderAdmin = catachAsyncError(async(req, res, next) => {
     const orders = await Order.find().populate("user", "firstName lastName");
 
     let totalAmount = 0;
@@ -62,52 +70,60 @@ exports.getAllOrderAdmin = catachAsyncError( async (req, res, next) => {
 });
 
 
-exports.getSellerOrders = catachAsyncError( async (req, res, next) => {
-    
-    const user = req.user.id;
-    
-    const shopsExist = await Shop.find({ user });
+exports.getSellerOrders = catachAsyncError(async(req, res, next) => {
 
-    const orders = await Order.find({ 'orderItems.shop'  : '626a81061acf154e0da87f40'})
+    const id = req.body.id;
+
+    const orders = await Order.find({ 'orderItems.shop': id });
+
+    let totalAmount = 0;
+
+    orders.forEach((order) => {
+        totalAmount += order.totalPrice
+    })
+
+    const totalOrders = orders.length;
 
     res.status(200).json({
         success: true,
-        orders
+        orders,
+        totalAmount,
+        totalOrders
     })
 
 });
 
 
-exports.updateOrderStatus = catachAsyncError( async (req, res, next) => {
+exports.updateOrderStatus = catachAsyncError(async(req, res, next) => {
     const order = await Order.findById(req.params.id);
 
 
-    if(order.orderStatus === 'Delivered'){
-        return next (new ErrorHandler("You have already Delivered this Order", 400));
+    if (order.orderStatus === 'Delivered') {
+        return next(new ErrorHandler("You have already Delivered this Order", 400));
     }
 
-    order.orderItems.forEach(async (order) => {
+    order.orderItems.forEach(async(order) => {
         await updateStock(order.product, order.quantity)
     })
 
     order.orderstatus = req.body.status;
 
-    if(req.body.status === 'Delivered'){
+    if (req.body.status === 'Delivered') {
         order.deliveredAt = Date.now()
     }
 
     await order.save()
-    
+
     res.status(200).json({
         success: true
     })
 });
 
-exports.deleteOrder = catachAsyncError( async( req, res, next ) => {
+exports.deleteOrder = catachAsyncError(async(req, res, next) => {
     const order = await Order.findById(req.params.id);
 
-    if(!order) {
-        return next( new ErrorHandler("No Order Found!" , 404));
+    if (!order) {
+        return next(new ErrorHandler("No Order Found!", 404));
     }
 
     await order.remove();
@@ -115,12 +131,12 @@ exports.deleteOrder = catachAsyncError( async( req, res, next ) => {
     res.status(200).json({
         success: true
     })
- });
+});
 
-async function updateStock(id, quantity){
+async function updateStock(id, quantity) {
     const product = await Product.findById(id);
 
     product.Stock -= quantity;
 
-    await product.save({ validateBeforeSave : false})
+    await product.save({ validateBeforeSave: false })
 }

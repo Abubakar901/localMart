@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { MainContainer, TopContainer, BottomContainer } from '../../../GlobalStyle';
-import { SellerMainContainer } from '../../SellerStyle';
-import { SellerShopForm , FormTopContainer, EachContainer, ShopLabels, ShopInputs, ImageInputContainer, ImageOneContainer, ImageTwoContainer, CreateShopBtn } from './ProductNewStyle';
-import Sidebar from '../../components/Sidebar/Siderbar';
+import React, { useState, useEffect } from 'react';
+import { SellerMainContainer, MainContainer, TopContainer, BottomContainer } from '../../SellerStyle';
+import { SellerShopForm , ShopLabels, ShopInputs, ImageInputContainer, ImageOneContainer, ImageTwoContainer, CreateShopBtn } from './ProductNewStyle';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSellerShops } from '../../../actions/shopActions';
 import { createProduct } from '../../../actions/productAction';
@@ -88,34 +87,20 @@ const ProductNew = () => {
         <Sidebar />
         <SellerMainContainer>
             <SellerShopForm encType="multipart/form-data" onSubmit={productFormSubmit}>
-                <FormTopContainer>
-                    <EachContainer>
-                        <ShopLabels>Name : </ShopLabels>
                         <ShopInputs placeholder='Please Enter Product Name' name='productName' type='text' value={productName} onChange={(e) => setProductName(e.target.value)} required />
-                    </EachContainer>
+                  
              
-                    <EachContainer>
-                        <ShopLabels>Price : </ShopLabels>
+                    
                         <ShopInputs placeholder='Please Enter Product Price' name='productPrice' type='text' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} required />
-                    </EachContainer>
+                  
                    
-                    <EachContainer>
-                        <ShopLabels>Description : </ShopLabels>
                         <ShopInputs placeholder='Please Enter Product Description' name='productDescription' type='text' value={productDescription} onChange={(e) => setProductDescription(e.target.value)} required />
-                    </EachContainer>
+                  
+                        <ShopInputs placeholder='Please Enter Product Category' name='productCategory' type='text' value={productCategory} onChange={(e) => setProductCategory(e.target.value)} required />
+              
+                        <ShopInputs placeholder='Please Enter Product Stock' name='productStock' type='number' value={productStock} onChange={(e) => setProductStock(e.target.value)} required />
+                  
                     
-                    <EachContainer>
-                        <ShopLabels>Category : </ShopLabels>
-                        <ShopInputs placeholder='Please Enter Shop Country' name='productCategory' type='text' value={productCategory} onChange={(e) => setProductCategory(e.target.value)} required />
-                    </EachContainer>
-                    
-                
-                    <EachContainer>
-                        <ShopLabels>Stock : </ShopLabels>
-                        <ShopInputs placeholder='Please Enter Shop Category' name='productStock' type='number' value={productStock} onChange={(e) => setProductStock(e.target.value)} required />
-                    </EachContainer>
-                    
-                    <EachContainer>
                         <ShopLabels>Select Shop : </ShopLabels>
                         <select onChange={(e) => setProductShopName(e.target.value)}>
                            {
@@ -126,10 +111,6 @@ const ProductNew = () => {
                                ))
                            } 
                         </select>
-                    </EachContainer>
-
-
-                </FormTopContainer>
 
                 <ImageInputContainer>
                   <ImageOneContainer>

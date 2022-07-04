@@ -1,13 +1,13 @@
 import React from 'react';
 import { MainContainer, TopContainer, BottomContainer } from '../../../GlobalStyle';
 import { SellerMainContainer } from '../../SellerStyle';
-import Sidebar from '../../components/Sidebar/Siderbar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import DataListProduct from '../../components/DataListProduct/DateListProduct';
 import Metadata from '../../../Layout/Metadata';
 
 const SellerProducts = () => {
   return (
-    <MainContainer innerspace='0'>\
+    <MainContainer innerspace='0'>
     <Metadata title='All Products(Seller)' />
       <TopContainer equally='center'>-
           <h2>All Products</h2>

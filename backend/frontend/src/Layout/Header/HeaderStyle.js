@@ -215,7 +215,7 @@ export const Navtags = styled.div`
     }
 `; 
 
-export const PopUpLogin = styled(CommonBtn)`
+export const LoginBtn = styled(CommonBtn)`
     && {
     color: white;
     background-color: #ffd966;

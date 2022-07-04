@@ -1,81 +1,104 @@
-import React, { useEffect } from 'react'
-import {useSelector, useDispatch } from "react-redux";
-import { useAlert } from 'react-alert';
-import { TableContainer, EditBtn, DeleteBtn } from '../DataListStyle';
-import Loader from '../../../Layout/Loader/Loader';
-import { getSellerProducts, deleteProduct } from '../../../actions/productAction';
-import { DELETE_PRODUCT_RESET } from '../../../constant/keys';
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useAlert } from "react-alert";
+import { TableContainer, EditBtn, DeleteBtn, AdvancedLink } from "../DataListStyle";
+import Loader from "../../../Layout/Loader/Loader";
+import {
+  getSellerProducts,
+  deleteProduct,
+} from "../../../actions/productAction";
+import { DELETE_PRODUCT_RESET } from "../../../constant/keys";
+import { useNavigate } from "react-router-dom";
 
 const DataListShop = () => {
-    const dispatch = useDispatch();
-    const alert = useAlert();
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
 
-    const { error, products, loading } = useSelector((state) => state.products)
-    
-    const {error:deleteError, isDeleted} = useSelector((state) => state.deleteProduct)
+  const { error, products, loading } = useSelector((state) => state.products);
 
-    useEffect(() => {
-        if(error) {
-          return alert.error(error);
-        }
-        
-        if(deleteError) {
-          return alert.error(error);
-        }
+  const { error: deleteError, isDeleted } = useSelector(
+    (state) => state.deleteProduct
+  );
 
-        if(isDeleted) {
-          alert.success('Product Deleted Successfully');
-          dispatch({ type: DELETE_PRODUCT_RESET});
-        }   
+  useEffect(() => {
+    if (error) {
+      return alert.error(error);
+    }
 
-        dispatch(getSellerProducts());
-      
-      }, [dispatch, error, alert, isDeleted, deleteError])
+    if (deleteError) {
+      return alert.error(error);
+    }
 
-      console.log(products)
+    if (isDeleted) {
+      alert.success("Product Deleted Successfully");
+      dispatch({ type: DELETE_PRODUCT_RESET });
+    }
 
+    dispatch(getSellerProducts());
+  }, [dispatch, error, alert, isDeleted, deleteError]);
 
-    const deleteProductHandler = (id) => {
-      dispatch(deleteProduct(id))
-    };
+  const redirectToEditProduct = (id) => {
+    navigate(`/seller/product/${id}`)
+  }
+
+  const deleteProductHandler = (id) => {
+    dispatch(deleteProduct(id));
+  };
 
   return (
     <>
-      {
-        loading ? <Loader /> :
-        (
-          <TableContainer>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            {
-              products && products.map((product) => (
+      {loading ? (
+        <Loader />
+      ) : (
+        <TableContainer>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products &&
+              products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product?.name}</td>
-                  <td>{product?.category}</td>
-                  <td>{product?.Stock}</td>
-                  <td>{product?.price}</td>
                   <td>
-                    <EditBtn />
-                    <DeleteBtn onClick={() => deleteProductHandler(product?._id)} />
+                    <AdvancedLink to={`/product/${product?._id}`}>
+                      {product?.name}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/product/${product?._id}`}>
+                      {product?.category}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/product/${product?._id}`}>
+                      {product?.Stock}
+                    </AdvancedLink>
+                  </td>
+                  <td>
+                    <AdvancedLink to={`/product/${product?._id}`}>
+                      {product?.price}
+                    </AdvancedLink>
+                  </td>
+
+                  <td>
+                    <EditBtn onClick={() => redirectToEditProduct(product?._id)} />
+                    <DeleteBtn
+                      onClick={() => deleteProductHandler(product?._id)}
+                    />
                   </td>
                 </tr>
-              ))
-            }
-            </tbody>
-          </TableContainer>
-        )
-      }
+              ))}
+          </tbody>
+        </TableContainer>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default DataListShop
+export default DataListShop;

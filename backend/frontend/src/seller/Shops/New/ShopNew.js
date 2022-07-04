@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { MainContainer, TopContainer, BottomContainer } from '../../../GlobalStyle';
 import { SellerMainContainer } from '../../SellerStyle';
 import { SellerShopForm , FormTopContainer, FirstContainer, SecondContainer,EachContainer, ShopLabels, ShopInputs, ImageInputContainer, ImageOneContainer, ImageTwoContainer, CreateShopBtn } from './ShopNewStyle';
-import Sidebar from '../../components/Sidebar/Siderbar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { createShop } from '../../../actions/shopActions';
 import { CREATE_SHOP_RESET } from '../../../constant/keys';
