@@ -167,7 +167,7 @@ const Login = () => {
               required
             />
 
-            <ForgotPassLink to="forgotPassword">
+            <ForgotPassLink to="/forgot/password">
               Forgot Password?
             </ForgotPassLink>
             <LoginButton value="submit" type="submit">
