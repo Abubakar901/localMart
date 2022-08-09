@@ -12,7 +12,7 @@ const {
     deleteUser,
     UpdateRole,
     updateProfile,
-} = require("../controller/userController");
+} = require("../controller/UserController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = express.Router();
 
