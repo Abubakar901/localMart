@@ -193,18 +193,20 @@ const ShopDetail = ({ user }) => {
                 </DetailContainer>
               </UpperContainer>
               <LowerContainer>
-                <h4>Reviews</h4>
                 {shop?.reviews && shop?.reviews[0] ? (
-                  <ReviewOuterContaner>
-                    {shop?.reviews.map((review) => (
-                      <ShopReviewCard
-                        review={review}
-                        shopId={id}
-                        key={review?._id}
-                        user={user}
-                      />
-                    ))}
-                  </ReviewOuterContaner>
+                  <>
+                    <h4>Reviews</h4>
+                    <ReviewOuterContaner>
+                      {shop?.reviews.map((review) => (
+                        <ShopReviewCard
+                          review={review}
+                          shopId={id}
+                          key={review?._id}
+                          user={user}
+                        />
+                      ))}
+                    </ReviewOuterContaner>
+                  </>
                 ) : (
                   <NoReviewContainer>
                     <h2>No Reviews Yet</h2>

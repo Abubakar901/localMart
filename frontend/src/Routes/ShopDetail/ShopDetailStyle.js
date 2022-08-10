@@ -219,7 +219,7 @@ export const LowerContainer = styled.div `
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 400px;
+  height: auto;
   flex-wrap: nowrap;
   padding: 7px 10px;
   overflow: hidden;
@@ -245,7 +245,8 @@ export const ReviewOuterContaner = styled.div `
 export const NoReviewContainer = styled.div `
   width: 100%;
   display: flex;
-  height: 400px;
+  height: 200px;
+  border:2px solid #000;
   justify-content: center;
   align-items: center;
 `;

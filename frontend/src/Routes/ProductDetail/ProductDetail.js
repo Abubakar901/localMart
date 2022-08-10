@@ -216,18 +216,20 @@ const ProductDetail = ({ user }) => {
                 </DetailContainer>
               </UpperContainer>
               <LowerContainer>
-                <h4>Reviews</h4>
                 {product?.reviews && product?.reviews[0] ? (
-                  <ReviewOuterContaner>
-                    {product?.reviews.map((review) => (
-                      <ProductReviewCard
-                        review={review}
-                        productId={id}
-                        key={review?._id}
-                        user={user}
-                      />
-                    ))}
-                  </ReviewOuterContaner>
+                  <>
+                    <h4>Reviews</h4>
+                    <ReviewOuterContaner>
+                      {product?.reviews.map((review) => (
+                        <ProductReviewCard
+                          review={review}
+                          productId={id}
+                          key={review?._id}
+                          user={user}
+                        />
+                      ))}
+                    </ReviewOuterContaner>
+                  </>
                 ) : (
                   <NoReviewContainer>
                     <h2>No Reviews Yet</h2>
