@@ -30,7 +30,7 @@ export const ProductLink = styled(Link)
   }
 `;
 
-export const ProductCard = styled.div `
+export const ProductCard = styled.div`
   background-color: #fff;
   height: auto;
   width: 240px;
@@ -46,10 +46,6 @@ export const ProductCard = styled.div `
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-  @media (max-width:830px) {
-    width:200px;
-}
 `;
 
 export const ShopTwoItems = styled.div `

@@ -1,15 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SellerboardMainContainer = styled.div `
+export const SellerboardMainContainer = styled.div`
   width: 100%;
   display: flex;
   min-height: 500px;
   margin: 0;
   max-height: auto;
+
+  @media (max-width: 890px) {
+    overflow: auto;
+  }
 `;
 
-export const TopContainer = styled.div `
+export const TopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,12 +22,7 @@ export const TopContainer = styled.div `
   font-weight: 700;
 
   @media (max-width: 470px) {
-    padding-left: 30px;
     width: auto;
-  }
-
-  @media (max-width: 470px) {
-    padding-left: 50px;
   }
 
   h2 {
@@ -44,7 +43,7 @@ export const TopContainer = styled.div `
   }
 `;
 
-export const SellerInnerContainer = styled.div `
+export const SellerInnerContainer = styled.div`
   width: 100%;
   padding-top: 40px;
   height: auto;
@@ -53,7 +52,7 @@ export const SellerInnerContainer = styled.div `
   text-align: center;
 `;
 
-export const AmountContainer = styled.div `
+export const AmountContainer = styled.div`
   background-color: #93c47d;
   margin-top: 30px;
   padding: 10px 0;
@@ -77,30 +76,17 @@ export const AmountContainer = styled.div `
       font-size: 20px;
     }
     @media (max-width: 470px) {
-      padding-left: 30px;
       width: auto;
-    }
-
-    @media (max-width: 470px) {
-      padding-left: 50px;
     }
   }
 `;
 
-export const CircleContainer = styled.div `
+export const CircleContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
   padding: 20px;
-
-  @media (max-width: 785px) {
-    padding-left: 40px;
-  }
-
-  @media (max-width: 575px) {
-    padding-left: 60px;
-  }
 
   @media (max-width: 500px) {
     flex-direction: column;
@@ -108,8 +94,7 @@ export const CircleContainer = styled.div `
   }
 `;
 
-export const CircleLinked = styled(Link)
-`
+export const CircleLinked = styled(Link)`
   text-decoration: none;
   margin: 0;
   background-color: #e69138;
@@ -139,7 +124,6 @@ export const CircleLinked = styled(Link)
 
   @media (max-width: 390px) {
     width: 70%;
-    margin-left:40px;
   }
 
   > h6 {
@@ -169,19 +153,12 @@ export const CircleLinked = styled(Link)
   }
 `;
 
-export const LineChart = styled.div `
+export const LineChart = styled.div`
   width: 90%;
   margin: 10px auto 30px;
 
-  @media (max-width: 925px) {
-    margin-left: 80px;
-  }
-
-  @media (max-width: 875px) {
-    width: 80%;
-  }
-
-  @media (max-width:460px){
-    width: 70%;
+  @media (max-width: 890px) {
+    width: 850px;
+    overflow: auto;
   }
 `;

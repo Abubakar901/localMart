@@ -8,7 +8,16 @@ import {
   HomeMixedContainer,
   HomeTopContainer,
   HomeShop,
+  ExploreShopBtn,
+  ShoppingCard,
+  ShopTwoItems,
+  ShopLink,
+  RatingComp,
   HomeProduct,
+  ProductCard,
+  ProductTwoItems,
+  AddToCartBtn,
+  ProductLink,
 } from "./HomeStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
@@ -16,9 +25,8 @@ import Loader from "../../Layout/Loader/Loader";
 import Metadata from "../../Layout/Metadata";
 import { getHomeProducts, clearErrors } from "../../Actions/ProductAction";
 import { getHomeShops } from "../../Actions/ShopAction";
-import ShopCard from "../../Components/ShopCard/ShopCard";
-import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useNavigate } from "react-router-dom";
+import { addItemsToCart } from "../../Actions/CartAction";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -43,6 +51,18 @@ const Home = () => {
 
   const navigateProducts = () => {
     navigate("/products");
+  };
+
+  const redirectShop = (id) => {
+    navigate(`/shop/${id}`);
+  };
+
+  const redirctToShopByProduct = (id) => {
+    navigate(`/shop/products/${id}`);
+  };
+  const addToCart = (id, quantity) => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
   };
 
   useEffect(() => {
@@ -94,7 +114,41 @@ const Home = () => {
                 <HomeShop>
                   {shops &&
                     shops.map((shop) => (
-                      <ShopCard key={shop?._id} shop={shop} />
+                      <ShoppingCard>
+                        <ShopLink to={`/shop/${shop?._id}`}>
+                          <img src={shop?.images[0]?.url} alt={shop?.name} />
+                        </ShopLink>
+                        <ShopLink to={`/shop/${shop?._id}`}>
+                          <h4>{shop?.name}</h4>
+                        </ShopLink>
+                        <ShopTwoItems>
+                          <ShopLink to={`/shop/${shop?._id}`}>
+                            <h5>{shop?.category}</h5>
+                          </ShopLink>
+                          <ShopLink to={`/shop/${shop?._id}`}>
+                            <RatingComp value={shop?.ratings} readOnly />
+                          </ShopLink>
+                        </ShopTwoItems>
+                        <ShopTwoItems>
+                          <ShopLink to={`/shop/${shop?._id}`}>
+                            <p> {shop?.city}</p>
+                          </ShopLink>
+                          <ShopLink to={`/shop/${shop?._id}`}>
+                            <p>{shop?.state}</p>
+                          </ShopLink>
+                        </ShopTwoItems>
+                        <ExploreShopBtn
+                          bgcolor="#01796f"
+                          onClick={() => redirectShop(shop?._id)}
+                        >
+                          Shop Details
+                        </ExploreShopBtn>
+                        <ExploreShopBtn
+                          onClick={() => redirctToShopByProduct(shop?._id)}
+                        >
+                          Explore Products
+                        </ExploreShopBtn>
+                      </ShoppingCard>
                     ))}{" "}
                 </HomeShop>
               </HomeMixedContainer>
@@ -105,7 +159,37 @@ const Home = () => {
                 <HomeProduct>
                   {products &&
                     products.map((product) => (
-                      <ProductCard product={product} key={product?._id} />
+                      <ProductCard>
+                        <ProductLink to={`/product/${product?._id}`}>
+                          <img
+                            src={product?.images?.[0]?.url}
+                            alt={product?.name}
+                          />
+                        </ProductLink>
+                        <ProductLink to={`/product/${product?._id}`}>
+                          <h4>{product?.name}</h4>
+                        </ProductLink>
+                        <ProductLink to={`/product/${product?._id}`}>
+                          <ProductTwoItems>
+                            <h5>
+                              <span>₹</span>
+                              {product?.price}
+                            </h5>
+                            <RatingComp value={product?.ratings} readOnly />
+                          </ProductTwoItems>
+                        </ProductLink>
+                        <ProductLink to={`/product/${product?._id}`}>
+                          <ProductTwoItems>
+                            <p>{product?.shopName?.city}</p>
+                            <p>{product?.shopName?.state}</p>
+                          </ProductTwoItems>
+                        </ProductLink>
+                        <AddToCartBtn
+                          onClick={() => addToCart(product?._id, 1)}
+                        >
+                          Add to Cart
+                        </AddToCartBtn>
+                      </ProductCard>
                     ))}
                 </HomeProduct>
               </HomeMixedContainer>

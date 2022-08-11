@@ -44,6 +44,7 @@ const EditShop = () => {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [category, setCategory] = useState("");
+  const [delivery, setDelivery] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
@@ -82,6 +83,7 @@ const EditShop = () => {
     myForm.set("name", name);
     myForm.set("contact", contact);
     myForm.set("category", category);
+    myForm.set("delivery", delivery);
     myForm.set("address", address);
     myForm.set("city", city);
     myForm.set("state", state);
@@ -100,10 +102,11 @@ const EditShop = () => {
       setName(shop.name);
       setAddress(shop.address);
       setContact(shop.contact);
+      setCategory(shop.category);
+      setDelivery(shop.delivery);
       setCity(shop.city);
       setState(shop.state);
       setCountry(shop.country);
-      setCategory(shop.category);
       setOldImages(shop.images);
     }
 
@@ -174,6 +177,19 @@ const EditShop = () => {
                 autoComplete="off"
                 value={category}
                 onChange={(e) => setCategory(e.target.value.toLowerCase())}
+              />
+            </EachContainer>
+
+            <EachContainer>
+              <Labels>Shop Delivery</Labels>
+              <input
+                type="text"
+                placeholder="Shop Delivery"
+                required
+                autoComplete="off"
+                name="delivery"
+                value={delivery}
+                onChange={(e) => setDelivery(e.target.value)}
               />
             </EachContainer>
 

@@ -7,7 +7,7 @@ export const MainContainer = styled.div `
   display: flex;
 `;
 
-export const SellerMainContainer = styled.div `
+export const SellerMainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -41,7 +41,6 @@ export const SellerMainContainer = styled.div `
   @media (max-width: 680px) {
     overflow: auto;
     width: 100%;
-    padding-left: 60px;
   }
 `;
 

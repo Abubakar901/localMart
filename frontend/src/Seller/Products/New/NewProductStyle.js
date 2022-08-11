@@ -14,7 +14,7 @@ export const NewProductRightContainer = styled.div `
   flex-direction: column;
 `;
 
-export const NewProductTopContainer = styled.div `
+export const NewProductTopContainer = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -27,44 +27,13 @@ export const NewProductTopContainer = styled.div `
       font-size: 30px;
     }
 
-    @media (max-width: 465px) {
-      margin-left: 50px;
-    }
-    @media (max-width: 425px) {
-      margin-left: 70px;
-    }
-
-    @media (max-width: 410px) {
-      margin-left: 90px;
-    }
-
     @media (max-width: 408px) {
-      margin-left: 80px;
       font-size: 28px;
-    }
-
-    @media (max-width: 390px) {
-      margin-left: 40px;
-    }
-
-    @media (max-width: 378px) {
-      margin-left: 50px;
-    }
-    @media (max-width: 372px) {
-      margin-left: 60px;
-    }
-
-    @media (max-width: 365px) {
-      margin-left: 70px;
-    }
-
-    @media (max-width: 355px) {
-      margin-left: 80px;
     }
   }
 `;
 
-export const NewProductFrom = styled.form `
+export const NewProductFrom = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -72,29 +41,12 @@ export const NewProductFrom = styled.form `
   width: 320px;
   margin: 0 auto;
 
-  @media (max-width: 515px) {
-    margin-left: 80px;
-  }
-
   @media (max-width: 410px) {
     width: 280px;
-    margin-left: 90px;
-  }
-
-  @media (max-width: 390px) {
-    margin-left: 80px;
   }
 
   @media (max-width: 392px) {
     width: 270px;
-  }
-
-  @media (max-width: 360px) {
-    margin-left: 70px;
-  }
-
-  @media (max-width: 350px) {
-    margin-left: 60px;
   }
 
   @media (max-width: 340px) {
@@ -102,7 +54,6 @@ export const NewProductFrom = styled.form `
   }
 
   @media (max-width: 325px) {
-    margin-left: 60px;
     width: 250px;
   }
 

@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 
-export const MainContainer = styled.div `
-    width:300px;
-    height:auto;
-    background-color: #fff;
-    margin: 40px auto;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-bottom:20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+export const MainContainer = styled.div`
+  width: 300px;
+  height: auto;
+  background-color: #fff;
+  margin: 40px auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  @media (max-width: 435px) {
+    margin-top: 10px;
+  }
 `;
 
 export const TopContainer = styled.div `

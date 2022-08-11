@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import Rating from "@mui/material/Rating";
 
-export const HomeContainer = styled.div `
+export const HomeContainer = styled.div`
   margin: 40px auto 40px;
   width: 90%;
 
@@ -11,7 +13,7 @@ export const HomeContainer = styled.div `
   }
 `;
 
-export const HomeMain = styled.div `
+export const HomeMain = styled.div`
   height: 400px;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -55,32 +57,31 @@ export const HomeMain = styled.div `
       margin-bottom: 20px;
 
       &:before {
-      left:0;
+        left: 0;
         width: 100%;
-      opacity: 0.5;
+        opacity: 0.5;
         top: 60px;
       }
     }
 
+    @media (max-width: 480px) {
+      height: 300px;
 
-    @media (max-width:480px) {
-      height:300px;
-      
       &:before {
-      height:300px;
+        height: 300px;
       }
     }
 
-    @media (max-width:450px) {
-      height:350px;
+    @media (max-width: 450px) {
+      height: 350px;
       &:before {
-      height:350px;
+        height: 350px;
       }
     }
   }
 `;
 
-export const HomeLeft = styled.div `
+export const HomeLeft = styled.div`
   width: 35%;
   display: flex;
   padding-top: 40px;
@@ -136,7 +137,6 @@ export const HomeLeft = styled.div `
     width: 90%;
   }
 
-
   @media (max-width: 400px) {
     width: 100%;
   }
@@ -159,18 +159,17 @@ export const HomeLeft = styled.div `
       font-weight: 700;
     }
 
-    @media (max-width:585px) {
-      font-size:28px;
+    @media (max-width: 585px) {
+      font-size: 28px;
     }
 
-    @media (max-width:470px) {
-      font-size:25px;
+    @media (max-width: 470px) {
+      font-size: 25px;
     }
-
   }
 `;
 
-export const HomeImage = styled.img `
+export const HomeImage = styled.img`
   width: 50%;
   height: 90%;
   margin: auto;
@@ -188,8 +187,7 @@ export const HomeImage = styled.img `
   }
 `;
 
-export const HomeButton = styled(Button)
-`
+export const HomeButton = styled(Button)`
   && {
     color: white;
     text-transform: capitalize;
@@ -230,24 +228,24 @@ export const HomeButton = styled(Button)
   }
 `;
 
-export const HomeMixedContainer = styled.div `
+export const HomeMixedContainer = styled.div`
   width: 100%;
   height: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-bottom: 10px;
   background-color: #fff;
   margin: 0 auto 40px;
-  
+
   @media (max-width: 700px) {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 `;
 
-export const HomeTopContainer = styled.div `
+export const HomeTopContainer = styled.div`
   width: 90%;
   margin: 0 auto;
   padding-left: 20px;
-  padding-top:20px;
+  padding-top: 20px;
 
   @media (max-width: 1120px) {
     margin-left: 20px;
@@ -267,25 +265,179 @@ export const HomeTopContainer = styled.div `
   }
 `;
 
-export const HomeShop = styled.div `
-  width: 100%;
-  margin-top: 20px;
-  align-items: center;
-  justify-content: center;
+export const HomeShop = styled.div`
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
-  flex-wrap: wrap;
+  width: 90%;
+  padding-top: 10px;
+  margin: 10px auto;
+  overflow: auto;
 `;
 
-export const HomeProduct = styled.div `
-  width: 100%;
-  margin-top: 20px;
-  align-items: center;
-  margin-bottom: 20px;
-  justify-content: center;
+export const RatingComp = styled(Rating)`
+  && {
+    font-size: 20px;
+    margin: 0;
+  }
+`;
+
+export const ShopLink = styled(Link)`
+  text-decoration: none;
+  > img {
+    border-radius: 10px;
+    height: 160px;
+    width: 200px;
+    margin: 1px;
+  }
+
+  > h4 {
+    font-size: 28px;
+    margin-top: 10px;
+    text-transform: capitalize;
+    color: #5b5f97;
+  }
+
+  > h5 {
+    font-size: 20px;
+    color: #000;
+    text-transform: capitalize;
+    color: green;
+    margin: 0;
+    margin-bottom: 2px;
+  }
+
+  > p {
+    color: #000;
+    font-weight: 500;
+    margin: 2px;
+    text-transform: capitalize;
+  }
+`;
+
+export const ShopTwoItems = styled.div`
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const ShoppingCard = styled.div`
+  background-color: #fff;
+  margin-top: 10px;
+  min-height: 345px;
+  width: 280px;
+  text-align: center;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding-top: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+
+export const ExploreShopBtn = styled(Button)`
+  && {
+    margin-top: 5px;
+    color: #fff;
+    width: 98%;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    font-size: 15px;
+    background-color: ${(props) => props.bgcolor || "#bd2377"};
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  &&:hover {
+    background-color: ${(props) => props.bgColor || "#c74981"};
+  }
+`;
+
+export const HomeProduct = styled.div`
+  display: flex;
+  width: 90%;
+  padding-top: 10px;
+  margin: 10px auto;
+  overflow: auto;
+`;
+
+export const ProductLink = styled(Link)`
+  text-decoration: none;
+  > img {
+    text-align: center;
+    border-radius: 10px;
+    height: 125px;
+    width: 95%;
+    margin: 3px;
+    background-color: #fff;
+  }
+
+  > h4 {
+    font-size: 20px;
+    padding: 10px;
+    text-transform: capitalize;
+    color: #5b5f97;
+    margin: 0;
+    text-decoration: none;
+  }
+`;
+
+export const ProductCard = styled.div`
+  background-color: #fff;
+  height: 100%;
+  width: 240px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+
+export const ProductTwoItems = styled.div`
+  width: 200px;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  justify-content: space-between;
+
+  @media (max-width: 830px) {
+    flex-direction: column;
+  }
+
+  > h5 {
+    font-size: 25px;
+    margin: 0;
+    color: #3d85c6;
+  }
+
+  p {
+    color: #5b5f97;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+  }
+`;
+
+export const AddToCartBtn = styled(Button)`
+  && {
+    margin: 5px auto;
+    color: #fff;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    width: 90%;
+    font-size: 15px;
+    background-color: #3d85c6;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  &&:hover {
+    background-color: #3d85c6;
+  }
 `;

@@ -11,8 +11,7 @@ export const RatingComp = styled(Rating)
   }
 `;
 
-export const ShopLink = styled(Link)
-`
+export const ShopLink = styled(Link)`
   text-decoration: none;
   > img {
     border-radius: 10px;
@@ -25,7 +24,7 @@ export const ShopLink = styled(Link)
       width: 95%;
     }
     @media (max-width: 500px) {
-      height: 130px;
+      height: 160px;
     }
   }
 

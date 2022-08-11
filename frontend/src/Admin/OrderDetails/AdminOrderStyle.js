@@ -14,31 +14,28 @@ export const NoOrderFound = styled.div `
   }
 `;
 
-export const MainContainer = styled.div `
-  width:80%;
+export const MainContainer = styled.div`
+  width: 80%;
   height: auto;
   margin: 40px auto;
   justify-content: center;
-  padding:20px;
+  padding: 20px;
   background-color: #fff;
   align-items: center;
   display: flex;
   flex-direction: column;
 
-  @media (max-width:1210px) {
-    width:90%;
+  @media (max-width: 1210px) {
+    width: 90%;
   }
 
-  @media (max-width:1150px) {
-    width:100%;
-  }
-
-  @media (max-width: 550px) {
-    margin: 20px auto 0;
+  @media (max-width: 1150px) {
+    width: 100%;
+    margin: 0;
   }
 `;
 
-export const TopContainer = styled.div `
+export const TopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,11 +52,11 @@ export const TopContainer = styled.div `
   }
 `;
 
-export const BottomContainer = styled.div `
+export const BottomContainer = styled.div`
   width: 100%;
 `;
 
-export const UpperContainer = styled.div `
+export const UpperContainer = styled.div`
   display: flex;
   width: 100%;
 
@@ -68,7 +65,7 @@ export const UpperContainer = styled.div `
   }
 `;
 
-export const LeftContainer = styled.div `
+export const LeftContainer = styled.div`
   width: 100%;
   text-align: center;
   display: flex;
@@ -96,7 +93,7 @@ export const LeftContainer = styled.div `
   }
 `;
 
-export const SideContainer = styled.div `
+export const SideContainer = styled.div`
   width: 100%;
   padding: 10px;
   display: flex;
@@ -111,6 +108,7 @@ export const SideContainer = styled.div `
     font-size: 22px;
     @media (max-width: 1045px) {
       font-size: 20px;
+      text-align: center;
     }
     @media (max-width: 445px) {
       font-size: 18px;

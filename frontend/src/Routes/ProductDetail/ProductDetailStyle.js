@@ -91,10 +91,10 @@ export const CarouselImage = styled.img `
     }
 `;
 
-export const DetailContainer = styled.div `
+export const DetailContainer = styled.div`
   width: 60%;
   padding-left: 40px;
-  
+
   @media (max-width: 1330px) {
     width: 50%;
   }
@@ -103,22 +103,22 @@ export const DetailContainer = styled.div `
     width: 55%;
   }
 
-  @media (max-width:1165px) {
-    width:50%;
+  @media (max-width: 1165px) {
+    width: 50%;
   }
 
-  @media (max-width:1050px) {
-    width:100%;
-    display:flex;
+  @media (max-width: 1050px) {
+    width: 100%;
+    display: flex;
     padding-left: 0;
-    flex-direction:column;
-    align-items:Center;
+    flex-direction: column;
+    align-items: Center;
   }
-
 
   > h4 {
     font-size: 40px;
-    text-transform:capitalize;
+    text-transform: capitalize;
+    text-align: center;
   }
 
   > h5 {

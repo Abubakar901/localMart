@@ -32,8 +32,6 @@ const AdminOrderDetail = () => {
     dispatch(getOrderDetails(id));
   }, [dispatch, alert, error, id]);
 
-  console.log(order);
-
   return (
     <>
       {loading ? (

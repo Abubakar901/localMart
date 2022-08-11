@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SidebarContainer = styled.div `
+export const SidebarContainer = styled.div`
   width: 20%;
   height: auto;
   display: flex;
@@ -32,30 +32,35 @@ export const SidebarContainer = styled.div `
     z-index: 1;
     position: fixed;
     box-shadow: 6px 3px 8px 4px rgb(0 0 0 / 75%);
-    width: ${(props) => props.show || "8px"};
+    width: ${(props) => props.width || "0"};
+    height: ${(props) => props.height || "0"};
     animation-name: ${(props) => props.animation};
     animation-duration: 2s;
     @keyframes animateOut {
       0% {
-        width: 60px;
+        width: 0;
+        height: 0;
       }
       100% {
-        width: 220px;
+        width: 200px;
+        height: 380px;
       }
     }
 
     @keyframes animateIn {
       0% {
-        width: 220px;
+        width: 200px;
+        height: 380px;
       }
       100% {
-        width: 60px;
+        width: 0;
+        height: 0;
       }
     }
   }
 `;
 
-export const ResponsiveBtn = styled.button `
+export const ResponsiveBtn = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -69,7 +74,7 @@ export const ResponsiveBtn = styled.button `
   margin-top: 10px;
   background-color: #ffd966;
   margin-right: 10px;
-  border-radius: 10px;
+  border: 2px solid #000;
   padding: 3px 0;
   display: none;
 
@@ -90,7 +95,7 @@ export const ResponsiveBtn = styled.button `
   }
 `;
 
-export const Heading = styled.h3 `
+export const Heading = styled.h3`
   font-size: 40px;
   margin-bottom: 20px;
   text-decoration: underline;
@@ -101,7 +106,7 @@ export const Heading = styled.h3 `
 
   @media (max-width: 925px) {
     animation-name: ${(props) => props.textanimation};
-    animation-duration: 2s;
+    animation-duration: 5s;
     padding-top: 60px;
     padding-left: 30px;
     opacity: ${(props) => props.textopacity};
@@ -127,8 +132,7 @@ export const Heading = styled.h3 `
   }
 `;
 
-export const SideLink = styled(Link)
-`
+export const SideLink = styled(Link)`
   text-decoration: none;
   font-size: 25px;
   margin-bottom: 20px;
@@ -141,7 +145,7 @@ export const SideLink = styled(Link)
 
   @media (max-width: 925px) {
     animation-name: ${(props) => props.textanimation};
-    animation-duration: 2s;
+    animation-duration: 5s;
     padding-left: 30px;
     opacity: ${(props) => props.textopacity};
     display: ${(props) => props.view};

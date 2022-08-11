@@ -10,7 +10,8 @@ const Sidebar = () => {
   // responsive variables
   const [display, setDisplay] = useState("none");
   const [responsiveBar, setResponsiveBar] = useState(true);
-  const [SideBar, setSideBar] = useState("60px");
+  const [SideBarWidth, setSideBarWidth] = useState("0");
+  const [SideBarHeight, setSideBarHeight] = useState("0");
   const [animation, setAnimation] = useState("");
   const [textAnimation, setTextAnimation] = useState("");
   const [textOpacity, setTextOpacity] = useState("0");
@@ -21,12 +22,14 @@ const Sidebar = () => {
     if (responsiveBar) {
       setDisplay("flex");
       setAnimation("animateOut");
-      setSideBar("220px");
+      setSideBarWidth("200px");
+      setSideBarHeight("380px");
       setTextAnimation("fadeIn");
       setTextOpacity("1");
     } else {
       setDisplay("none");
-      setSideBar("60px");
+      setSideBarWidth("0");
+      setSideBarHeight("0");
       setAnimation("animateIn");
       setTextAnimation("fadeOut");
       setTextOpacity("0");
@@ -34,7 +37,11 @@ const Sidebar = () => {
   };
 
   return (
-    <SidebarContainer show={SideBar} animation={animation}>
+    <SidebarContainer
+      height={SideBarHeight}
+      width={SideBarWidth}
+      animation={animation}
+    >
       <ResponsiveBtn onClick={() => handleSidePanel()}>
         <span> </span> <span> </span> <span> </span>{" "}
       </ResponsiveBtn>{" "}
