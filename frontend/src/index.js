@@ -8,6 +8,7 @@ import store from "./Redux/Store";
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import { HelmetProvider } from "react-helmet-async";
+import { CookiesProvider } from "react-cookie";
 
 const options = {
   timeout: 5000,
@@ -18,11 +19,14 @@ const options = {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </AlertProvider>
+      <CookiesProvider>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </AlertProvider>
+      </CookiesProvider>
+      ,
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
