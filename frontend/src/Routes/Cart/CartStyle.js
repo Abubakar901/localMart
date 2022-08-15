@@ -64,9 +64,9 @@ export const CartLeftContainer = styled.div `
   }
 `;
 
-export const CartProductContainer = styled.div `
+export const CartProductContainer = styled.div`
   display: flex;
-  height: 160px;
+  height: height;
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 10px;

@@ -16,6 +16,7 @@ import ProductDetail from "./Routes/ProductDetail/ProductDetail";
 import Cart from "./Routes/Cart/Cart";
 import Login from "./Routes/Login/Login";
 import ErrorPage from "./Routes/ErrorPage/ErrorPage";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import Shipping from "./Routes/Shipping/Shipping";
 import Profile from "./Routes/Profile/Profile";
 import ConfirmOrder from "./Routes/ConfirmOrder/ConfirmOrder";
@@ -43,7 +44,7 @@ import ResetPassword from "./Routes/ResetPassword/ResetPassword";
 function App() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -149,270 +150,247 @@ function App() {
           }
         />
 
-        {user ? (
-          <>
-            <Route
-              path="/shipping"
-              element={
-                <>
-                  <Header />
-                  <Shipping />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/profile"
-              element={
-                <>
-                  <Header />
-                  <Profile user={user} />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/order/confirm"
-              element={
-                <>
-                  <Header />
-                  <ConfirmOrder user={user} />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/orders"
-              element={
-                <>
-                  <Header />
-                  <Orders />
-                  <Footer />
-                </>
-              }
-            />
-          </>
-        ) : (
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route
-            path="*"
+            path="/shipping"
             element={
               <>
                 <Header />
-                <ErrorPage />
+                <Shipping />
                 <Footer />
               </>
             }
           />
-        )}
 
-        {user?.role === "seller" ? (
-          <>
-            <Route
-              path="/seller/dashboard"
-              element={
-                <>
-                  <Header />
-                  <Sellerboard />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/shop/new"
-              element={
-                <>
-                  <Header />
-                  <NewShop />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/shops"
-              element={
-                <>
-                  <Header />
-                  <AllShop />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/shop/:id"
-              element={
-                <>
-                  <Header />
-                  <EditShop />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/product/new"
-              element={
-                <>
-                  <Header />
-                  <NewProduct />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/products"
-              element={
-                <>
-                  <Header />
-                  <AllProducts />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/product/:id"
-              element={
-                <>
-                  <Header />
-                  <EditProduct />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/orders"
-              element={
-                <>
-                  <Header />
-                  <SellerOrders />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/seller/order/:id"
-              element={
-                <>
-                  <Header />
-                  <SellerOrderDetail />
-                  <Footer />
-                </>
-              }
-            />
-          </>
-        ) : (
           <Route
-            path="*"
+            path="/profile"
             element={
               <>
                 <Header />
-                <ErrorPage />
+                <Profile user={user} />
                 <Footer />
               </>
             }
           />
-        )}
 
-        {user?.role === "admin" ? (
-          <>
-            <Route
-              path="/admin/dashboard"
-              element={
-                <>
-                  <Header />
-                  <Adminboard />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/shops"
-              element={
-                <>
-                  <Header />
-                  <AdminShops />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/products"
-              element={
-                <>
-                  <Header />
-                  <AdminProducts />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/orders"
-              element={
-                <>
-                  <Header />
-                  <AdminOrders />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/order/:id"
-              element={
-                <>
-                  <Header />
-                  <AdminOrderDetail />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/users"
-              element={
-                <>
-                  <Header />
-                  <AdminUsers />
-                  <Footer />
-                </>
-              }
-            />
-
-            <Route
-              path="/admin/user/:id"
-              element={
-                <>
-                  <Header />
-                  <UserDetails />
-                  <Footer />
-                </>
-              }
-            />
-          </>
-        ) : (
           <Route
-            path="*"
+            path="/order/confirm"
             element={
               <>
                 <Header />
-                <ErrorPage />
+                <ConfirmOrder user={user} />
                 <Footer />
               </>
             }
           />
-        )}
+
+          <Route
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <Orders />
+                <Footer />
+              </>
+            }
+          />
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              sellerRoute={true}
+              user={user}
+            />
+          }
+        >
+          <Route
+            path="/seller/dashboard"
+            element={
+              <>
+                <Header />
+                <Sellerboard />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/shop/new"
+            element={
+              <>
+                <Header />
+                <NewShop />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/shops"
+            element={
+              <>
+                <Header />
+                <AllShop />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/shop/:id"
+            element={
+              <>
+                <Header />
+                <EditShop />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/product/new"
+            element={
+              <>
+                <Header />
+                <NewProduct />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/products"
+            element={
+              <>
+                <Header />
+                <AllProducts />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/product/:id"
+            element={
+              <>
+                <Header />
+                <EditProduct />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/orders"
+            element={
+              <>
+                <Header />
+                <SellerOrders />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/seller/order/:id"
+            element={
+              <>
+                <Header />
+                <SellerOrderDetail />
+                <Footer />
+              </>
+            }
+          />
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              user={user}
+            />
+          }
+        >
+          <Route
+            path="/admin/dashboard"
+            element={
+              <>
+                <Header />
+                <Adminboard />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/shops"
+            element={
+              <>
+                <Header />
+                <AdminShops />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/products"
+            element={
+              <>
+                <Header />
+                <AdminProducts />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/orders"
+            element={
+              <>
+                <Header />
+                <AdminOrders />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/order/:id"
+            element={
+              <>
+                <Header />
+                <AdminOrderDetail />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/users"
+            element={
+              <>
+                <Header />
+                <AdminUsers />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/admin/user/:id"
+            element={
+              <>
+                <Header />
+                <UserDetails />
+                <Footer />
+              </>
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
